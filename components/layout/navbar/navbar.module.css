@@ -1,3 +1,77 @@
 .container {
   display: flex;
+  padding: 45px 150px;
+  justify-content: space-between;
+}
+.title {
+  display: flex;
+  gap: 15px;
+}
+.content {
+  display: flex;
+  gap: 40px;
+}
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.inputContainer {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.input {
+  background: #efeeee;
+  border-radius: 30px;
+  padding: 12px 44px 12px 44px;
+  outline: none;
+  border: none;
+  width: 178px;
+}
+.inputContainer button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: absolute;
+  left: 10px;
+  outline: none;
+}
+.profile {
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 50%;
+}
+.buttonCollapse {
+  visibility: hidden;
+}
+.hidden {
+  display: none;
+}
+@media (max-width: 992px) {
+  .container {
+    padding: 45px 50px;
+    align-items: center;
+    flex-wrap: wrap;
+    /* justify-content: flex-start; */
+  }
+  .profileContainer {
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;
+  }
+}
+@media (max-width: 576px) {
+  .content {
+    width: 100%;
+    justify-content: center;
+  }
+  .buttonCollapse {
+    visibility: visible;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    outline: none;
+    border: 1px solid #c4c4c4;
+  }
 }

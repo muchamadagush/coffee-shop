@@ -3,9 +3,9 @@ import Footer from './footer';
 const Layout = (props) => {
   return (
     <div>
-      <NavBar />
+      <NavBar isAuth={props.isAuth} active={props.active}/>
       {props.children}
-      <Footer />
+      <Footer login={props.login}/>
     </div>
   );
 };
