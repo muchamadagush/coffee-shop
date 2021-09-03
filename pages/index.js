@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styled from 'styled-components'
-import { Button } from '../components/atoms'
+import { Button, CardWrapper } from '../components/atoms'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -25,6 +25,8 @@ export default function Home() {
           <Button className="button" color="white-choco">white-choco</Button> 
           <Button className="button" color="black">black</Button> 
       </div>
+      <h3>Basic Card wrappernya</h3>
+      <CardWrapper className="card">Halooow</CardWrapper>
    
     </Styles>
   )
@@ -43,6 +45,10 @@ const Styles = styled.div`
     font-size: 20px;
   }
 }
-  
+.card{
+  padding: 30px;
+  width: 150px;
+  height: 60px;
+}
 
 `

@@ -1,11 +1,15 @@
-import React from 'react'
+import styled from 'styled-components'
 
-const CardWrapper = () => {
+const CardWrapper = ({className, children}) => {
     return (
-        <div>
-            
-        </div>
+        <Styles className={className}>
+            {children}
+        </Styles>
     )
 }
 
 export default CardWrapper
+const Styles = styled.div`
+border-radius: 20px;
+background: #FFFFFF;
+`
