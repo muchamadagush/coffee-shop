@@ -2,6 +2,8 @@
   display: flex;
   padding: 45px 150px;
   justify-content: space-between;
+  border: 0.5px solid #9F9F9F;
+  box-sizing: border-box;
 }
 .title {
   display: flex;
@@ -45,9 +47,6 @@
 .buttonCollapse {
   visibility: hidden;
 }
-.hidden {
-  display: none;
-}
 @media (max-width: 992px) {
   .container {
     padding: 45px 50px;
@@ -73,5 +72,11 @@
     background-color: white;
     outline: none;
     border: 1px solid #c4c4c4;
+  }
+  .hidden {
+    display: none;
+  }
+  .visible {
+    display: flex;
   }
 }

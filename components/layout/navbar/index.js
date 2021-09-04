@@ -22,14 +22,14 @@ const NavBar = (props) => {
         <hr />
         <hr />
       </button>
-      <div className={`${drop ? Style.hidden : Style.content}`}>
+      <div className={`${Style.content} ${drop ? Style.hidden : Style.visible}`}>
         <p className={`fs-16 ${props.active === 'home' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>Home</p>
         <p className={`fs-16 ${props.active === 'product' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>Product</p>
         <p className={`fs-16 ${props.active === 'cart' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>Your Cart</p>
         <p className={`fs-16 ${props.active === 'history' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>History</p>
       </div>
       {props.isAuth ? (
-        <div className={`${drop ? Style.hidden : Style.profileContainer}`}>
+        <div className={`${Style.profileContainer} ${drop ? Style.hidden : Style.visible}`}>
           <form className={Style.inputContainer}>
             <button>
               <img src="search.svg" alt="seach button" className={Style.searchButton} />
