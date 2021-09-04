@@ -63,5 +63,6 @@ const Styles = styled.div`
     font-weight: 500px;
     font-size: 16px;
   }
+}
 `;
 export default NavBar;

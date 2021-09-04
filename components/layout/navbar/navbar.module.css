@@ -2,6 +2,8 @@
   display: flex;
   padding: 45px 150px;
   justify-content: space-between;
+  border: 0.5px solid #9F9F9F;
+  box-sizing: border-box;
 }
 .title {
   display: flex;
