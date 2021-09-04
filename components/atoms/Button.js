@@ -93,6 +93,16 @@ const Styles = styled.div`
         align-items: center;
         gap: 10px;
     }
+    &.forgot{
+        height: 75px;
+        font-size: 20px;
+        font-weight: 700;
+        width: 90%;
+        margin: 30px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 
