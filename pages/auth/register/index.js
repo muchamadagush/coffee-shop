@@ -2,8 +2,11 @@ import { useState } from "react";
 import Button from "../../../components/atoms/Button";
 import Input from "../../../components/base/Input";
 import styles from "./register.module.css";
+import { useDispatch } from "react-redux" 
+import { register } from "../../../configs/redux/actions/userAction";
 
 const Register = () => {
+  const dispatch = useDispatch()
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -17,6 +20,10 @@ const Register = () => {
       ...form,
       [e.target.name]: e.target.value
     })
+  }
+
+  const handleRegister = () => {
+    dispatch(register(form))
   }
   return (
     <>
@@ -36,8 +43,8 @@ const Register = () => {
             <div className={styles.formRegister}>
               <Input name="email" type="text" id="email" placeholder="Enter your email adress" actionChange={handleChange} label="Email Adress :" />
               <Input name="password" type="password" id="password" placeholder="Enter your password" actionChange={handleChange} label="Password :" />
-              <Input name="phone" type="phone" id="phone" placeholder="Enter your phone number" actionChange={handleChange} label="Phone Number :" />
-              <Button children="Sign Up" color="shine-shadow auth" />
+              <Input name="phone" type="phone" id="phone" placeholder="Enter your phone number" actionChange={handleChange} label="Phone Number :" giveClass="mb8" />
+              <Button children="Sign Up" color="shine-shadow auth" onClick={() => handleRegister()} />
               <Button color="white auth google">
                 <img src="/google.png" alt="google" /> Sign up with Google
               </Button>

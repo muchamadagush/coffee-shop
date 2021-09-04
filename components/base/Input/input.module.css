@@ -24,3 +24,7 @@
 .input:focus {
   outline: none;
 }
+
+.mb8 {
+  margin-bottom: 2rem;
+}
