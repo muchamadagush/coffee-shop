@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  background: #F8F8F8;
+  padding: 90px 150px;
+  justify-content: space-between;
+}
+.title {
+  display: flex;
+  gap: 15px
+}
+.socialMedia{
+  display: flex;
+  gap: 20px;
+}
+.socialMedia img {
+  background: #6A4029;
+  border-radius: 50%;
+}
+.desc {
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.list {
+  display: flex;
+  gap: 120px;
+}
+.loginDesc {
+  display: flex;
+  gap: 60px;
+  white-space: nowrap;
+}
+.loginDesc div{
+  width: 123px;
+}
+.center {
+  align-items: center;
+}
+@media (max-width: 992px) {
+  .container {
+    padding: 90px 50px;
+  }
+  .desc {
+    max-width: 294px;
+  }
+}
+@media (max-width: 576px) {
+  .loginDesc {
+    gap: 10px;
+  }
+}
