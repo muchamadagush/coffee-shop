@@ -76,6 +76,23 @@ const Styles = styled.div`
     &.black:hover{
         background: #061722;
     }
+    &.auth{
+        height: 75px;
+        margin-bottom: 25px;
+        font-size: 20px;
+        font-weight: 700;
+        width: 90%;
+        margin-left: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &.google{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
 }
 
 
