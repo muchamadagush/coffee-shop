@@ -1,9 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
 a {
@@ -13,4 +13,64 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.fs-16 {
+  font-size: 16px;
+}
+.fs-17 {
+  font-size: 17px;
+}
+.fs-18 {
+  font-size: 18px;
+}
+.fs-20 {
+  font-size: 20px;
+}
+.fs-25 {
+  font-size: 25px;
+}
+.fs-26 {
+  font-size: 26px;
+}
+.fs-27 {
+  font-size: 27px;
+}
+.fs-30 {
+  font-size: 30px;
+}
+.fs-35 {
+  font-size: 35px;
+}
+.fs-64 {
+  font-size: 64px;
+}
+.fs-65 {
+  font-size: 65px;
+}
+.fw-400 {
+  font-weight: 400;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-700 {
+  font-weight: 700;
+}
+.fw-900 {
+  font-weight: 900;
+}
+.fw-bold {
+  font-weight: bold;
+}
+.fc-white {
+  color: white;
+}
+.fc-brown {
+  color: #6A4029;
+}
+.fc-grey {
+  color: #4F5665;
+}
+.fc-black {
+  color: #0B132A;
 }
