@@ -2,12 +2,26 @@
   display: flex;
   padding: 45px 150px;
   justify-content: space-between;
-  border: 0.5px solid #9F9F9F;
+  border-bottom: 0.5px solid #9f9f9f;
   box-sizing: border-box;
+  align-items: center;
+  white-space: nowrap;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  z-index: 1;
+}
+.container p {
+  margin: 0;
+  padding: 0;
 }
 .title {
   display: flex;
   gap: 15px;
+  align-items: center;
 }
 .content {
   display: flex;
@@ -52,7 +66,7 @@
     padding: 45px 50px;
     align-items: center;
     flex-wrap: wrap;
-    /* justify-content: flex-start; */
+    justify-content: space-between;
   }
   .profileContainer {
     width: 100%;
@@ -72,6 +86,11 @@
     background-color: white;
     outline: none;
     border: 1px solid #c4c4c4;
+  }
+  .buttonCollapse hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
   }
   .hidden {
     display: none;

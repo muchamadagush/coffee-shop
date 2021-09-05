@@ -40,29 +40,24 @@ const NavBar = (props) => {
           <img src="/avatar1.svg" alt="profile" className={Style.profile} />
         </div>
       ) : (
-        <Styles>
-          <div className={`${drop ? Style.hidden : 'buttonContainer'}`}>
-            <p className="fs-16 fw-500 fc-black">Login</p>
+        <div className={`${Style.profileContainer} ${drop ? Style.hidden : Style.visible}`}>
+          <p className="fs-16 fw-500 fc-black">Login</p>
+          <Styles>
             <Button className="button" color="shine">
               Sign Up
             </Button>
-          </div>
-        </Styles>
+          </Styles>
+        </div>
       )}
     </div>
   );
 };
 const Styles = styled.div`
-
-.buttonContainer {
-  display: flex;
-  gap: 40px;
   .button {
     width: 150px;
     height: 45px;
     font-weight: 500px;
     font-size: 16px;
   }
-}
 `;
 export default NavBar;
