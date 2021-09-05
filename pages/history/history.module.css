@@ -1,0 +1,82 @@
+.background {
+  background-image: url("/historyBg.png");
+  padding-bottom: 50px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  padding-top: 100px;
+}
+
+.description {
+  font-size: 20px;
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+.buttonSelect {
+  text-align: right;
+  color: #fff;
+  font-size: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.history {
+  width: 32%;
+  height: 125px;
+  display: flex;
+  padding: 20px 20px;
+  flex-direction: row;
+  margin: 10px 5px;
+}
+
+.imgItem {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.descriptionItem {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 25px;
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.price,
+.status {
+  font-weight: normal;
+  font-size: 20px;
+  margin: 0;
+}
+
+.check {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkItem {
+  width: 20px;
+  height: 20px;
+}

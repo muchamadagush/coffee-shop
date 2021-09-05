@@ -79,4 +79,19 @@ a {
 }
 .fc-black {
   color: #0b132a;
+} 
+
+.form-check-input[type="checkbox"]:focus,
+.form-check-input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  border-color: #6a4029;
+  box-shadow: none;
+}
+
+input[type="checkbox"]:checked {
+  background: #6a4029;
+  color: #6a4029;
+  border-color: #6a4029;
+  box-shadow: none;
 }
