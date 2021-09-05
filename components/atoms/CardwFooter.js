@@ -1,10 +1,10 @@
-import React, { Children } from 'react'
+import React, { children } from 'react'
 import styled from 'styled-components'
 
-const CardwFooter = ({className, Children}) => {
+const CardwFooter = ({className, children}) => {
     return (
         <Styles className={className}>
-            {Children}
+            {children}
             <div className="footer"></div>
         </Styles>
     )
