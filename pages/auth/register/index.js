@@ -4,9 +4,12 @@ import Input from "../../../components/base/Input";
 import styles from "./register.module.css";
 import { useDispatch } from "react-redux" 
 import { register } from "../../../configs/redux/actions/userAction";
+import {useRouter} from "next/router";
+import Head from 'next/head';
 
 const Register = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -25,8 +28,15 @@ const Register = () => {
   const handleRegister = () => {
     dispatch(register(form))
   }
+  const pushLogin = () =>{
+    router.push('/login')
+  }
   return (
     <>
+    <Head>
+        <title>Register</title>
+        <link rel="icon" href="/logoCoffeShop.svg" />
+      </Head>
       <div className={styles.register}>
         <div className={styles.left}>
         </div>
@@ -53,7 +63,7 @@ const Register = () => {
                 <p className={styles.haveAccount}>Already have an account?</p>
                 <span className={styles.line}></span>
               </div>
-              <Button children="Login Here" color="choco-shadow auth" />
+              <Button children="Login Here" color="choco-shadow auth" onClick={pushLogin}/>
 
             </div>
           </div>
