@@ -8,7 +8,7 @@ const Layout = (props) => {
         <title>{props.title}</title>
       </Head>
       <NavBar isAuth={props.isAuth} active={props.active} />
-      {props.children}
+      <div className="layoutBox">{props.children}</div>
       <Footer login={props.login} />
     </div>
   );

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&display=swap');
 html,
 body {
   padding: 0;
@@ -13,6 +13,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.layoutBox {
+  margin-top: 180px;
+}
+.f-poppins {
+  font-family: 'Poppins', sans-serif;
 }
 .fs-16 {
   font-size: 16px;
@@ -41,6 +47,9 @@ a {
 .fs-35 {
   font-size: 35px;
 }
+.fs-50 {
+  font-size: 50px;
+}
 .fs-64 {
   font-size: 64px;
 }
@@ -66,11 +75,11 @@ a {
   color: white;
 }
 .fc-brown {
-  color: #6A4029;
+  color: #6a4029;
 }
 .fc-grey {
-  color: #4F5665;
+  color: #4f5665;
 }
 .fc-black {
-  color: #0B132A;
+  color: #0b132a;
 }
