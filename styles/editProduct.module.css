@@ -1,0 +1,52 @@
+.container {
+  padding: 0px 150px 50px 150px;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 60px;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.right input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #9f9f9f;
+  outline: none;
+}
+.inputDesc {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #9f9f9f;
+  outline: none;
+  height: 200px;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: scroll;
+  overflow-x: auto;
+  overflow-y: hidden;
+  resize: none;
+}
+.size {
+  display: flex;
+  gap: 26px;
+}
+.inputSize {
+  display: none;
+}
+.sizeButton {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  background: #adadad;
+  line-height: 70px;
+}
+.inputSize:checked + .sizeButton {
+  background: #ffba33;
+}
