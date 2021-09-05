@@ -3,6 +3,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
   font-family: 'Rubik', sans-serif;
 }
 
@@ -66,11 +67,11 @@ a {
   color: white;
 }
 .fc-brown {
-  color: #6A4029;
+  color: #6a4029;
 }
 .fc-grey {
-  color: #4F5665;
+  color: #4f5665;
 }
 .fc-black {
-  color: #0B132A;
+  color: #0b132a;
 }
