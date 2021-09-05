@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Button, CardwFooter, CardWrapper, InputField } from '../../components/atoms'
 import Layout from '../../components/layout'
@@ -6,6 +7,12 @@ import Layout from '../../components/layout'
 
 
 const ProfileUser = () => {
+    const user = useSelector(state => state.user.profile)
+    const [form, setForm] = useState()
+    console.log(user)
+    const handleChange = (e) =>{
+        e.preventDefault
+    }
     return (
         <Styles>
             <Layout isAuth="true" title="Profile">
@@ -17,7 +24,7 @@ const ProfileUser = () => {
                                 <div className="side-profile-wrapper">
                                     <img className="image-profile" src="image 39.png" alt="" />
                                     <h4 className="fs-20 fw-bold">Zulaikha</h4>
-                                    <h5 className="fs-20 fw-500">zulaikha@gmail.com</h5>
+                                    <h5 className="fs-20 fw-500">{user.email}</h5>
                                     <div className="button_Wrap">
                                         <label className="button-img" for="upload">Upload File</label>
                                         <input id="upload" type="file" name="image" />
@@ -48,7 +55,7 @@ const ProfileUser = () => {
                                                 <div className="d-flex justify-content-between first-section-wrapper">
 
                                                     <InputField
-                                                        onChange=""
+                                                        onChange={handleChange}
                                                         label="Email address : "
                                                         type="email"
                                                         name=""
@@ -56,7 +63,7 @@ const ProfileUser = () => {
                                                         className="input-field"
                                                     />
                                                     <InputField
-                                                        onChange=""
+                                                        onChange={handleChange}
                                                         label="Phone numbers : "
                                                         type="text"
                                                         name=""
@@ -66,7 +73,7 @@ const ProfileUser = () => {
 
                                                 </div>
                                                 <InputField
-                                                    onChange=""
+                                                    onChange={handleChange}
                                                     label="Delivery address : "
                                                     type="text"
                                                     name=""
@@ -77,7 +84,7 @@ const ProfileUser = () => {
                                                 <div className="d-flex justify-content-between second-section-wrapper">
 
                                                     <InputField
-                                                        onChange=""
+                                                        onChange={handleChange}
                                                         label="Display name : "
                                                         type="text"
                                                         name=""
@@ -85,7 +92,7 @@ const ProfileUser = () => {
                                                         className="input-field"
                                                     />
                                                     <InputField
-                                                        onChange=""
+                                                        onChange={handleChange}
                                                         label="Phone numbers : "
                                                         type="text"
                                                         name=""
@@ -95,7 +102,7 @@ const ProfileUser = () => {
 
                                                 </div>
                                                 <InputField
-                                                    onChange=""
+                                                    onChange={handleChange}
                                                     label="First name : "
                                                     type="text"
                                                     name=""
@@ -104,7 +111,7 @@ const ProfileUser = () => {
 
                                                 />
                                                 <InputField
-                                                    onChange=""
+                                                    onChange={handleChange}
                                                     label="Last name : "
                                                     type="text"
                                                     name=""

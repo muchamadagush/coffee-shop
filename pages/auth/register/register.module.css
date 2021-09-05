@@ -1,0 +1,151 @@
+.register {
+  display: flex;
+}
+
+.left {
+  width: 50%;
+  min-height: 100vh;
+  background-image: url("/register.svg");
+}
+
+.bgRegister {
+  width: 100%;
+}
+
+.right {
+  padding-top: 55px;
+  width: 50%;
+  min-height: 100vh;
+}
+
+.container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.right .container .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  margin-bottom: 50px;
+}
+
+.right .container .header .brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.right .container .header .brand .logo {
+  width: 30px;
+  height: 33px;
+}
+
+.right .container .header .brand .title {
+  font-weight: 700;
+  font-size: 20px;
+  color: #0b132a;
+  margin: 0;
+}
+
+.right .container .header .labelSignUp {
+  font-size: 35px;
+  font-weight: 700;
+  color: #6a4029;
+  margin: 0;
+}
+
+.right .container .formRegister {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+.alreadyAccount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+  width: 90%;
+}
+
+.line {
+  border: 1px solid #c4c4c4;
+  width: 20%;
+}
+
+.right footer {
+  background-color: #f8f8f8;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 80px 0;
+  margin-top: 20px;
+}
+
+.footerLeft {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footerLeft .brand {
+  display: flex;
+  gap: 15px;
+}
+
+.footerLeft .content {
+  font-weight: 500;
+  font-size: 16px;
+  color: #4f5665;
+}
+
+.socialMedia {
+  display: flex;
+  gap: 20px;
+}
+
+.socialMedia .item {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.footerRight {
+  padding-left: 20px;
+  margin-left: auto;
+  width: 50%;
+}
+
+.footerRight .title {
+  font-weight: 500;
+  font-size: 18px;
+  color: #0b132a;
+}
+
+.product {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product span {
+  font-weight: normal;
+  font-size: 16px;
+  color: #4f5665;
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.copyright {
+  font-weight: normal;
+  font-size: 16px;
+  color: #afb5c0;
+  margin-top: 30px;
+}

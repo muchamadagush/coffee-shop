@@ -4,16 +4,16 @@ const Footer = (props) => {
     <div className={`${Style.container} ${props.login ? Style.center : null}`}>
       <div className={Style.desc}>
         <div className={Style.title}>
-          <img src="logoCoffeShop.svg" alt="logoCoffee" />
+          <img src="/logoCoffeShop.svg" alt="logoCoffee" />
           <p className="fs-20 fw-700 fc-black">Coffee Shop</p>
         </div>
         <p className="fs-16 fw-500 fc-grey">
           Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans
         </p>
         <div className={Style.socialMedia}>
-          <img src="facebook.svg" alt="facebook" />
-          <img src="twitter.svg" alt="twitter" />
-          <img src="instagram.svg" alt="instagram" />
+          <img src="/facebook.svg" alt="facebook" />
+          <img src="/twitter.svg" alt="twitter" />
+          <img src="/instagram.svg" alt="instagram" />
         </div>
         <p className="fs-16 fw-400 fc-grey">©2020CoffeeStore</p>
       </div>
