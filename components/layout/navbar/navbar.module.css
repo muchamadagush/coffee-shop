@@ -47,9 +47,6 @@
 .buttonCollapse {
   visibility: hidden;
 }
-.hidden {
-  display: none;
-}
 @media (max-width: 992px) {
   .container {
     padding: 45px 50px;
@@ -75,5 +72,11 @@
     background-color: white;
     outline: none;
     border: 1px solid #c4c4c4;
+  }
+  .hidden {
+    display: none;
+  }
+  .visible {
+    display: flex;
   }
 }
