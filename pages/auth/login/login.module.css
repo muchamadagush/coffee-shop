@@ -158,4 +158,9 @@
   font-weight: bold;
   font-size: 20px;
   text-decoration-line: underline;
+  color: #6A4029;
+}
+
+.forgot:hover {
+  color: #4d2713;
 }
