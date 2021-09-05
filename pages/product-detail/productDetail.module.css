@@ -40,7 +40,7 @@
 .bottomCard {
   display: flex;
   flex-direction: row;
-  margin-bottom: -250px;
+  margin-bottom: -200px;
   justify-content: space-between;
 }
 .sizeCard {
@@ -101,4 +101,27 @@
   width: 100px;
   height: 100px;
   border-radius: 100%;
+}
+@media (max-width: 992px) {
+  .container {
+    padding: 50px 50px 150px 50px;
+  }
+  .bottomCard {
+    margin-bottom: -200px;
+  }
+}
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .bottomCard {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 }
