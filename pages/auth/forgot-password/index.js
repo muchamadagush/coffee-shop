@@ -1,18 +1,13 @@
 import { useState } from "react";
 import Button from "../../../components/atoms/Button";
 import Input from "../../../components/base/Input";
-import styles from "./login.module.css";
-import Link from "next/link"
-import { useDispatch } from "react-redux";
-import { login } from "../../../configs/redux/actions/userAction";
-import { useRouter } from "next/router";
+import styles from "./forgotPassword.module.css";
 
-const Login = () => {
-  const dispatch = useDispatch()
-  const router = useRouter()
+const ForgotPassword = () => {
   const [form, setForm] = useState({
     email: '',
     password: '',
+    phone: ''
   })
 
   const handleChange = (e) => {
@@ -23,13 +18,9 @@ const Login = () => {
       [e.target.name]: e.target.value
     })
   }
-
-  const handleLogin = () => {
-    dispatch(login(form, router))
-  }
   return (
     <>
-      <div className={styles.login}>
+      <div className={styles.forgotPassword}>
         <div className={styles.left}>
         </div>
         <div className={styles.right}>
@@ -39,26 +30,15 @@ const Login = () => {
                 <img src="/logoCoffeShop.svg" alt="logo" className={styles.logo} />
                 <h5 className={styles.title}>Coffee Shop</h5>
               </div>
-              <h3 className={styles.labelSignUp}>Login</h3>
+              <h1 className={styles.labelForgot}>Forgot your password?</h1>
+              <p className={styles.description}>Don’t worry, we got your back!</p>
             </header>
 
-            <div className={styles.formRegister}>
-              <Input name="email" type="text" id="email" placeholder="Enter your email adress" actionChange={handleChange} label="Email Adress :" />
-              <Input name="password" type="password" id="password" placeholder="Enter your password" actionChange={handleChange} label="Password :" />
-              <Link href="/forgot-password">
-                <a className={styles.forgot}>Forgot password?</a>
-              </Link>
-              <Button children="Login" color="shine-shadow auth" onClick={() => handleLogin()} />
-              <Button color="white auth google">
-                <img src="/google.png" alt="google" /> Login with Google
-              </Button>
-              <div className={styles.alreadyAccount}>
-                <div className={styles.line}></div>
-                <p className={styles.haveAccount}>Don’t have an account?</p>
-                <span className={styles.line}></span>
-              </div>
-              <Button children="Sign up here" color="choco-shadow auth" />
-
+            <div className={styles.formForgot}>
+              <Input name="email" type="text" id="email" placeholder="Enter your email adress" actionChange={handleChange} label="Email Adress :" giveClassLabel="none" giveClass="forgot" />
+              <Button children="Send" color="shine-shadow forgot" />
+              <p className={styles.time}>Click here if you didn’t receive any link in 2 minutes<br /><span>01:52</span></p>
+              <Button children="Resend Link" color="choco-shadow forgot" />
             </div>
           </div>
           <footer>
@@ -104,4 +84,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default ForgotPassword;
