@@ -2,8 +2,14 @@ import { useState } from "react";
 import Button from "../../../components/atoms/Button";
 import Input from "../../../components/base/Input";
 import styles from "./register.module.css";
+import { useDispatch } from "react-redux" 
+import { register } from "../../../configs/redux/actions/userAction";
+import {useRouter} from "next/router";
+import Head from 'next/head';
 
 const Register = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -18,8 +24,19 @@ const Register = () => {
       [e.target.name]: e.target.value
     })
   }
+
+  const handleRegister = () => {
+    dispatch(register(form))
+  }
+  const pushLogin = () =>{
+    router.push('/login')
+  }
   return (
     <>
+    <Head>
+        <title>Register</title>
+        <link rel="icon" href="/logoCoffeShop.svg" />
+      </Head>
       <div className={styles.register}>
         <div className={styles.left}>
         </div>
@@ -36,8 +53,8 @@ const Register = () => {
             <div className={styles.formRegister}>
               <Input name="email" type="text" id="email" placeholder="Enter your email adress" actionChange={handleChange} label="Email Adress :" />
               <Input name="password" type="password" id="password" placeholder="Enter your password" actionChange={handleChange} label="Password :" />
-              <Input name="phone" type="phone" id="phone" placeholder="Enter your phone number" actionChange={handleChange} label="Phone Number :" />
-              <Button children="Sign Up" color="shine-shadow auth" />
+              <Input name="phone" type="phone" id="phone" placeholder="Enter your phone number" actionChange={handleChange} label="Phone Number :" giveClass="mb8" />
+              <Button children="Sign Up" color="shine-shadow auth" onClick={() => handleRegister()} />
               <Button color="white auth google">
                 <img src="/google.png" alt="google" /> Sign up with Google
               </Button>
@@ -46,7 +63,7 @@ const Register = () => {
                 <p className={styles.haveAccount}>Already have an account?</p>
                 <span className={styles.line}></span>
               </div>
-              <Button children="Login Here" color="choco-shadow auth" />
+              <Button children="Login Here" color="choco-shadow auth" onClick={pushLogin}/>
 
             </div>
           </div>

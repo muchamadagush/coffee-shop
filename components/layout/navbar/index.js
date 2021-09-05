@@ -14,7 +14,7 @@ const NavBar = (props) => {
   return (
     <div className={Style.container}>
       <div className={Style.title}>
-        <img src="logoCoffeShop.svg" alt="logoCoffee" />
+        <img src="/logoCoffeShop.svg" alt="logoCoffee" />
         <p className="fs-20 fw-700 fc-black">Coffee Shop</p>
       </div>
       <button className={Style.buttonCollapse} onClick={handleDropDown}>
@@ -22,41 +22,37 @@ const NavBar = (props) => {
         <hr />
         <hr />
       </button>
-      <div className={`${drop ? Style.hidden : Style.content}`}>
+      <div className={`${Style.content} ${drop ? Style.hidden : Style.visible}`}>
         <p className={`fs-16 ${props.active === 'home' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>Home</p>
         <p className={`fs-16 ${props.active === 'product' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>Product</p>
         <p className={`fs-16 ${props.active === 'cart' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>Your Cart</p>
         <p className={`fs-16 ${props.active === 'history' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>History</p>
       </div>
       {props.isAuth ? (
-        <div className={`${drop ? Style.hidden : Style.profileContainer}`}>
+        <div className={`${Style.profileContainer} ${drop ? Style.hidden : Style.visible}`}>
           <form className={Style.inputContainer}>
             <button>
-              <img src="search.svg" alt="seach button" className={Style.searchButton} />
+              <img src="/search.svg" alt="seach button" className={Style.searchButton} />
             </button>
             <input type="text" placeholder="Search" className={`fs-15 fw-400 ${Style.input}`} />
           </form>
-          <img src="chat.svg" alt="msg" />
-          <img src="avatar1.svg" alt="profile" className={Style.profile} />
+          <img src="/chat.svg" alt="msg" />
+          <img src="/avatar1.svg" alt="profile" className={Style.profile} />
         </div>
       ) : (
-        <Styles>
-          <div className={`${drop ? Style.hidden : 'buttonContainer'}`}>
-            <p className="fs-16 fw-500 fc-black">Login</p>
+        <div className={`${Style.profileContainer} ${drop ? Style.hidden : Style.visible}`}>
+          <p className="fs-16 fw-500 fc-black">Login</p>
+          <Styles>
             <Button className="button" color="shine">
               Sign Up
             </Button>
-          </div>
-        </Styles>
+          </Styles>
+        </div>
       )}
     </div>
   );
 };
 const Styles = styled.div`
-
-.buttonContainer {
-  display: flex;
-  gap: 40px;
   .button {
     width: 150px;
     height: 45px;

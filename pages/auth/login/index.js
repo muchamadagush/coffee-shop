@@ -3,12 +3,17 @@ import Button from "../../../components/atoms/Button";
 import Input from "../../../components/base/Input";
 import styles from "./login.module.css";
 import Link from "next/link"
+import { useDispatch } from "react-redux";
+import { login } from "../../../configs/redux/actions/userAction";
+import { useRouter } from "next/router";
+import Head from 'next/head';
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
   const [form, setForm] = useState({
     email: '',
     password: '',
-    phone: ''
   })
 
   const handleChange = (e) => {
@@ -19,8 +24,19 @@ const Login = () => {
       [e.target.name]: e.target.value
     })
   }
+
+  const handleLogin = () => {
+    dispatch(login(form, router))
+  }
+  const pushSignUp = () =>{
+    router.push('/register')
+  }
   return (
     <>
+      <Head>
+        <title>Login</title>
+        <link rel="icon" href="/logoCoffeShop.svg" />
+      </Head>
       <div className={styles.login}>
         <div className={styles.left}>
         </div>
@@ -37,20 +53,19 @@ const Login = () => {
             <div className={styles.formRegister}>
               <Input name="email" type="text" id="email" placeholder="Enter your email adress" actionChange={handleChange} label="Email Adress :" />
               <Input name="password" type="password" id="password" placeholder="Enter your password" actionChange={handleChange} label="Password :" />
-              <Input name="phone" type="phone" id="phone" placeholder="Enter your phone number" actionChange={handleChange} label="Phone Number :" />
               <Link href="/forgot-password">
                 <a className={styles.forgot}>Forgot password?</a>
               </Link>
-              <Button children="Login" color="shine-shadow auth" />
+              <Button children="Login" color="shine-shadow auth" onClick={() => handleLogin()} />
               <Button color="white auth google">
                 <img src="/google.png" alt="google" /> Login with Google
               </Button>
               <div className={styles.alreadyAccount}>
                 <div className={styles.line}></div>
-                <p className={styles.haveAccount}>Already have an account?</p>
+                <p className={styles.haveAccount}>Don’t have an account?</p>
                 <span className={styles.line}></span>
               </div>
-              <Button children="Sign up here" color="choco-shadow auth" />
+              <Button children="Sign up here" color="choco-shadow auth" onClick={pushSignUp} />
 
             </div>
           </div>
