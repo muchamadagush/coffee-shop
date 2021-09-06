@@ -11,7 +11,7 @@ function Index() {
   const [istrue, setIsTrue] = React.useState(false);
   return (
     <>
-      <Layout isAuth={true} active="product" login={true}>
+      <Layout isAuth={true} active="product" login={true} title="product">
         <Style>
           <Coupun>
             <div className="coupons">
@@ -107,9 +107,6 @@ const Coupun = styled.div`
     position: sticky;
     top: 0;
   `}
-// ${Breakpoints.greaterThan('1339px')`
-// padding: 0 157px 29px 115px;
-// `}
   height: 100%;
   .coupons {
     display: flex;

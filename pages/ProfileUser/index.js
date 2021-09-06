@@ -3,16 +3,11 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Button, CardwFooter, CardWrapper, InputField } from '../../components/atoms'
 import Layout from '../../components/layout'
-
+import { useForm } from "react-hook-form";
 
 
 const ProfileUser = () => {
-    const user = useSelector(state => state.user.profile)
-    const [form, setForm] = useState()
-    console.log(user)
-    const handleChange = (e) =>{
-        e.preventDefault
-    }
+    // const profile = useSelector(state => state.profile.user)
     return (
         <Styles>
             <Layout isAuth="true" title="Profile">
@@ -24,7 +19,7 @@ const ProfileUser = () => {
                                 <div className="side-profile-wrapper">
                                     <img className="image-profile" src="image 39.png" alt="" />
                                     <h4 className="fs-20 fw-bold">Zulaikha</h4>
-                                    <h5 className="fs-20 fw-500">{user.email}</h5>
+                                    <h5 className="fs-20 fw-500">Zulaikha@gmail.com</h5>
                                     <div className="button_Wrap">
                                         <label className="button-img" for="upload">Upload File</label>
                                         <input id="upload" type="file" name="image" />
@@ -52,8 +47,9 @@ const ProfileUser = () => {
                                         <div className="form-wrapper">
 
                                             <form>
-                                                <div className="d-flex justify-content-between first-section-wrapper">
-
+                                                <div className="row first-section-wrapper">
+                                                    <div className="col">
+                                                        
                                                     <InputField
                                                         onChange={handleChange}
                                                         label="Email address : "
@@ -62,6 +58,9 @@ const ProfileUser = () => {
                                                         defaultValue="Zulaikha"
                                                         className="input-field"
                                                     />
+                                                    </div>
+                                                    <div className="col">
+
                                                     <InputField
                                                         onChange={handleChange}
                                                         label="Phone numbers : "
@@ -70,6 +69,7 @@ const ProfileUser = () => {
                                                         defaultValue="(+62)89078978"
 
                                                     />
+                                                    </div>
 
                                                 </div>
                                                 <InputField
@@ -81,8 +81,8 @@ const ProfileUser = () => {
                                                     className="input-field address-field"
                                                 />
                                                 <h4 className="fc-grey fs-25 fw-bold details-title">Details</h4>
-                                                <div className="d-flex justify-content-between second-section-wrapper">
-
+                                                <div className="row econd-section-wrapper">
+                                                    <div className="col">                                                       
                                                     <InputField
                                                         onChange={handleChange}
                                                         label="Display name : "
@@ -91,6 +91,9 @@ const ProfileUser = () => {
                                                         defaultValue="Zulaikha"
                                                         className="input-field"
                                                     />
+                                                    </div>    
+                                                    <div className="col">
+                                                    
                                                     <InputField
                                                         onChange={handleChange}
                                                         label="Phone numbers : "
@@ -99,6 +102,7 @@ const ProfileUser = () => {
                                                         defaultValue="(+62)89078978"
 
                                                     />
+                                                    </div>    
 
                                                 </div>
                                                 <InputField

@@ -2,11 +2,12 @@ import { actionTypes } from "../constants/actionTypes";
 import backendApi from "../../api/backendApi";
 import Swal from 'sweetalert';
 
+
 export const register = (data) => (dispatch) => {
   backendApi
     .post("register", data)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       Swal("Register success!", "Please check your email for verify","success")
     })
     .catch((err) => {
@@ -29,12 +30,29 @@ export const login = (data, router) => (dispatch) => {
 }
 
 export const updateuser = (data, id) => (dispatch) =>{
-  backendApi.put(`users/${id}`, data)
+
+    const formData = new FormData();
+    formData.append('email', formData.email);
+    formData.append('first_name', formData.address);
+    formData.append('last_name', formData.phone_number);
+    formData.append('email', formData.display_name);
+    formData.append('address', formData.datebirth);
+    formData.append('phone', formData.phone);
+    formData.append('dateOfBirth', formData.datebirth);
+    formData.append('image', formData.image);
+    formData.append('gender', formData.gender);
+
+  return backendApi.put(`users/${id}`, data, formData,{
+    'Authorization' :{
+      token : token.cookies
+    }
+  })
   .then((res)=>{
-      const resultData = res.data.data
-      console.log(resultData);
-    })
+    const resultData = res.data.data
+    dispatch =({type: actionTypes.UPDATE_USER, payload: resultData})
+    Swal("Success!", "Update data success","success")
+  })
   .catch((error)=>{
-    Swal("Opps...", `${err.response.data.message}`, "error")
+    Swal("Opps...", `${error.response.data.message}`, "error")
   })
 }

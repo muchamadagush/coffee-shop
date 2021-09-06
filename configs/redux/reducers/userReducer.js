@@ -18,6 +18,14 @@ const userReducer = (state = initialState, action) => {
       return{
         profile: action.payload
       }
+      case actionTypes.CHANGE_VALUE:
+        return {
+          ...state,
+          profile: {
+            ...state.profile,
+            ...action.payload,
+          },
+        };
     default:
       return state;
   }

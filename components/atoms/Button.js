@@ -1,12 +1,13 @@
 import styled from "styled-components"
 
-const Button = ({className, onClick, type, color, children, radius}) => {
+const Button = ({className, onClick, type, color, children, radius, disabled}) => {
     return (
         <Styles>
             <button
             type={type}
             className={`button ${color} ${radius} ${className}`} 
             onClick={onClick}
+            disabled={disabled}
             >
                 {children}
             </button>

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styled from 'styled-components'
-import { Button, CardShadow, CardwFooter, CardWrapper } from '../components/atoms'
+import { Button, CardShadow, CardwFooter, CardWrapper, Checkbox } from '../components/atoms'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -34,7 +34,7 @@ export default function Home() {
         Test Dayooo
       </CardwFooter>
       <CardShadow className="card-shadow">UWOHHH</CardShadow>
-   
+      <Checkbox></Checkbox>
     </Styles>
   )
 }
