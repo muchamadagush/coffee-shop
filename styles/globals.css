@@ -16,7 +16,7 @@ a {
   box-sizing: border-box;
 }
 .layoutBox {
-  margin-top: 180px;
+  margin-top: 164px;
 }
 .f-poppins {
   font-family: 'Poppins', sans-serif;
@@ -83,3 +83,4 @@ a {
 }
 .fc-black {
   color: #0b132a;
+}
