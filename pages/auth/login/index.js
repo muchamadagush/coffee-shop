@@ -6,6 +6,7 @@ import Link from "next/link"
 import { useDispatch } from "react-redux";
 import { login } from "../../../configs/redux/actions/userAction";
 import { useRouter } from "next/router";
+import Head from 'next/head';
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -27,8 +28,15 @@ const Login = () => {
   const handleLogin = () => {
     dispatch(login(form, router))
   }
+  const pushSignUp = () =>{
+    router.push('/register')
+  }
   return (
     <>
+      <Head>
+        <title>Login</title>
+        <link rel="icon" href="/logoCoffeShop.svg" />
+      </Head>
       <div className={styles.login}>
         <div className={styles.left}>
         </div>
@@ -57,7 +65,7 @@ const Login = () => {
                 <p className={styles.haveAccount}>Don’t have an account?</p>
                 <span className={styles.line}></span>
               </div>
-              <Button children="Sign up here" color="choco-shadow auth" />
+              <Button children="Sign up here" color="choco-shadow auth" onClick={pushSignUp} />
 
             </div>
           </div>

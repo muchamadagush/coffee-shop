@@ -14,6 +14,10 @@ const userReducer = (state = initialState, action) => {
       return {
         error: action.payload
       }
+    case actionTypes.UPDATE_USER:
+      return{
+        profile: action.payload
+      }
     default:
       return state;
   }

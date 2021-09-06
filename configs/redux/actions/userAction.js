@@ -27,3 +27,14 @@ export const login = (data, router) => (dispatch) => {
       Swal("Opps...", `${error.response.data.message}`, "error")
     })
 }
+
+export const updateuser = (data, id) => (dispatch) =>{
+  backendApi.put(`users/${id}`, data)
+  .then((res)=>{
+      const resultData = res.data.data
+      console.log(resultData);
+    })
+  .catch((error)=>{
+    Swal("Opps...", `${err.response.data.message}`, "error")
+  })
+}
