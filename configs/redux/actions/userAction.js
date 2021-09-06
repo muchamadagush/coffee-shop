@@ -15,7 +15,7 @@ export const register = (data) => (dispatch) => {
 }
 
 export const login = (data, router) => (dispatch) => {
-  backendApi.post(`login`, data)
+  backendApi.post(`login`, data, { withCredentials: true })
     .then((res) => {
       const resultLogin = res.data.data
       dispatch({ type: actionTypes.USER_LOGIN, payload: resultLogin })
