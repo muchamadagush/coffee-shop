@@ -10,6 +10,8 @@ import cookies from 'next-cookies';
 import backendApi from '../../configs/api/backendApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../configs/redux/actions/productAction';
+import media from 'styled-media-query';
+import { Breakpoints } from '../../utils/breakpoints';
 const ProductDetail = ({ product, role }) => {
   const [size, setSize] = useState(null);
   const [totalItem, setTotalItem] = useState(1);
@@ -288,6 +290,11 @@ const Styles = styled.div`
     .hidden {
       display: hidden;
     }
+  }
+  ${media.lessThan('xsm')}
+  .btn-collection {
+    flex-wrap: wrap;
+    width: 100%;
   }
 `;
 export default ProductDetail;

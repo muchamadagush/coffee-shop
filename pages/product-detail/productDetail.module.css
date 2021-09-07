@@ -185,3 +185,21 @@
     width: 100%;
   }
 }
+@media (max-width: 320px) {
+  .checkoutBox {
+    flex-direction: column;
+    align-items: center;
+  }
+  .checkoutCard {
+    flex-direction: column;
+  }
+  .size {
+    flex-direction: column;
+  }
+  .inputTime {
+    flex-direction: column;
+  }
+  .inputTime input {
+    width: 100%;
+  }
+}
