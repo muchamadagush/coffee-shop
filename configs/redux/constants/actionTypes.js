@@ -5,5 +5,5 @@ export const actionTypes = {
   UPDATE_USER : "UPDATE_USER",
 
   //Product
-  ADD_PRODUCT : "ADD_PRODUCT"
+  ADD_CART : "ADD_CART"
 }

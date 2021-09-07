@@ -2,13 +2,7 @@ import { actionTypes } from '../constants/actionTypes';
 import backendApi from '../../api/backendApi';
 import Swal from 'sweetalert';
 
-export const addProduct = (data, size, delivery, token, image_product) => (dispatch) => {
-  // const config = {
-  //   headers: {
-  //     Authorization: 'Bearer ' + localStorage.getItem('token'),
-  //   },
-  // };
-  console.log(data, size, delivery, token);
+export const addProduct = (data, size, delivery, token) => (dispatch) => {
   const formData = new FormData();
   formData.append('name_product', data.name_product);
   formData.append('price', data.price);
@@ -32,3 +26,8 @@ export const addProduct = (data, size, delivery, token, image_product) => (dispa
     })
     .catch((err) => swal('Error', `${err.message}`, 'error'));
 };
+
+export const addToCart = (data, size, delivery) => (dispatch) => {
+  const dataCart = {data, size, delivery}
+  dispatch({ type: actionTypes.ADD_CART, payload: dataCart })
+}
