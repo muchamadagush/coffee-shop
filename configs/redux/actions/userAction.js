@@ -15,9 +15,12 @@ export const register = (data) => (dispatch) => {
 }
 
 export const login = (data, router) => (dispatch) => {
-  backendApi.post(`login`, data)
+  backendApi.post(`/login`, data, {
+    withCredentials: true
+  })
     .then((res) => {
-      const resultLogin = res.data.data
+      const resultLogin = res.data.user
+      console.log(resultLogin)
       dispatch({ type: actionTypes.USER_LOGIN, payload: resultLogin })
       Swal("Success!", "Login success","success")
       router.push('/')
