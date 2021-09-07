@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import PropTypes from 'prop-types';
 
 const Button = ({className, onClick, type, color, children, radius, disabled}) => {
     return (
@@ -15,6 +16,15 @@ const Button = ({className, onClick, type, color, children, radius, disabled}) =
     )
 }
 
+Button.propTypes ={
+    children : PropTypes.element.isRequired,
+    className : PropTypes.string,
+    color : PropTypes.string,
+    radius : PropTypes.string,
+    type : PropTypes.string,
+    disabled : PropTypes.string,
+    onClick : PropTypes.func
+}
 export default Button
 const Styles = styled.div`
 .button{

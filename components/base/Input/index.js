@@ -1,4 +1,5 @@
 import styles from "./input.module.css";
+import PropTypes from 'prop-types';
 
 const Input = ({ label, name, type, id, placeholder, actionChange, giveClassLabel, giveClass }) => {
   return (
@@ -10,5 +11,13 @@ const Input = ({ label, name, type, id, placeholder, actionChange, giveClassLabe
     </>
   );
 }
-
+Input.propTypes = {
+    type : PropTypes.string.isRequired,
+    name : PropTypes.string,
+    label : PropTypes.string,
+    id : PropTypes.string,
+    placeholder: PropTypes.string,
+    actionChange: PropTypes.func,
+    className: PropTypes.string,
+}
 export default Input;

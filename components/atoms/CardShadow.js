@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types';
 
 const CardShadow = ({className, children}) => {
     return (
@@ -8,7 +9,10 @@ const CardShadow = ({className, children}) => {
         </Styles>
     )
 }
-
+CardShadow.propTypes = {
+    children : PropTypes.element.isRequired,
+    className: PropTypes.string
+}
 export default CardShadow
 const Styles = styled.div`
 border-radius: 20px;

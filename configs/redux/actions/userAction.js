@@ -32,23 +32,24 @@ export const login = (data, router) => (dispatch) => {
     })
 }
 
-export const updateuser = (data, id) => (dispatch) =>{
+export const updateuser = (data, id, token) => (dispatch) =>{
 
     const formData = new FormData();
-    formData.append('email', formData.email);
-    formData.append('first_name', formData.address);
-    formData.append('last_name', formData.phone_number);
-    formData.append('email', formData.display_name);
-    formData.append('address', formData.datebirth);
-    formData.append('phone', formData.phone);
-    formData.append('dateOfBirth', formData.datebirth);
-    formData.append('image', formData.image);
-    formData.append('gender', formData.gender);
+    formData.append('email', data.email);
+    formData.append('first_name', data.address);
+    formData.append('last_name', data.phone_number);
+    formData.append('email', data.display_name);
+    formData.append('address', data.datebirth);
+    formData.append('phone', data.phone);
+    formData.append('dateOfBirth', data.datebirth);
+    formData.append('image', data.image);
+    formData.append('gender', data.gender);
 
-  return backendApi.put(`users/${id}`, data, formData,{
-    'Authorization' :{
-      token : token.cookies
-    }
+    backendApi.put(`users/${id}`, formData,{
+      withCredentials: true,
+      headers: {
+        Cookie: 'token=' + token,
+      },
   })
   .then((res)=>{
     const resultData = res.data.data

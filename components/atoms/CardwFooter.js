@@ -1,5 +1,6 @@
 import React, { children } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types';
 
 const CardwFooter = ({className, children}) => {
     return (
@@ -9,7 +10,10 @@ const CardwFooter = ({className, children}) => {
         </Styles>
     )
 }
-
+CardwFooter.propTypes = {
+    children : PropTypes.element.isRequired,
+    className: PropTypes.string
+}
 export default CardwFooter
 const Styles = styled.div`
 height: 100%;

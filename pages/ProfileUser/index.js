@@ -7,11 +7,21 @@ import { useForm } from "react-hook-form";
 
 
 const ProfileUser = () => {
-    // const profile = useSelector(state => state.profile.user)
+    // // const profile = useSelector(state => state.profile.user)
+    const [form, setForm] = ({
+        email : '',
+
+    })
+    const handleChange = () =>{
+
+    }
+    const handleSubmit = () =>{
+    }
     return (
         <Styles>
             <Layout isAuth="true" title="Profile">
                 <div className="wrapper">
+                    <form onSubmit={handleSubmit}>        
                     <h4 className="fs-35 title">User Profile</h4>
                     <CardWrapper className="card">
                         <div className="row">
@@ -19,7 +29,7 @@ const ProfileUser = () => {
                                 <div className="side-profile-wrapper">
                                     <img className="image-profile" src="image 39.png" alt="" />
                                     <h4 className="fs-20 fw-bold">Zulaikha</h4>
-                                    <h5 className="fs-20 fw-500">Zulaikha@gmail.com</h5>
+                                    <h5 className="fs-20 fw-500">Email</h5>
                                     <div className="button_Wrap">
                                         <label className="button-img" for="upload">Upload File</label>
                                         <input id="upload" type="file" name="image" />
@@ -27,13 +37,13 @@ const ProfileUser = () => {
                                     <Button radius="radius-10" className="button" type="button" color="choco">Remove Photo</Button>
                                     <Button radius="radius-20" className="edit-btn" type="button" color="white-choco">Edit Password</Button>
                                     <h4 className="fs-20 fc-brown fw-bold text">Do you want to save <br /> the change?</h4>
-                                    <Button radius="radius-20" className="btn" type="button" color="choco-shadow">Save Change</Button>
+                                    <Button radius="radius-20" className="btn" type="submit" color="choco-shadow">Save Change</Button>
 
                                     <Button className="btn cancel" type="button" color="shine">Cancel</Button>
                                     <Button className="btn log-out" type="button" color="white-choco">Log Out</Button>
                                 </div>
                             </div>
-                            <div className="col-8">
+                            <div className="col-8 ">
                                 <CardwFooter>
                                     <div className="right-profile-wrapper">
 
@@ -51,10 +61,10 @@ const ProfileUser = () => {
                                                     <div className="col">
                                                         
                                                     <InputField
-                                                        onChange={handleChange}
+                                                        onChange=""
                                                         label="Email address : "
                                                         type="email"
-                                                        name=""
+                                                        name="email"
                                                         defaultValue="Zulaikha"
                                                         className="input-field"
                                                     />
@@ -62,10 +72,10 @@ const ProfileUser = () => {
                                                     <div className="col">
 
                                                     <InputField
-                                                        onChange={handleChange}
+                                                        onChange="{handleChange}"
                                                         label="Phone numbers : "
                                                         type="text"
-                                                        name=""
+                                                        name="phone"
                                                         defaultValue="(+62)89078978"
 
                                                     />
@@ -139,6 +149,7 @@ const ProfileUser = () => {
                         </div>
 
                     </CardWrapper>
+                    </form>
                 </div>
             </Layout>
         </Styles>
@@ -149,7 +160,7 @@ export default ProfileUser
 const Styles = styled.div`
 width: 100vw;
 .wrapper{
-    padding: 45px 150px;
+    width: 100%;
     background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/profileBg.png');
         .title{
             color: white;

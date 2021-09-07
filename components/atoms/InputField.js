@@ -1,6 +1,7 @@
 import { TextField } from '@material-ui/core'
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types';
 
 const InputField = ({className, label, name, value, onChange, type, defaultValue}) => {
     return (
@@ -18,6 +19,15 @@ const InputField = ({className, label, name, value, onChange, type, defaultValue
     )
 }
 
+InputField.propTypes = {
+    type: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    className: PropTypes.string,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    name: PropTypes.string,
+    defaultValue: PropTypes.string
+}
 export default InputField
 const Styles = styled.div`
 

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { CardShadow, Button } from '../components/atoms'
 import Layout from '../components/layout'
 import { CardCheckout } from '../components/molecules'
+import { Breakpoints } from '../utils'
 
 
 const Payment = () => {
@@ -13,7 +14,7 @@ const Payment = () => {
                 <div className="wrapper">
                     <div className="container">
                         <div className="row">
-                            <div className="col col-7">
+                            <div className="col col-lg-7 col-md-6">
                                 <h4 className="fc-white fs-40 fw-bold title" >
                                     Checkout your <br /> item now!
                                 </h4>
@@ -64,7 +65,7 @@ const Payment = () => {
                                     You  can't see me
                                 </div>
                             </div>
-                            <div className="col col-5">
+                            <div className="col col-lg-5 col-md-6">
                                 <div className="title-wrapper">
                                     <h5 className="fc-white fs-25 fw-700 " >
                                         Address Detail
@@ -145,6 +146,14 @@ export default Payment
 const Styles = styled.div`
 .wrapper{
     background-image: url('/paymentBg.png');
+        @media screen and (max-width: 992px) {
+                /* width: 1000px; */
+            }
+        .row{
+            @media screen and (max-width: 992px) {
+                /* padding: 50px 50px; */
+            }
+            
         .title{
             padding-top: 114px;
             margin-bottom: 41px;
@@ -152,6 +161,10 @@ const Styles = styled.div`
         .card-left-side{
             width: 487px;
             height: 737px;
+            @media screen and (max-width: 992px) {
+                /* width: 400px; */
+                /* height: 737px; */
+            }   
                 h1{
                     text-align: center;
                     padding-top: 65px;
@@ -320,6 +333,7 @@ const Styles = styled.div`
             height: 84px;
             font-size: 20px;
         }
+    }
 }
 
 
