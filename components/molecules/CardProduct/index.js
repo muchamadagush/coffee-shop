@@ -1,21 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import styled from 'styled-components';
-import Susu from '../../../public/food1.png';
 import Link from 'next/link';
-function index() {
+function index(props) {
   return (
     <CardProduct>
-      <Link href="/">
+      <Link href={props.href}>
         <a className="atom-card--link">
           <div className="atom-card--image">
             <div className="atom-card--image-tag">
-              <img src={Susu.src} alt="product"></img>
+              <img src={props.image} alt={props.alt}></img>
             </div>
           </div>
           <div className="card-info">
-            <p className="atom-card--name">Veggie asjdnasdjns tomato mix</p>
-            <p className="atom-card--price">IDR 30.000</p>
+            <p className="atom-card--name">{props.name}</p>
+            <p className="atom-card--price">{props.price}</p>
           </div>
         </a>
       </Link>
