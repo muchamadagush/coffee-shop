@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../../../components/atoms/Button";
 import Input from "../../../components/base/Input";
 import styles from "./forgotPassword.module.css";
+import { publicRoute } from "../../configs/routes/publicRoute";
 
 const ForgotPassword = () => {
   const [form, setForm] = useState({
@@ -85,3 +86,9 @@ const ForgotPassword = () => {
 }
 
 export default ForgotPassword;
+
+export const getServerSideProps = publicRoute(async (ctx) => {
+  return {
+    props: {},
+  };
+});

@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../../configs/redux/actions/userAction";
 import { useRouter } from "next/router";
 import Head from 'next/head';
+import { publicRoute } from "../../configs/routes/publicRoute";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -113,3 +114,9 @@ const Login = () => {
 }
 
 export default Login;
+
+export const getServerSideProps = publicRoute(async (ctx) => {
+  return {
+    props: {},
+  };
+});

@@ -2,6 +2,8 @@ import Layout from '../../components/layout';
 import { Button, CardShadow } from '../../components/atoms';
 import Style from './productDetail.module.css';
 import styled from 'styled-components';
+import { privateRoute } from "../../configs/routes/privateRoute";
+
 const ProductDetail = () => {
   return (
     <div>
@@ -157,3 +159,9 @@ const Styles = styled.div`
   }
 `;
 export default ProductDetail;
+
+export const getServerSideProps = privateRoute(async (ctx) => {
+  return {
+    props: {},
+  };
+});

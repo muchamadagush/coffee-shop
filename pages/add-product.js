@@ -3,6 +3,8 @@ import { Button } from '../components/atoms';
 import Style from '../styles/addProduct.module.css';
 import styled from 'styled-components';
 import Input from '../components/base/Input';
+import { privateRouteAdmin } from "../../configs/routes/privateRouteAdmin";
+
 const AddProduct = () => {
   return (
     <div>
@@ -120,3 +122,9 @@ const Styles = styled.div`
   }
 `;
 export default AddProduct;
+
+export const getServerSideProps = privateRouteAdmin(async (ctx) => {
+  return {
+    props: {},
+  };
+});
