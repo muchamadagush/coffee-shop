@@ -1,0 +1,33 @@
+.plusMinusBox {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #9f9f9f;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: fit-content;
+  gap: 20px;
+  /* width: 187px; */
+  /* justify-content: space-evenly; */
+}
+.plusMinusBox p {
+  margin: 0 auto;
+  width: 10px;
+}
+.button {
+  background: none;
+  outline: none;
+  border: none;
+  width: 60px;
+  padding: 24px 0px;
+}
+.detail {
+  border-right: 1px solid #9f9f9f;
+  color: rgba(106, 64, 41, 1);
+  height: 100%;
+}
+.detailLeft {
+  border-left: 1px solid #9f9f9f;
+  color: rgba(106, 64, 41, 1);
+  height: 100%;
+}

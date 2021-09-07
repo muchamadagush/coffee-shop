@@ -1,0 +1,127 @@
+.container {
+  padding: 50px 150px 150px 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+  position: relative;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+.productImage {
+  width: 308px;
+  height: 313px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.inputTime {
+  display: flex;
+  gap: 15px;
+}
+.inputTime input {
+  background: #f4f4f8;
+  border: 1px solid rgba(186, 186, 186, 0.35);
+  box-sizing: border-box;
+  border-radius: 10px;
+  outline: none;
+  padding: 12px 14px;
+  width: 256px;
+}
+.right {
+  width: 400px;
+}
+.bottomCard {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: -200px;
+  justify-content: space-between;
+}
+.sizeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px;
+}
+.bottomCard p {
+  text-align: center;
+}
+.size {
+  display: flex;
+  gap: 26px;
+}
+.inputSize {
+  display: none;
+}
+.sizeButton {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  background: #adadad;
+  line-height: 70px;
+}
+.inputSize:checked + .sizeButton {
+  background: #ffba33;
+}
+.checkoutCard {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;
+  gap: 30px;
+  width: 100%;
+}
+/* .itemList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  height: 100%;
+} */
+.checkoutContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.checkoutButton {
+  background: #ffba33;
+  border-radius: 50%;
+  border: none;
+  width: 70px;
+  height: 70px;
+}
+.imgProduct {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+@media (max-width: 992px) {
+  .container {
+    padding: 50px 50px 150px 50px;
+  }
+  .bottomCard {
+    margin-bottom: -200px;
+  }
+}
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .bottomCard {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
