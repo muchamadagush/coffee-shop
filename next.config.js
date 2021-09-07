@@ -1,7 +1,8 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-    REACT_APP_API_URL: process.env.REACT_APP_API_URL,
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+    NEXT_PUBLIC_WEB_URL: process.env.NEXT_PUBLIC_WEB_URL,
   },
   images: {
     domains: ['http://localhost:4000', 'http://localhost:3000'],
