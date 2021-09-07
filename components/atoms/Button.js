@@ -1,11 +1,11 @@
 import styled from "styled-components"
 
-const Button = ({className, onClick, type, color, children}) => {
+const Button = ({className, onClick, type, color, children, radius}) => {
     return (
-        <Styles className={className}>
+        <Styles>
             <button
             type={type}
-            className={`button ${color}`} 
+            className={`button ${color} ${radius} ${className}`} 
             onClick={onClick}
             >
                 {children}
@@ -23,6 +23,12 @@ const Styles = styled.div`
     box-sizing: border-box;
     outline: none;
     border: none;
+    &.radius-10{
+        border-radius: 10px;
+    }
+    &.radius-20{
+        border-radius: 20px;
+    }
     &.shine{
         background: #FFBA33;
         color: #6A4029;
@@ -92,6 +98,16 @@ const Styles = styled.div`
         justify-content: center;
         align-items: center;
         gap: 10px;
+    }
+    &.forgot{
+        height: 75px;
+        font-size: 20px;
+        font-weight: 700;
+        width: 90%;
+        margin: 30px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 

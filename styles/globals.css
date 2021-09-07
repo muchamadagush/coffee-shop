@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&display=swap');
 html,
 body {
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
   font-family: 'Rubik', sans-serif;
 }
 
@@ -13,6 +14,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.layoutBox {
+  margin-top: 164px;
+}
+.f-poppins {
+  font-family: 'Poppins', sans-serif;
 }
 .fs-16 {
   font-size: 16px;
@@ -41,6 +48,12 @@ a {
 .fs-35 {
   font-size: 35px;
 }
+.fs-40 {
+  font-size: 40px;
+}
+.fs-50 {
+  font-size: 50px;
+}
 .fs-64 {
   font-size: 64px;
 }
@@ -66,11 +79,53 @@ a {
   color: white;
 }
 .fc-brown {
-  color: #6A4029;
+  color: #6a4029;
 }
 .fc-grey {
-  color: #4F5665;
+  color: #4f5665;
 }
 .fc-black {
-  color: #0B132A;
+  color: #0b132a;
+}
+
+/* the slides */
+.slick-slide {
+  margin-right: 27px;
+}
+
+/* the parent */
+.slick-list {
+  margin-right: -27px;
+}
+.slick-slide > div {
+  height: 100%;
+}
+
+.slick-track {
+  display: flex !important;
+}
+.slick-slide {
+  height: inherit !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.slick-dots {
+  text-align: unset !important;
+}
+
+.form-check-input[type='checkbox']:focus,
+.form-check-input[type='checkbox'] {
+  width: 25px;
+  height: 25px;
+  border-color: #6a4029;
+  box-shadow: none;
+}
+
+input[type='checkbox']:checked {
+  background: #6a4029;
+  color: #6a4029;
+  border-color: #6a4029;
+  box-shadow: none;
 }
