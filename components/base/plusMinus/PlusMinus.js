@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Style from './plusMinus.module.css';
 const PlusMinus = ({ itemAmount, maxAmount, type }) => {
-  const [amount, setAmount] = useState(itemAmount ? itemAmount : 0);
+  const [amount, setAmount] = useState(itemAmount ? itemAmount : 1);
   const handlePlusAmount = () => {
     const newAmount = amount + 1;
     if (newAmount < maxAmount) {
