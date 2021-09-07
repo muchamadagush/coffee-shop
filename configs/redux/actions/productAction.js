@@ -27,7 +27,8 @@ export const addProduct = (data, size, delivery, token) => (dispatch) => {
     .catch((err) => swal('Error', `${err.message}`, 'error'));
 };
 
-export const addToCart = (data, size, delivery) => (dispatch) => {
-  const dataCart = {data, size, delivery}
-  dispatch({ type: actionTypes.ADD_CART, payload: dataCart })
-}
+export const addToCart = (data, size, delivery, amount, time) => (dispatch) => {
+  const dataCart = { data, size, delivery, amount, time };
+  dispatch({ type: actionTypes.ADD_CART, payload: dataCart });
+  swal(`Success`, `Success adding ${data.name_product} to cart`, 'success');
+};
