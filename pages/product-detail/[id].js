@@ -9,10 +9,9 @@ import swal from 'sweetalert';
 import cookies from 'next-cookies';
 import backendApi from '../../configs/api/backendApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../configs/redux/actions/productAction';
-import media from 'styled-media-query';
+import { addToCart, deleteProduct } from '../../configs/redux/actions/productAction';
 import { Breakpoints } from '../../utils/breakpoints';
-const ProductDetail = ({ product, role }) => {
+const ProductDetail = ({ product, role, token }) => {
   const [size, setSize] = useState(null);
   const [totalItem, setTotalItem] = useState(1);
   const [time, setTime] = useState(null);
@@ -45,9 +44,16 @@ const ProductDetail = ({ product, role }) => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
+        backendApi.delete(`products/${product.id_product}`, {
+          withCredentials: true,
+          headers: {
+            Cookie: 'token=' + token,
+          },
+        });
         swal('Product has been deleted', {
           icon: 'success',
         });
+        router.push('/');
       }
     });
   };
@@ -71,9 +77,8 @@ const ProductDetail = ({ product, role }) => {
     }
   };
   const handleCheckout = () => {
-    router.push('/payment')
-  }
-  console.log(size, deliveryMethod);
+    router.push('/payment');
+  };
   return (
     <div>
       <Layout isAuth={true} active="home" title="Product Detail">
@@ -232,6 +237,7 @@ export const getServerSideProps = async (ctx) => {
       props: {
         product: data.data[0],
         role: role,
+        token: token,
       },
     };
   } catch (error) {
@@ -256,6 +262,9 @@ const Styles = styled.div`
     flex-direction: row;
     gap: 15px;
     justify-content: start;
+    ${Breakpoints.lessThan('xsm')`
+    flex-wrap: wrap;
+    width: 100%;`}
     .button {
       padding: 6px 15px;
       font-family: Poppins;
@@ -290,11 +299,6 @@ const Styles = styled.div`
     .hidden {
       display: hidden;
     }
-  }
-  ${media.lessThan('xsm')}
-  .btn-collection {
-    flex-wrap: wrap;
-    width: 100%;
   }
 `;
 export default ProductDetail;

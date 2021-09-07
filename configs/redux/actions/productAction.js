@@ -1,6 +1,6 @@
 import { actionTypes } from '../constants/actionTypes';
 import backendApi from '../../api/backendApi';
-import Swal from 'sweetalert';
+import swal from 'sweetalert';
 
 export const addProduct = (data, size, delivery, token) => (dispatch) => {
   const formData = new FormData();
@@ -22,7 +22,7 @@ export const addProduct = (data, size, delivery, token) => (dispatch) => {
       },
     })
     .then((res) => {
-      swal('Success', 'Vehicle successfuly added to list', 'success');
+      swal('Success', 'Product successfuly added to list', 'success');
     })
     .catch((err) => swal('Error', `${err.message}`, 'error'));
 };
