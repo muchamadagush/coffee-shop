@@ -81,6 +81,32 @@ export const getProfile = (token, id) => (dispatch) =>{
   })
 }
 
+export const getUsers = () => (dispatch) => {
+  backendApi.get("/users", {
+    withCredentials: true
+  })
+  .then((res) => {
+    const users = res.data.data
+    dispatch({ type: actionTypes.GET_USERS, payload: users })
+  })
+  .catch((error) => {
+    console.log(error.response.data.message)
+  })
+}
+
+export const getUser = (id) => (dispatch) => {
+  backendApi.get(`/users/${id}`, {
+    withCredentials: true
+  })
+  .then((res) => {
+    const user = res.data.data
+    dispatch({ type: actionTypes.GET_SELECTED_USER, payload: user })
+  })
+  .catch((error) => {
+    console.log(error.response.data.message)
+  })
+}
+
 export const forgotPasswordUser = (data, router) => (dispatch) => {
    backendApi
      .post(`/forgotpassword`, data)
