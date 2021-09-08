@@ -31,7 +31,10 @@ display: flex;
     .image-wrapper {
     width: 82px;
     height: 90px;   
-    margin-right: 1rem;  
+    margin-right: 1rem;
+    img {
+        object-fit: cover;
+    }  
     @media screen and (max-width: 992px) {
             width: 70px;
             height: 80px;

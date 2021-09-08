@@ -9,5 +9,6 @@ export const actionTypes = {
   GET_USER: 'GET_USER',
 
   //Product
-  ADD_CART : "ADD_CART"
+  ADD_CART : "ADD_CART",
+  EMPTY_CART : "EMPTY_CART"
 }
