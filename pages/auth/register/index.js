@@ -13,24 +13,6 @@ import * as Yup from 'yup';
 const Register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
-  // const [form, setForm] = useState({
-  //   email: '',
-  //   password: '',
-  //   phone: ''
-  // })
-
-  // const handleChange = (e) => {
-  //   e.preventDefault()
-
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
-
-  // const handleRegister = () => {
-  //   dispatch(register(form))
-  // }
   const pushLogin = () =>{
     router.push('/login')
   }
@@ -42,8 +24,12 @@ const Register = () => {
       phone:''
     },
     onSubmit: values =>{
+<<<<<<< HEAD
+      dispatch(register(values))
+=======
       // console.log(values);
       dispatch(register(values,router))
+>>>>>>> 6334e58c9c4094a3a0920a95344e742ddf12a17c
     },
     validationSchema : Yup.object ({
       email: Yup.string().email('Email is Invalid').required("email is required"),
