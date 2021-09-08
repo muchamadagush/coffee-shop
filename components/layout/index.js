@@ -6,6 +6,7 @@ const Layout = (props) => {
     <div>
       <Head>
         <title>{props.title}</title>
+        <link rel="icon" href="/logoCoffeShop.svg" />
       </Head>
       <NavBar isAuth={props.isAuth} active={props.active} />
       <div className="layoutBox">{props.children}</div>

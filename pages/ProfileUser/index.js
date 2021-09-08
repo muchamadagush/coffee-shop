@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Button, CardwFooter, CardWrapper, InputField } from '../../components/atoms'
 import Layout from '../../components/layout'
-import { privateRoute } from "../../configs/routes/privateRoute";
+// import { privateRoute } from "../../configs/routes/privateRoute";
 import { getProfile, updateuser } from '../../configs/redux/actions/userAction'
 
 
@@ -53,6 +53,7 @@ const ProfileUser = () => {
         <Styles>
             <Layout isAuth="true" title="Profile">
                 <div className="wrapper">
+                    <div className="container">
                     <form onSubmit={handleSubmit}>        
                     <h4 className="fs-35 title">User Profile</h4>
                     <CardWrapper className="card">
@@ -89,8 +90,7 @@ const ProfileUser = () => {
                                         </div>
                                         <div className="form-wrapper">
                                                 <div className="row first-section-wrapper">
-                                                    <div className="col">
-                                                        
+                                                    <div className="col">                                                  
                                                     <InputField
                                                         onChange=""
                                                         label="Email address : "
@@ -102,17 +102,13 @@ const ProfileUser = () => {
                                                     />
                                                     </div>
                                                     <div className="col">
-
                                                     <InputField
                                                         label="Phone numbers : "
                                                         type="text"
                                                         value={profile.phone}
                                                         onChange={handleChange}
-
-                                                    />
-                                                    <p>{errors.phone && errors.message }</p>
+                                                    />                                               
                                                     </div>
-
                                                 </div>
                                                 <InputField
                                                     onChange={handleChange}
@@ -144,6 +140,7 @@ const ProfileUser = () => {
                                                         label="DD/MM/YY : "
                                                         type="date"
                                                         name="dateOfBirth"
+                                                        value={profile.dateOfBirth}
                                                         defaultValue={profile.dateOfBirth}
                                                         // defaultValue=""
 
@@ -187,6 +184,8 @@ const ProfileUser = () => {
 
                     </CardWrapper>
                     </form>
+                    </div>
+                    <div className="hidden">You cant see me</div>
                 </div>
             </Layout>
         </Styles>
@@ -196,11 +195,12 @@ const ProfileUser = () => {
 
 export default ProfileUser
 
-export const getServerSideProps = privateRoute(async (ctx) => {
-  return {
-    props: {},
-  };
-});
+// export const getServerSideProps = privateRoute(async (ctx) => {
+//     const token = await cookies(ctx).token;
+//     return {
+//       props: { token },
+//     };
+// });
 
 const Styles = styled.div`
 /* width: 100vw; */
@@ -353,6 +353,9 @@ const Styles = styled.div`
             }
         }
     }
-
+.hidden{
+    visibility: hidden;
+    height: 30px;
+}
 `
 

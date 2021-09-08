@@ -30,7 +30,7 @@ const Login = () => {
       password: Yup.string().required("Password is required")
     })
   })
-  console.log('Form data', formik.values);
+
   return (
     <>
       <Head>

@@ -5,6 +5,7 @@ import styles from "./forgotPassword.module.css";
 import { publicRoute } from "../../../configs/routes/publicRoute";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import Layout from "../../../components/layout";
 
 const ForgotPassword = () => {
   // const [form, setForm] = useState({
@@ -35,6 +36,10 @@ const ForgotPassword = () => {
   })
   return (
     <>
+      <Head>
+        <title>Forget Password | find email</title>
+        <link rel="icon" href="/logoCoffeShop.svg" />
+      </Head>
       <div className={styles.forgotPassword}>
         <div className={styles.left}>
         </div>
