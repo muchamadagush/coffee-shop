@@ -229,7 +229,7 @@ export const getServerSideProps = privateRoute(async (ctx) => {
     const role = await cookies(ctx).user_role;
     const { data } = await backendApi.get(`products/${id}`, {
       withCredentials: true,
-      ers: {
+      headers: {
         Cookie: 'token=' + token,
       },
     });
