@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
@@ -82,7 +84,7 @@ function Index(props) {
                 <Profile>
                   <div className="profile">
                     <div className="image">
-                      <img src={props.src}></img>
+                      <img src={props.src} alt="product"></img>
                     </div>
                     <div>
                       <p className="fs-18 fw-500 fc-black carousel-text">{item.name}</p>
