@@ -5,10 +5,11 @@ import { CardProduct, CardCoupon } from '../../components/molecules';
 import Link from 'next/link';
 import { Button } from '../../components/atoms';
 import { Breakpoints } from '../../utils';
-import { privateRoute } from "../../configs/routes/privateRoute";
+import { privateRoute } from '../../configs/routes/privateRoute';
 import axios from '../../configs/api/backendApi';
 import cookies from 'next-cookies';
-function Index({ initialData ,role}) {
+function Index({ initialData, role }) {
+  console.log(role, 'ini role');
   const list = [
     { id: 1, name: 'Favorite & Promo' },
     { id: 2, name: 'Coffee' },
@@ -48,6 +49,7 @@ function Index({ initialData ,role}) {
     setPage(defaultPage + 1);
   };
 
+  const [editProduct, setEditProduct] = React.useState(null);
   return (
     <>
       <Layout isAuth={true} active="product" login={true}>
@@ -60,14 +62,11 @@ function Index({ initialData ,role}) {
               </div>
               <div className="coupons-content">
                 <div className="coupons-item">
-                  <CardCoupon />
-                  <CardCoupon />
-                  <CardCoupon />
-                  <CardCoupon />
+                  <p>No coupons available</p>
                 </div>
               </div>
             </div>
-            <Button className="apply-coupon button" color="choco">
+            <Button className="apply-coupon button" disabled={true} color="choco">
               Apply Coupun
             </Button>
             <div className="terms-condition">
@@ -96,15 +95,32 @@ function Index({ initialData ,role}) {
             {data.length ? (
               <ProductWrapper>
                 {data?.map((item) => {
-                  return (
-                    <CardProduct
-                      href={`product-detail/${item.id_product}`}
-                      key={item.id_product}
-                      image={item.image_product}
-                      name={item.name_product}
-                      price={item.price}
-                    />
-                  );
+                  if (role != 'admin') {
+                    return (
+                      <CardProduct
+                        href={`product-detail/${item.id_product}`}
+                        key={item.id_product}
+                        image={item.image_product}
+                        name={item.name_product}
+                        price={item.price}
+                      />
+                    );
+                  } else {
+                    return (
+                      // <div>
+                      <>
+                        <CardProduct
+                          role="admin"
+                          href={`product-detail/${item.id_product}`}
+                          key={item.id_product}
+                          image={item.image_product}
+                          name={item.name_product}
+                          price={item.price}
+                          onClick={() => setEditProduct(item.id_product)}
+                        />
+                      </>
+                    );
+                  }
                 })}
               </ProductWrapper>
             ) : (
@@ -121,6 +137,16 @@ function Index({ initialData ,role}) {
             ) : (
               ''
             )}
+            {role == 'admin' && (
+              <div className="action-admin">
+                <Link href={`/edit-product/${editProduct}`}>
+                  <a>Edit product</a>
+                </Link>
+                <Link href="/add-product">
+                  <a>Add new product</a>
+                </Link>
+              </div>
+            )}
           </AllProduct>
         </Style>
       </Layout>
@@ -128,13 +154,14 @@ function Index({ initialData ,role}) {
   );
 }
 
-
-
 const Style = styled.div`
   max-width: 1600px;
   margin: 0 auto;
   height: 100%;
   display: flex;
+  ${Breakpoints.between('576px', 'lg')`
+  margin-top: 232px;
+`}
   border-top: 0.5px solid #9f9f9f;
   flex-wrap: wrap;
   ${Breakpoints.lessThan('md')`
@@ -144,6 +171,7 @@ const Style = styled.div`
 
 const Coupun = styled.div`
   padding: 29px 8px 29px 8px;
+  min-height: calc(100vh - 160px);
   ${Breakpoints.greaterThan('sm')`
     padding: 29px 15px 29px 15px;
   `}
@@ -247,11 +275,24 @@ const AllProduct = styled.div`
     width: 50%;
     margin-bottom: 2rem;
   }
+  .action-admin {
+    display: flex;
+    flex-direction: column;
+    a {
+      margin-top: 1rem;
+      color: #6a4029;
+    }
+    font-size: 25px;
+    font-weight: 700;
+    text-decoration-line: underline;
+  }
 `;
 
 const ToggleCategory = styled.div`
   display: flex;
+  ${Breakpoints.greaterThan('968px')`
   justify-content: space-between;
+  `}
   flex-wrap: wrap;
   padding: 29px 0;
   border-radius: 30px;
@@ -308,10 +349,10 @@ const ProductWrapper = styled.div`
 export default Index;
 
 export const getServerSideProps = privateRoute(async (ctx) => {
-  const role=await cookies(ctx).user_role
+  const role = await cookies(ctx).user_role;
   const { data } = await axios(`products/?searchBy=products.category_id&npp=4&page=1&search=1`);
   const initialData = data.data;
   return {
-    props: { initialData,role }, // will be passed to the page component as props
+    props: { initialData, role }, // will be passed to the page component as props
   };
-})
+});
