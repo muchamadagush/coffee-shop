@@ -13,24 +13,6 @@ import * as Yup from 'yup';
 const Register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
-  // const [form, setForm] = useState({
-  //   email: '',
-  //   password: '',
-  //   phone: ''
-  // })
-
-  // const handleChange = (e) => {
-  //   e.preventDefault()
-
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
-
-  // const handleRegister = () => {
-  //   dispatch(register(form))
-  // }
   const pushLogin = () =>{
     router.push('/login')
   }

@@ -18,14 +18,7 @@ const ForgotPassword = () => {
 
   // })
 
-  // const handleChange = (e) => {
-  //   e.preventDefault()
 
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
   const formik = useFormik({
     initialValues: {
       email: ''
@@ -39,8 +32,6 @@ const ForgotPassword = () => {
       email: Yup.string().email('Email is Invalid').required("email is required"),
     })
   })
-  
-    
   return (
     <>
       <Head>
