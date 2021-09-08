@@ -3,6 +3,7 @@ import Layout from '../../components/layout';
 import { CardWrapper } from '../../components/atoms';
 import styles from './history.module.css';
 import { useState } from 'react';
+import { privateRoute } from '../../configs/routes/privateRoute';
 
 const History = () => {
   const [data, setData] = useState([
@@ -50,3 +51,9 @@ const History = () => {
 };
 
 export default History;
+
+export const getServerSideProps = privateRoute(async (ctx) => {
+  return {
+    props: {},
+  };
+});

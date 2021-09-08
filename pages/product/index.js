@@ -5,21 +5,14 @@ import { CardProduct, CardCoupon } from '../../components/molecules';
 import Link from 'next/link';
 import { Button } from '../../components/atoms';
 import { Breakpoints } from '../../utils';
-<<<<<<< HEAD
-import { privateRoute } from '../../configs/routes/privateRoute';
-
-
-function Index() {
-  const list = ['Favorite & Promo', 'Coffe', 'Non Coffe', 'Foods', 'Add-on'];
-=======
 import { privateRoute } from "../../configs/routes/privateRoute";
 import axios from '../../configs/api/backendApi';
-import { Avatar } from '@material-ui/core';
-function Index({ initialData }) {
+import cookies from 'next-cookies';
+function Index({ initialData ,role}) {
   const list = [
     { id: 1, name: 'Favorite & Promo' },
-    { id: 2, name: 'Coffe' },
-    { id: 3, name: 'Non Coffe' },
+    { id: 2, name: 'Coffee' },
+    { id: 3, name: 'Non Coffee' },
     { id: 4, name: 'Foods' },
     { id: 5, name: 'Add-on' },
   ];
@@ -27,7 +20,6 @@ function Index({ initialData }) {
   const resPagination = initialData.pagination;
   const [data, setData] = React.useState(resData);
   const [pagination, setPagination] = React.useState(resPagination);
->>>>>>> 523133867ec27ae96e7fea111a06acb5936ac206
   const [istrue, setIsTrue] = React.useState(false);
   const [category, setCategory] = React.useState(1);
   const [defaultPage, setDefaultPage] = React.useState(1);
@@ -315,10 +307,11 @@ const ProductWrapper = styled.div`
 `;
 export default Index;
 
-export async function getServerSideProps(context) {
+export const getServerSideProps = privateRoute(async (ctx) => {
+  const role=await cookies(ctx).user_role
   const { data } = await axios(`products/?searchBy=products.category_id&npp=4&page=1&search=1`);
   const initialData = data.data;
   return {
-    props: { initialData }, // will be passed to the page component as props
+    props: { initialData,role }, // will be passed to the page component as props
   };
-}
+})
