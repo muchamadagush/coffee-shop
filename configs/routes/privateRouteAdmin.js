@@ -9,7 +9,7 @@ export function privateRouteAdmin(getServerSideProps) {
       return {
         redirect: {
           permanent: false,
-          destination: `/auth/login`,
+          destination: `/login`,
         },
       };
     } else if (isAuth === "true" && role === "custommer") {
