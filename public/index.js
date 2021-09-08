@@ -12,6 +12,7 @@ import NavIcon from './nav.svg';
 import HeartIcon from './heart.svg';
 import ArrowLeft from './arrow-left.svg';
 import ArrowRight from './arrow-right.svg';
+import EditIcon from './editIcon.svg';
 export {
   Reddit,
   Netflix,
@@ -27,4 +28,5 @@ export {
   NavIcon,
   ArrowLeft,
   ArrowRight,
+  EditIcon,
 };
