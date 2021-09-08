@@ -3,7 +3,9 @@ import { BrownCard, CardWrapper } from "../../components/atoms";
 import InputChat from "../../components/base/InputChat";
 import InputSearch from "../../components/base/InputSearch";
 import Layout from "../../components/layout";
+import { privateRoute } from "../../configs/routes/privateRoute";
 import styles from "./chat.module.css";
+
 const Chat = () => {
   const [admin, setAdmin] = useState([
     {
@@ -88,3 +90,9 @@ const Chat = () => {
 };
 
 export default Chat;
+
+export const getServerSideProps = privateRoute(async (ctx) => {
+  return {
+    props: {},
+  };
+});

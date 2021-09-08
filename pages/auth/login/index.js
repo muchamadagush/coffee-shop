@@ -17,6 +17,23 @@ const Login = () => {
   const pushSignUp = () => {
     router.push('/register')
   }
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  })
+
+  const handleChange = (e) => {
+    e.preventDefault()
+
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleLogin = () => {
+    dispatch(login(form, router))
+  }
   const formik = useFormik({
     initialValues: {
       email: '',

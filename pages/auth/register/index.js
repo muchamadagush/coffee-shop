@@ -32,7 +32,7 @@ const Register = () => {
   //   dispatch(register(form))
   // }
   const pushLogin = () =>{
-    router.push('/login')
+    router.push('/auth/login')
   }
   const phoneRegExp = /\(?(?:\+62|62|0)(?:\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}[ .-]?\d{2,4}/;
   const formik = useFormik({

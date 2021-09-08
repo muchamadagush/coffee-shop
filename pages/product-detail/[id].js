@@ -222,7 +222,7 @@ const ProductDetail = ({ product, role, token }) => {
     </div>
   );
 };
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = privateRoute(async (ctx) => {
   try {
     const id = ctx.params.id;
     const token = await cookies(ctx).token;
@@ -257,7 +257,7 @@ export const getServerSideProps = async (ctx) => {
       ctx.res.end();
     }
   }
-};
+});
 const Styles = styled.div`
   .btn-collection {
     display: flex;
@@ -305,8 +305,4 @@ const Styles = styled.div`
 `;
 export default ProductDetail;
 
-export const getServerSideProps = privateRoute(async (ctx) => {
-  return {
-    props: {},
-  };
-});
+
