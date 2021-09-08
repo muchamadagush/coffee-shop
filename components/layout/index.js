@@ -10,7 +10,7 @@ const Layout = (props) => {
         <title>{props.title}</title>
         <link rel="icon" href="/logoCoffeShop.svg" />
       </Head>
-      <NavBar isAuth={Object.keys(profile).length === 0 ? false : true} active={props.active} />
+      <NavBar isAuth={profile ? true : false} active={props.active} />
       <div className="layoutBox">{props.children}</div>
       <Footer login={props.login} />
     </div>
