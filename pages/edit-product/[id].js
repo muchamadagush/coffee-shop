@@ -1,7 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import Layout from '../../components/layout';
 import { Button } from '../../components/atoms';
 import Style from '../../styles/editProduct.module.css';
 import styled from 'styled-components';
+import { privateRouteAdmin } from "../../configs/routes/privateRouteAdmin";
+
 const EditProduct = () => {
   return (
     <div>
@@ -66,3 +69,9 @@ const Styles = styled.div`
   }
 `;
 export default EditProduct;
+
+export const getServerSideProps = privateRouteAdmin(async (ctx) => {
+  return {
+    props: {},
+  };
+});

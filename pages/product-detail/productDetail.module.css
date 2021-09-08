@@ -9,6 +9,9 @@
   display: flex;
   justify-content: space-between;
 }
+.productName {
+  text-transform: uppercase;
+}
 .left {
   display: flex;
   flex-direction: column;
@@ -24,6 +27,7 @@
 .inputTime {
   display: flex;
   gap: 15px;
+  align-items: center;
 }
 .inputTime input {
   background: #f4f4f8;
@@ -36,6 +40,9 @@
 }
 .right {
   width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 .bottomCard {
   display: flex;
@@ -55,20 +62,39 @@
 .size {
   display: flex;
   gap: 26px;
+  flex-wrap: wrap;
+  max-width: 380px;
+  justify-content: space-between;
 }
 .inputSize {
   display: none;
 }
 .sizeButton {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   text-align: center;
   vertical-align: middle;
   background: #adadad;
-  line-height: 70px;
+  line-height: 100px;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+  -webkit-appearance: none;
+  white-space: nowrap;
 }
 .inputSize:checked + .sizeButton {
+  background: #ffba33;
+}
+.sizeButtonDelivery {
+  text-align: center;
+  vertical-align: middle;
+  background: #adadad;
+  line-height: 70px;
+  white-space: nowrap;
+  border-radius: 20px;
+  width: 100%;
+}
+.inputSize:checked + .sizeButtonDelivery {
   background: #ffba33;
 }
 .checkoutCard {
@@ -78,13 +104,14 @@
   gap: 30px;
   width: 100%;
 }
-/* .itemList {
+.itemList {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  /* justify-content: space-around; */
   height: 100%;
-} */
+}
 .checkoutContainer {
   display: flex;
   align-items: center;
@@ -100,7 +127,40 @@
 .imgProduct {
   width: 100px;
   height: 100px;
-  border-radius: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.hide {
+  display: none;
+}
+#timeInput input[type='time'] {
+  width: 100%;
+}
+
+#timeInput span {
+  padding-right: 30px;
+}
+
+#timeInput:invalid + span:after {
+  content: '✖';
+  padding-left: 5px;
+}
+
+#timeInput:valid + span:after {
+  content: '✓';
+  padding-left: 5px;
+}
+#timeInput input[type='time']::-webkit-calendar-picker-indicator {
+  background: none;
+}
+.alert {
+  color: red;
+}
+.checkoutBox {
+  display: flex;
+}
+.checkoutHidden {
+  display: none;
 }
 @media (max-width: 992px) {
   .container {
@@ -122,6 +182,24 @@
   .right {
     display: flex;
     flex-direction: column;
+    width: 100%;
+  }
+}
+@media (max-width: 320px) {
+  .checkoutBox {
+    flex-direction: column;
+    align-items: center;
+  }
+  .checkoutCard {
+    flex-direction: column;
+  }
+  .size {
+    flex-direction: column;
+  }
+  .inputTime {
+    flex-direction: column;
+  }
+  .inputTime input {
     width: 100%;
   }
 }

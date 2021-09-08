@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Button, CardwFooter, CardWrapper, InputField } from '../../components/atoms'
 import Layout from '../../components/layout'
-import { useForm } from "react-hook-form";
-
+import { privateRoute } from "../../configs/routes/privateRoute";
 
 const ProfileUser = () => {
     // // const profile = useSelector(state => state.profile.user)
@@ -157,6 +156,13 @@ const ProfileUser = () => {
 }
 
 export default ProfileUser
+
+export const getServerSideProps = privateRoute(async (ctx) => {
+  return {
+    props: {},
+  };
+});
+
 const Styles = styled.div`
 width: 100vw;
 .wrapper{
@@ -302,5 +308,5 @@ width: 100vw;
         }
     }
 
-
 `
+

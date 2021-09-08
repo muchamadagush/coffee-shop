@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import styled from 'styled-components';
 import Susu from '../../../public/voucherIlust1.svg';
@@ -5,7 +6,7 @@ function index({ ...props }) {
   return (
     <CardCoupon {...props}>
       <div className="coupon-image">
-        <img src={Susu.src}></img>
+        <img src={Susu.src} alt="coupon"></img>
       </div>
       <div className="coupon-info">
         <p className="name two-line">Happy Mother</p>

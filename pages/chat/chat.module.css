@@ -1,0 +1,102 @@
+.bg {
+  background-image: url("/bgChat.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.chat {
+  display: flex;
+  flex-direction: row;
+}
+
+.listChat {
+  width: 35%;
+  padding: 50px 5px 50px 0;
+}
+
+.roomChat {
+  width: 65%;
+  padding: 50px 0 50px 5px;
+}
+
+.listCard {
+  padding: 50px;
+  min-height: 700px;
+}
+
+.roomCard {
+  padding: 30px 45px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 45px;
+  color: #4f5665;
+}
+
+.admin {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.imgAdmin {
+  width: 80px;
+  height: 80px;
+  margin-right: 1rem;
+}
+
+.titleListAdmin {
+  margin: 40px 0 50px;
+}
+
+.listAdmin {
+  display: flex;
+  border-bottom: 1px solid #fff;
+  margin-top: 1rem;
+}
+
+.nameAdmin {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  color: #ffffff;
+}
+
+.descAdmin {
+  font-size: 15px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+.nameChat {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  color: #4f5665;
+}
+
+.descChat {
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 22px;
+  color: #4f5665;
+}
+
+.chatUser {
+  margin-top: 10px;
+  padding: 20px 50px;
+}
+
+.displayChat {
+  max-height: 500px;
+}
+
+.titleListAdmin {
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 22px;
+  color: #ffffff;
+  text-align: center;
+}

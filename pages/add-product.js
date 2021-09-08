@@ -1,13 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
 import Layout from '../components/layout';
 import { Button } from '../components/atoms';
 import Style from '../styles/addProduct.module.css';
 import styled from 'styled-components';
 import Input from '../components/base/Input';
+import { privateRouteAdmin } from "../configs/routes/privateRouteAdmin"
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../configs/redux/actions/productAction';
 import cookies from 'next-cookies';
-const AddProduct = ({token}) => {
+const AddProduct = ({ token }) => {
   const [form, setForm] = useState({
     name_product: '',
     price: 0,
@@ -70,6 +72,7 @@ const AddProduct = ({token}) => {
   const handleSubmit = () => {
     dispatch(addProduct(form, size, delivery, token));
   };
+  
   return (
     <div>
       <Layout isAuth={false} active="product" title="Add Product">
@@ -291,12 +294,6 @@ const AddProduct = ({token}) => {
     </div>
   );
 };
-export const getServerSideProps = (async (ctx) => {
-  const token = await cookies(ctx).token;
-  return {
-    props: { token },
-  };
-});
 const Styles = styled.div`
   .button {
     width: 100%;
@@ -309,3 +306,10 @@ const Styles = styled.div`
   }
 `;
 export default AddProduct;
+
+export const getServerSideProps = privateRouteAdmin(async (ctx) => {
+  const token = await cookies(ctx).token;
+  return {
+    props: { token },
+  };
+});
