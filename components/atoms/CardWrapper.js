@@ -1,10 +1,20 @@
-import styled from 'styled-components';
 
-const CardWrapper = ({ className, children }) => {
-  return <Styles className={className}>{children}</Styles>;
-};
+import styled from 'styled-components'
+import PropTypes from 'prop-types';
 
-export default CardWrapper;
+const CardWrapper = ({className, children}) => {
+    return (
+        <Styles className={className}>
+            {children}
+        </Styles>
+    )
+}
+CardWrapper.propTypes = {
+    children : PropTypes.element.isRequired,
+    className: PropTypes.string
+}
+export default CardWrapper
+
 const Styles = styled.div`
   border-radius: 20px;
   background: #ffffff;

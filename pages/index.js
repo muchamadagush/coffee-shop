@@ -1,5 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react/no-unescaped-entities */
+
 import Head from 'next/head';
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -18,6 +17,7 @@ import {
   NavIcon,
   PersonIcon,
 } from '../public';
+
 
 import Layout from '../components/layout';
 import { Breakpoints } from '../utils';
@@ -138,9 +138,9 @@ export default function Home() {
             </p>
           </div>
           <div className="wrapper">
+            {/* <CardProduct></CardProduct>
             <CardProduct></CardProduct>
-            <CardProduct></CardProduct>
-            <CardProduct></CardProduct>
+            <CardProduct></CardProduct> */}
           </div>
         </FavoriteProduct>
         <div className="background">
@@ -224,6 +224,7 @@ const Style = styled.div`
     background: #fdfdfd;
   }
 `;
+
 const HeroHomeContent = styled.div`
   position: relative;
   height: calc(100vh);
@@ -249,12 +250,10 @@ const HeroHomeContent = styled.div`
         color: #6a4029;
       }
     }
-  }
 `;
 
 const OurStore = styled.div`
   ${Breakpoints.greaterThan('sm')`
-
   position: relative;
   bottom: 120px;
     `}
@@ -327,6 +326,7 @@ const OurStore = styled.div`
   }
 `;
 
+
 const StyleTeamWork = styled.div`
   display: flex;
   align-items: center;
@@ -363,7 +363,7 @@ const StyleTeamWork = styled.div`
 const Location = styled.div`
   display: flex;
   justify-content: center;
-  alignt-items: center;
+  align-items: center;
   p {
     text-align: center;
   }

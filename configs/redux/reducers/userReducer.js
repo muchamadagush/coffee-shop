@@ -24,10 +24,22 @@ const userReducer = (state = initialState, action) => {
       return {
         users: action.payload
       }
-    case actionTypes.GET_USER:
+    case actionTypes.GET_SELECTED_USER:
       return {
         user: action.payload
       }
+    case actionTypes.GET_USER:
+      return{
+        profile: action.payload
+      }
+      case 'CHANGE_VALUE':
+        return {
+          ...state,
+          profile: {
+            ...state.profile,
+            ...action.payload,
+          },
+        };
     default:
       return state;
   }

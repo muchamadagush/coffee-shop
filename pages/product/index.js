@@ -5,13 +5,54 @@ import { CardProduct, CardCoupon } from '../../components/molecules';
 import Link from 'next/link';
 import { Button } from '../../components/atoms';
 import { Breakpoints } from '../../utils';
-
-function Index() {
-  const list = ['Favorite & Promo', 'Coffe', 'Non Coffe', 'Foods', 'Add-on'];
+import { privateRoute } from '../../configs/routes/privateRoute';
+import axios from '../../configs/api/backendApi';
+import cookies from 'next-cookies';
+function Index({ initialData, role }) {
+  console.log(role, 'ini role');
+  const list = [
+    { id: 1, name: 'Favorite & Promo' },
+    { id: 2, name: 'Coffee' },
+    { id: 3, name: 'Non Coffee' },
+    { id: 4, name: 'Foods' },
+    { id: 5, name: 'Add-on' },
+  ];
+  const resData = initialData.result;
+  const resPagination = initialData.pagination;
+  const [data, setData] = React.useState(resData);
+  const [pagination, setPagination] = React.useState(resPagination);
   const [istrue, setIsTrue] = React.useState(false);
+  const [category, setCategory] = React.useState(1);
+  const [defaultPage, setDefaultPage] = React.useState(1);
+  const [page, setPage] = React.useState(defaultPage + 1);
+  const seeMore = async () => {
+    console.log(resPagination);
+    const { data: dataNew } = await axios(
+      `products/?searchBy=products.category_id&npp=4&page=${page}&search=${category}`
+    );
+    const newData = dataNew.data.result;
+    const newPagination = dataNew.data.pagination;
+    setPagination(newPagination);
+    setData([...data, ...newData]);
+    setPage(page + 1);
+  };
+
+  const handleCategory = async (params) => {
+    setCategory(params);
+    const { data: byCategory } = await axios(
+      `products/?searchBy=products.category_id&npp=4&page=${defaultPage}&search=${params}`
+    );
+    const newData = byCategory.data.result;
+    const newPagination = byCategory.data.pagination;
+    setPagination(newPagination);
+    setData(newData);
+    setPage(defaultPage + 1);
+  };
+
+  const [editProduct, setEditProduct] = React.useState(null);
   return (
     <>
-      <Layout isAuth={true} active="product" login={true}>
+      <Layout isAuth={true} active="product" login={true} title="product">
         <Style>
           <Coupun>
             <div className="coupons">
@@ -21,14 +62,11 @@ function Index() {
               </div>
               <div className="coupons-content">
                 <div className="coupons-item">
-                  <CardCoupon />
-                  <CardCoupon />
-                  <CardCoupon />
-                  <CardCoupon />
+                  <p>No coupons available</p>
                 </div>
               </div>
             </div>
-            <Button className="apply-coupon button" color="choco">
+            <Button className="apply-coupon button" disabled={true} color="choco">
               Apply Coupun
             </Button>
             <div className="terms-condition">
@@ -43,34 +81,72 @@ function Index() {
             <ToggleCategory>
               {list.map((item, index) => {
                 return (
-                  <div key={index} className={`category ${istrue ? 'active' : ''}`}>
-                    <p>{item}</p>
-                    {istrue && <div className="active-border"></div>}
+                  <div
+                    key={item.id}
+                    className={`category ${category == item.id ? 'active' : ''}`}
+                    onClick={() => handleCategory(item.id)}
+                  >
+                    <p>{item.name}</p>
+                    {category == item.id && <div className="active-border"></div>}
                   </div>
                 );
               })}
             </ToggleCategory>
-            <ProductWrapper>
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-            </ProductWrapper>
-            <p className="fs-17 fc-brown">*the price has been cutted by discount appears</p>
+            {data.length ? (
+              <ProductWrapper>
+                {data?.map((item) => {
+                  if (role != 'admin') {
+                    return (
+                      <CardProduct
+                        href={`product-detail/${item.id_product}`}
+                        key={item.id_product}
+                        image={item.image_product}
+                        name={item.name_product}
+                        price={item.price}
+                      />
+                    );
+                  } else {
+                    return (
+                      // <div>
+                      <>
+                        <CardProduct
+                          role="admin"
+                          href={`product-detail/${item.id_product}`}
+                          key={item.id_product}
+                          image={item.image_product}
+                          name={item.name_product}
+                          price={item.price}
+                          onClick={() => setEditProduct(item.id_product)}
+                        />
+                      </>
+                    );
+                  }
+                })}
+              </ProductWrapper>
+            ) : (
+              <p className="no-available">No products available</p>
+            )}
+
+            {pagination.current < pagination.totalPages ? (
+              <div>
+                <Button className="button grey see-more" onClick={seeMore}>
+                  See More
+                </Button>
+                <p className="fs-17 fc-brown">*the price has been cutted by discount appears</p>
+              </div>
+            ) : (
+              ''
+            )}
+            {role == 'admin' && (
+              <div className="action-admin">
+                <Link href={`/edit-product/${editProduct}`}>
+                  <a>Edit product</a>
+                </Link>
+                <Link href="/add-product">
+                  <a>Add new product</a>
+                </Link>
+              </div>
+            )}
           </AllProduct>
         </Style>
       </Layout>
@@ -83,6 +159,9 @@ const Style = styled.div`
   margin: 0 auto;
   height: 100%;
   display: flex;
+  ${Breakpoints.between('576px', 'lg')`
+  margin-top: 232px;
+`}
   border-top: 0.5px solid #9f9f9f;
   flex-wrap: wrap;
   ${Breakpoints.lessThan('md')`
@@ -92,6 +171,7 @@ const Style = styled.div`
 
 const Coupun = styled.div`
   padding: 29px 8px 29px 8px;
+  min-height: calc(100vh - 160px);
   ${Breakpoints.greaterThan('sm')`
     padding: 29px 15px 29px 15px;
   `}
@@ -107,9 +187,9 @@ const Coupun = styled.div`
     position: sticky;
     top: 0;
   `}
-// ${Breakpoints.greaterThan('1339px')`
-// padding: 0 157px 29px 115px;
-// `}
+ /* ${Breakpoints.greaterThan('1339px')`
+ padding: 0 157px 29px 115px;
+ `} */
   height: 100%;
   .coupons {
     display: flex;
@@ -181,18 +261,45 @@ const AllProduct = styled.div`
   ${Breakpoints.greaterThan('1339px')`
     padding: 0 157px 29px 115px;
   `}
+  .no-available {
+    text-align: center;
+    margin-top: 25vh;
+    margin-bottom: 25vh;
+  }
+
+  .see-more {
+    margin-top: 4rem;
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 46px;
+    width: 50%;
+    margin-bottom: 2rem;
+  }
+  .action-admin {
+    display: flex;
+    flex-direction: column;
+    a {
+      margin-top: 1rem;
+      color: #6a4029;
+    }
+    font-size: 25px;
+    font-weight: 700;
+    text-decoration-line: underline;
+  }
 `;
 
 const ToggleCategory = styled.div`
   display: flex;
+  ${Breakpoints.greaterThan('968px')`
   justify-content: space-between;
+  `}
   flex-wrap: wrap;
   padding: 29px 0;
   border-radius: 30px;
   ${Breakpoints.greaterThan('lg')`
     position: -webkit-sticky;
     position: sticky;
-    top: 0px;
+    top: 0;
     z-index: 1;
     background: #fff;
   `}
@@ -240,3 +347,12 @@ const ProductWrapper = styled.div`
   `}
 `;
 export default Index;
+
+export const getServerSideProps = privateRoute(async (ctx) => {
+  const role = await cookies(ctx).user_role;
+  const { data } = await axios(`products/?searchBy=products.category_id&npp=4&page=1&search=1`);
+  const initialData = data.data;
+  return {
+    props: { initialData, role }, // will be passed to the page component as props
+  };
+});

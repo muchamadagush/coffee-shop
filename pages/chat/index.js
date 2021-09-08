@@ -3,6 +3,7 @@ import { BrownCard, CardWrapper } from "../../components/atoms";
 import InputChat from "../../components/base/InputChat";
 import InputSearch from "../../components/base/InputSearch";
 import Layout from "../../components/layout";
+import { privateRoute } from "../../configs/routes/privateRoute";
 import styles from "./chat.module.css";
 import io from "socket.io-client";
 import cookies from "next-cookies"
@@ -38,9 +39,7 @@ const Chat = ({ token }) => {
   }, [selected]);
 
   const {users, user} = useSelector(state => state.user)
-  console.log(user)
 
-  console.log(selected)
   return (
     <>
       <Layout>
@@ -105,8 +104,8 @@ const Chat = ({ token }) => {
 
 export default Chat;
 
-export async function getServerSideProps(context) {
-  let cookie = cookies(context).token
+export const getServerSideProps = privateRoute(async (ctx) => {
+  let cookie = cookies(ctx).token
 
   return {
     props: {token: cookie}, // will be passed to the page component as props
