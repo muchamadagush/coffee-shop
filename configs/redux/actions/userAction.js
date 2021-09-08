@@ -41,3 +41,30 @@ export const updateuser = (data, id) => (dispatch) =>{
     Swal("Opps...", `${err.response.data.message}`, "error")
   })
 }
+
+export const getUsers = () => (dispatch) => {
+  backendApi.get("/users", {
+    withCredentials: true
+  })
+  .then((res) => {
+    const users = res.data.data
+    dispatch({ type: actionTypes.GET_USERS, payload: users })
+  })
+  .catch((error) => {
+    console.log(error.response.data.message)
+  })
+}
+
+export const getUser = (id) => (dispatch) => {
+  backendApi.get(`/users/${id}`, {
+    withCredentials: true
+  })
+  .then((res) => {
+    const user = res.data.data
+    console.log(user)
+    dispatch({ type: actionTypes.GET_USER, payload: user })
+  })
+  .catch((error) => {
+    console.log(error.response.data.message)
+  })
+}
