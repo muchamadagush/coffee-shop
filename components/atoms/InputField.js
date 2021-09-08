@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types';
 
-const InputField = ({className, label, name, value, onChange, type, defaultValue}) => {
+const InputField = ({className, label, name, value, onChange, type}) => {
     return (
         <Styles>
             <TextField
@@ -14,7 +14,7 @@ const InputField = ({className, label, name, value, onChange, type, defaultValue
             value={value}
             onChange={onChange}
             type={type}
-            defaultValue={defaultValue}/>
+           />
         </Styles>
     )
 }
@@ -26,7 +26,6 @@ InputField.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func,
     name: PropTypes.string,
-    defaultValue: PropTypes.string
 }
 export default InputField
 const Styles = styled.div`

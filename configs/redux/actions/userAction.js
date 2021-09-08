@@ -4,8 +4,9 @@ import Swal from 'sweetalert';
 
 
 export const register = (data) => (dispatch) => {
+  console.log(data);
   backendApi
-    .post("register", data)
+  .post("/register", data)
     .then((res) => {
       // console.log(res);
       Swal("Register success!", "Please check your email for verify","success")
@@ -36,16 +37,17 @@ export const updateuser = (data, id, token) => (dispatch) =>{
 
     const formData = new FormData();
     formData.append('email', data.email);
-    formData.append('first_name', data.address);
-    formData.append('last_name', data.phone_number);
-    formData.append('email', data.display_name);
-    formData.append('address', data.datebirth);
+    formData.append('display_name', data.display_name);
+    formData.append('first_name', data.first_name);
+    formData.append('last_name', data.last_name);
+    formData.append('address', data.address);
     formData.append('phone', data.phone);
-    formData.append('dateOfBirth', data.datebirth);
+    formData.append('dateOfBirth', data.dateOfBirth);
     formData.append('image', data.image);
     formData.append('gender', data.gender);
-
-    backendApi.put(`users/${id}`, formData,{
+    // console.log(data.image);
+    console.log(data);
+    backendApi.put(`/users/${id}`, formData,{
       withCredentials: true,
       headers: {
         Cookie: 'token=' + token,
@@ -53,10 +55,28 @@ export const updateuser = (data, id, token) => (dispatch) =>{
   })
   .then((res)=>{
     const resultData = res.data.data
+    
     dispatch =({type: actionTypes.UPDATE_USER, payload: resultData})
     Swal("Success!", "Update data success","success")
   })
   .catch((error)=>{
     Swal("Opps...", `${error.response.data.message}`, "error")
   })
+}
+export const getProfile = (token, id) => (dispatch) =>{
+  backendApi.get(`users/${id}`, {
+    withCredentials:true,
+    headers:{
+      Cookie: 'token=' + token
+    },
+  })
+  .then((res)=>{
+    const Result = res.data.data[0]
+    console.log(Result);
+    dispatch({type: actionTypes.GET_USER, payload: Result})
+  })
+  .catch((error)=>{
+    Swal("Opps...", `${error.response.data.message}`, "error")
+  })
+
 }

@@ -18,7 +18,11 @@ const userReducer = (state = initialState, action) => {
       return{
         profile: action.payload
       }
-      case actionTypes.CHANGE_VALUE:
+    case actionTypes.GET_USER:
+      return{
+        profile: action.payload
+      }
+      case 'CHANGE_VALUE':
         return {
           ...state,
           profile: {

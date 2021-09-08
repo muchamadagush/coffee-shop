@@ -1,21 +1,54 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Button, CardwFooter, CardWrapper, InputField } from '../../components/atoms'
 import Layout from '../../components/layout'
 import { privateRoute } from "../../configs/routes/privateRoute";
+import { getProfile, updateuser } from '../../configs/redux/actions/userAction'
+
+
 
 const ProfileUser = () => {
-    // // const profile = useSelector(state => state.profile.user)
-    const [form, setForm] = ({
-        email : '',
 
-    })
-    const handleChange = () =>{
+    const dispatch = useDispatch();
+    const [imagePrev, setImagePrev] = useState(null)
+    const [errImage, setErrImage] = useState(false);
+    const [errImageType, setErrImageType] = useState(false);
+    const profile = useSelector(state => state.user.profile)
+    // const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    console.log(profile);
 
+    useEffect(() => {
+        dispatch(getProfile(profile.token, profile.id))
+    }, [])
+
+    const handleChange = (e) =>{  
+        dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.value } });
     }
-    const handleSubmit = () =>{
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        dispatch(updateuser(profile, profile.id, profile.token, handlepreviewImage))
+       
     }
+
+    const handlepreviewImage = (e) => {
+        e.preventDefault();
+        if(e.target.files[0].size > 1048576){
+            setErrImage(true)
+        }
+        else if(e.target.files[0].type !== "image/png" && e.target.files[0].type !== "image/jpg" && e.target.files[0].type !== "image/jpeg" ){
+            setErrImageType(true)
+        }
+        else if (e.target.files.length !== 0) {
+            setErrImage(false)
+            setErrImageType(false)
+            setImagePrev(URL.createObjectURL(e.target.files[0]));
+            dispatch({ type: 'CHANGE_VALUE', payload: { imagePrev : imagePrev } })
+        }
+        dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.files[0] } });
+       
+      };
+
     return (
         <Styles>
             <Layout isAuth="true" title="Profile">
@@ -23,15 +56,18 @@ const ProfileUser = () => {
                     <form onSubmit={handleSubmit}>        
                     <h4 className="fs-35 title">User Profile</h4>
                     <CardWrapper className="card">
+                        <div className="container"></div>
                         <div className="row">
                             <div className="col col-4">
                                 <div className="side-profile-wrapper">
-                                    <img className="image-profile" src="image 39.png" alt="" />
-                                    <h4 className="fs-20 fw-bold">Zulaikha</h4>
-                                    <h5 className="fs-20 fw-500">Email</h5>
+                                    <img className="image-profile" src={imagePrev ? imagePrev : profile.image ? profile.image : '/avatar1.svg'} alt="" />
+                                    {errImage ? <p className="error">Image size is too large. max 1mb</p> :''}
+                                    {errImageType ? <p className="error">Invalid file type. only png, jpg, and jpeg format allowed</p> :''}
+                                    <h4 className="fs-20 fw-bold">{profile.first_name}</h4>
+                                    <h5 className="fs-20 fw-500">{profile.email}</h5>
                                     <div className="button_Wrap">
                                         <label className="button-img" for="upload">Upload File</label>
-                                        <input id="upload" type="file" name="image" />
+                                        <input id="upload" type="file" name="image" onChange={handlepreviewImage}/>
                                     </div>
                                     <Button radius="radius-10" className="button" type="button" color="choco">Remove Photo</Button>
                                     <Button radius="radius-20" className="edit-btn" type="button" color="white-choco">Edit Password</Button>
@@ -45,17 +81,13 @@ const ProfileUser = () => {
                             <div className="col-8 ">
                                 <CardwFooter>
                                     <div className="right-profile-wrapper">
-
                                         <div className="header">
                                             <h4 className="fc-grey fs-25 fw-bold">Contacts</h4>
                                             <Button className="btn-pen" color="choco">
                                                 <img src="Vector (1).png" alt="" />
                                             </Button>
-
                                         </div>
                                         <div className="form-wrapper">
-
-                                            <form>
                                                 <div className="row first-section-wrapper">
                                                     <div className="col">
                                                         
@@ -64,20 +96,21 @@ const ProfileUser = () => {
                                                         label="Email address : "
                                                         type="email"
                                                         name="email"
-                                                        defaultValue="Zulaikha"
+                                                        value={profile.email}
                                                         className="input-field"
+                                                        
                                                     />
                                                     </div>
                                                     <div className="col">
 
                                                     <InputField
-                                                        onChange="{handleChange}"
                                                         label="Phone numbers : "
                                                         type="text"
-                                                        name="phone"
-                                                        defaultValue="(+62)89078978"
+                                                        value={profile.phone}
+                                                        onChange={handleChange}
 
                                                     />
+                                                    <p>{errors.phone && errors.message }</p>
                                                     </div>
 
                                                 </div>
@@ -85,9 +118,11 @@ const ProfileUser = () => {
                                                     onChange={handleChange}
                                                     label="Delivery address : "
                                                     type="text"
-                                                    name=""
-                                                    defaultValue="Zulaikha"
+                                                    // name="address"
+                                                    // defaultValue="Zulaikha"
+                                                    value={profile.address}
                                                     className="input-field address-field"
+                                                    
                                                 />
                                                 <h4 className="fc-grey fs-25 fw-bold details-title">Details</h4>
                                                 <div className="row econd-section-wrapper">
@@ -96,8 +131,9 @@ const ProfileUser = () => {
                                                         onChange={handleChange}
                                                         label="Display name : "
                                                         type="text"
-                                                        name=""
-                                                        defaultValue="Zulaikha"
+                                                        name="display_name"
+                                                        // defaultValue="Zulaikha"
+                                                        value={profile.display_name}
                                                         className="input-field"
                                                     />
                                                     </div>    
@@ -105,10 +141,11 @@ const ProfileUser = () => {
                                                     
                                                     <InputField
                                                         onChange={handleChange}
-                                                        label="Phone numbers : "
-                                                        type="text"
-                                                        name=""
-                                                        defaultValue="(+62)89078978"
+                                                        label="DD/MM/YY : "
+                                                        type="date"
+                                                        name="dateOfBirth"
+                                                        defaultValue={profile.dateOfBirth}
+                                                        // defaultValue=""
 
                                                     />
                                                     </div>    
@@ -118,8 +155,9 @@ const ProfileUser = () => {
                                                     onChange={handleChange}
                                                     label="First name : "
                                                     type="text"
-                                                    name=""
+                                                    name="first_name"
                                                     defaultValue="Zulaikha"
+                                                    value={profile.first_name}
                                                     className="input-field second-field"
 
                                                 />
@@ -127,20 +165,20 @@ const ProfileUser = () => {
                                                     onChange={handleChange}
                                                     label="Last name : "
                                                     type="text"
-                                                    name=""
+                                                    name="last_name"
                                                     defaultValue="Nirmala"
+                                                    value={profile.last_name}
                                                     className="input-field second-field"
 
                                                 />
                                                 <div className="radio-button-wrap">
                                                 
-                                                    <input id="male" className="checkmark bg_black" type="radio" name="radio" />
+                                                    <input id="male" className="checkmark bg_black" checked={profile.gender == 'male'} type="radio" name="gender" value="male" onChange={handleChange} />
                                                     <label htmlFor="male">Male</label>
                                                 
-                                                    <input id="female" className="checkmark bg_black right-radio" type="radio" name="radio" />
+                                                    <input id="female" className="checkmark bg_black right-radio" type="radio" checked={profile.gender == 'female'} value="female" onChange={handleChange} name="gender" />
                                                     <label htmlFor="female">Female</label>
                                                 </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </CardwFooter>
@@ -155,6 +193,7 @@ const ProfileUser = () => {
     )
 }
 
+
 export default ProfileUser
 
 export const getServerSideProps = privateRoute(async (ctx) => {
@@ -164,7 +203,7 @@ export const getServerSideProps = privateRoute(async (ctx) => {
 });
 
 const Styles = styled.div`
-width: 100vw;
+/* width: 100vw; */
 .wrapper{
     width: 100%;
     background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/profileBg.png');
@@ -181,6 +220,13 @@ width: 100vw;
                         .image-profile{
                             border-radius: 100%;
                             margin-bottom: 20px;
+                            width: 150px;
+                            height: 150px;
+                            object-fit: cover;
+                        }
+                        .error{
+                            color: red;
+                            text-align: center;
                         }
                         .button_Wrap {
                             margin-top: 20px;

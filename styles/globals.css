@@ -135,4 +135,8 @@ input[type='checkbox']:checked {
   box-shadow: none;
 
 }
-
+.error-messages{
+  color: red;
+  font-family: 'Poppins';
+  font-size: 16px;
+}
