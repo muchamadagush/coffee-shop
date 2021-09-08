@@ -14,7 +14,7 @@ const Register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const pushLogin = () =>{
-    router.push('/auth/login')
+    router.push('/login')
   }
   const phoneRegExp = /\(?(?:\+62|62|0)(?:\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}[ .-]?\d{2,4}/;
   const formik = useFormik({
@@ -24,7 +24,12 @@ const Register = () => {
       phone:''
     },
     onSubmit: values =>{
+<<<<<<< HEAD
       dispatch(register(values))
+=======
+      // console.log(values);
+      dispatch(register(values,router))
+>>>>>>> 6334e58c9c4094a3a0920a95344e742ddf12a17c
     },
     validationSchema : Yup.object ({
       email: Yup.string().email('Email is Invalid').required("email is required"),

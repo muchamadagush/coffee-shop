@@ -8,20 +8,27 @@ import { Breakpoints } from '../utils'
 
 
 const Payment = () => {
+    const isAdmin = true
     return (
         <Styles>
             <Layout isAuth={true} active="cart" login={true} title="Payment">
                 <div className="wrapper">
                     <div className="container">
-                        <div className="row">
-                            <div className="col col-lg-7 col-md-8 col-xs-offset-4">
-                                <h4 className="fc-white fs-40 fw-bold title" >
+                        <div className="row row-wrapper">
+                            <div className="col col-lg-7 col-md-8">
+                                {!isAdmin && <h4 className="fc-white fs-40 fw-bold title" >
                                     Checkout your <br /> item now!
-                                </h4>
+                                </h4>}
+                                {isAdmin && <h4 className="fc-white fs-40 fw-bold title" >
+                                    Finish your <br /> customer order now.
+                                </h4>}
                                 <CardShadow className="card-left-side">
-                                    <h1 className="f-poppins fs-35 fc-brown fw-bold">
+                                    {!isAdmin && <h1 className="f-poppins fs-35 fc-brown fw-bold">
                                         Order Summary
-                                    </h1>
+                                    </h1>}
+                                    {isAdmin && <h1 className="f-poppins fs-35 fc-brown fw-bold">
+                                        Dine in for Zulaikha
+                                    </h1>}
                                     <CardCheckout className="card-product" image="food1.png" productname="Hazelnut Latte" qty="1x" price="IDR 24.0" size="regular" />
                                     <CardCheckout className="card-product" image="food1.png" productname="Hazelnut Latte" qty="1x" price="IDR 24.0" size="regular" />
                                     <hr />
@@ -39,7 +46,7 @@ const Payment = () => {
                                                 </p>
 
                                             </div>
-                                            <div className="col ">
+                                            <div className="col price">
                                                 <p className="f-poppins fs-20">
                                                     IDR 120.000
                                                 </p> <p className="f-poppins fs-20">
@@ -65,7 +72,10 @@ const Payment = () => {
                                     You  can't see me
                                 </div>
                             </div>
-                            <div className="col col-10 col-lg-5 col-md-6 col-xs-auto">
+                            <div className="col col-lg-5 col-md-6">
+                                <div className={isAdmin&& `hidden-div`}>
+
+                                
                                 <div className="title-wrapper">
                                     <h5 className="fc-white fs-25 fw-700 " >
                                         Address Detail
@@ -78,8 +88,6 @@ const Payment = () => {
                                             </h5>
                                         </a>
                                     </Link>
-
-
                                 </div>
                                 <div className="first-section">
                                     <CardShadow className="right-side">
@@ -97,8 +105,9 @@ const Payment = () => {
                                         </p>
                                     </CardShadow>
                                 </div>
+                                </div>
                                 <div className="second-title-wrapper">
-                                    <h5 className="fc-white fs-25 fw-700 " >
+                                    <h5 className={isAdmin ? 'payment-style fc-white fs-25 fw-700' : `fc-white fs-25 fw-700 payment-text`} >
                                         Payment Method
                                     </h5>
                                 </div>
@@ -129,8 +138,9 @@ const Payment = () => {
                                         </div>
                                     </CardShadow>
                                 </div>
-                                <Button className="button" radius="radius-20" color="choco-shadow">Confirm and Pay</Button>
+                                <Button className="button" radius="radius-20" color="choco-shadow">{isAdmin ? `Mark as done` : `Confirm and Pay`}</Button>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -147,20 +157,18 @@ const Styles = styled.div`
 box-sizing: border-box;
 .wrapper{
     background-image: url('/paymentBg.png');
-    background-position: center center;
-    background-size: contain;
-    width: 100%;
-    min-height: 300px;
-    @media screen and (max-width: 992px) {
-         width: 500px;
-    } 
-    @media screen and (max-width: 320px) {               
-        background-image: url('cafe.jpg');
-    }
-.row{  
+        @media screen and (max-width: 320px) {
+            background-image: none;
+            } 
+
+ 
+.row-wrapper{         
         .title{
             padding-top: 114px;
             margin-bottom: 41px;
+            @media screen and (max-width: 320px) {
+               color: Black;
+             } 
         }
         .card-left-side{
             width: 487px;
@@ -168,7 +176,12 @@ box-sizing: border-box;
             @media screen and (max-width: 992px) {
                width: 420px;
                height: 600px;
+            }
+            @media screen and (max-width: 320px) {
+               width: 100%;
+               height: 600px;
             }   
+             
                 h1{
                     text-align: center;
                     padding-top: 65px;
@@ -200,11 +213,12 @@ box-sizing: border-box;
                         @media screen and (max-width: 992px) {
                             font-size: 24px;
                         
-                        } 
+                        }
                         @media screen and (max-width: 320px) {
-                            font-size: 20px;
+                            font-size: 15px;
+                            gap: 5rem;
                         
-                        } 
+                        }  
                     }
                 }
                 .subtotal{
@@ -216,6 +230,10 @@ box-sizing: border-box;
                         font-size: 16px;
                
                      }
+                     @media screen and (max-width: 320px) {
+                            font-size: 13px;
+                        
+                        }  
                 }
                 .tax{
                     @media screen and (max-width: 992px) {
@@ -225,7 +243,11 @@ box-sizing: border-box;
                     @media screen and (max-width: 768px) {
                         font-size: 16px;
                
-                     } 
+                     }
+                     @media screen and (max-width: 320px) {
+                            font-size: 13px;
+                        
+                        }   
                 }
                 .shipping{
                     @media screen and (max-width: 992px) {
@@ -236,7 +258,17 @@ box-sizing: border-box;
                         font-size: 16px;
                
                      }
+                     @media screen and (max-width: 320px) {
+                            font-size: 13px;
+                        
+                        }  
                 }
+            }
+            .price p{
+                @media screen and (max-width: 320px) {
+                            font-size: 13px;
+                        
+                        }  
             }
         }
             .hidden{
@@ -252,10 +284,18 @@ box-sizing: border-box;
             height: 230px;
             margin-bottom: 40px;
                 @media screen and (max-width: 992px) {
-                   width: 430px;
+                   width: 390px;
                    height: 230px;
                             
                     } 
+                    @media screen and (max-width: 768px) {               
+                        width: 320px;
+                        height: 230px;
+                }
+                @media screen and (max-width: 320px) {
+                            width: 100%;
+                            height: 230px; 
+                    }
             .first-p{
                 /* padding: 32px 43px 0; 
                  */
@@ -267,6 +307,9 @@ box-sizing: border-box;
                    font-size: 18px;
                             
                     } 
+                @media screen and (max-width: 320px) {
+                    font-size: 14px;
+                }
             }
             hr{
                 /* margin: 19px 43px;  */
@@ -280,6 +323,9 @@ box-sizing: border-box;
                    font-size: 18px;
                             
                     } 
+                    @media screen and (max-width: 320px) {
+                    font-size: 14px;
+                }
             }
         }
      
@@ -298,12 +344,24 @@ box-sizing: border-box;
                 text-decoration: none;
                 margin-left: auto;
                 @media screen and (max-width: 768px) {
-                        margin-left: auto;
+                        margin-left: 195px;
                     
                     }
+                @media screen and (max-width: 320px) {
+                    margin-left: 75px;
+                }
             }
         
             
+        }
+        .payment-text{
+                @media screen and (max-width: 320px) {
+                    color: black;
+                    } 
+        }
+        .payment-style{
+            margin-top: 220px;
+            padding-top: 10px;
         }
         .payment-section{
             .payment{
@@ -328,6 +386,12 @@ box-sizing: border-box;
                                 width: 22px;
                                             
                             } 
+                            @media screen and (max-width: 992px) {
+                                height:18px;
+                                width: 18px;
+                                            
+                            } 
+                            
                         }
                         .bg_brown{
                             background-color: white;
@@ -352,6 +416,10 @@ box-sizing: border-box;
                             margin-left: 10px;
                             @media screen and (max-width: 992px) {
                                     font-size: 19px;  
+                            } 
+                            @media screen and (max-width: 992px) {
+                                font-size: 15px; 
+                                            
                             } 
                         }
                    
@@ -400,6 +468,10 @@ box-sizing: border-box;
                             @media screen and (max-width: 992px) {
                                     font-size: 19px;                                           
                             } 
+                            @media screen and (max-width: 992px) {
+                                font-size: 15px; 
+                                            
+                            } 
                         }
                 }
                 .third-payment{
@@ -446,6 +518,10 @@ box-sizing: border-box;
                             @media screen and (max-width: 992px) {
                                     font-size: 19px;  
                             }
+                            @media screen and (max-width: 992px) {
+                                font-size: 15px; 
+                                            
+                            } 
                         }
                 }
             }
@@ -459,17 +535,18 @@ box-sizing: border-box;
                         width: 400px;
                         height: 84px; 
                 }
-                @media screen and (max-width: 992px) {               
-                        width: 350px;
-                        height: 70px; 
-                        margin-bottom: 20px;
+                  @media screen and (max-width: 768px) {               
+                        width: px;
+                        height: 84px; 
                 }
                 @media screen and (max-width: 320px) {               
-                        width: 420px;
-                        height: 70px; 
-                        margin-bottom: 20px;
+                        width: 100%;
+                        height: 84px; 
                 }
         }
+    }
+    .hidden-div{
+        display: none;
     }
 }
 

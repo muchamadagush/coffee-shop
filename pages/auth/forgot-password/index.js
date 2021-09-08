@@ -5,16 +5,18 @@ import styles from "./forgotPassword.module.css";
 import { publicRoute } from "../../../configs/routes/publicRoute";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import Layout from "../../../components/layout";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { forgotPasswordUser } from "../../../configs/redux/actions/userAction";
+import { useDispatch } from "react-redux";
 
 const ForgotPassword = () => {
-  router=useRouter()
-  const [form, setForm] = useState({
-    email: '',
+  const dispatch = useDispatch();
+  const router=useRouter()
+  // const [form, setForm] = useState({
+  //   email: '',
 
-  })
+  // })
 
 
   const formik = useFormik({
@@ -23,7 +25,8 @@ const ForgotPassword = () => {
     },
     onSubmit: values => {
       console.log(values);
-        // dispatchEvent(())
+          dispatch(forgotPasswordUser(values, router));
+          console.log(values);
     },
     validationSchema : Yup.object ({
       email: Yup.string().email('Email is Invalid').required("email is required"),
@@ -58,7 +61,7 @@ const ForgotPassword = () => {
               <form onSubmit={formik.handleSubmit}>
               <Input name="email" actionChange={formik.handleChange} value={formik.values.email} type="text" id="email" placeholder="Enter your email adress" actionChange={formik.handleChange} label="Email Adress :" giveClassLabel="none" giveClass="forgot" />
               {formik.errors.email && formik.touched.email && ( <p className={styles.errors}>{formik.errors.email}</p>)}
-              <Button  type="submit"children="Send" color="shine-shadow forgot" />
+              <Button  type="submit" children="Send" color="shine-shadow forgot" />
               <p className={styles.time}>Click here if you didn’t receive any link in 2 minutes<br /><span>01:52</span></p>
               <Button  children="Resend Link" color="choco-shadow forgot" />
               </form>
