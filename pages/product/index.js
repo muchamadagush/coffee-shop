@@ -5,12 +5,57 @@ import { CardProduct, CardCoupon } from '../../components/molecules';
 import Link from 'next/link';
 import { Button } from '../../components/atoms';
 import { Breakpoints } from '../../utils';
+<<<<<<< HEAD
 import { privateRoute } from '../../configs/routes/privateRoute';
 
 
 function Index() {
   const list = ['Favorite & Promo', 'Coffe', 'Non Coffe', 'Foods', 'Add-on'];
+=======
+import { privateRoute } from "../../configs/routes/privateRoute";
+import axios from '../../configs/api/backendApi';
+import { Avatar } from '@material-ui/core';
+function Index({ initialData }) {
+  const list = [
+    { id: 1, name: 'Favorite & Promo' },
+    { id: 2, name: 'Coffe' },
+    { id: 3, name: 'Non Coffe' },
+    { id: 4, name: 'Foods' },
+    { id: 5, name: 'Add-on' },
+  ];
+  const resData = initialData.result;
+  const resPagination = initialData.pagination;
+  const [data, setData] = React.useState(resData);
+  const [pagination, setPagination] = React.useState(resPagination);
+>>>>>>> 523133867ec27ae96e7fea111a06acb5936ac206
   const [istrue, setIsTrue] = React.useState(false);
+  const [category, setCategory] = React.useState(1);
+  const [defaultPage, setDefaultPage] = React.useState(1);
+  const [page, setPage] = React.useState(defaultPage + 1);
+  const seeMore = async () => {
+    console.log(resPagination);
+    const { data: dataNew } = await axios(
+      `products/?searchBy=products.category_id&npp=4&page=${page}&search=${category}`
+    );
+    const newData = dataNew.data.result;
+    const newPagination = dataNew.data.pagination;
+    setPagination(newPagination);
+    setData([...data, ...newData]);
+    setPage(page + 1);
+  };
+
+  const handleCategory = async (params) => {
+    setCategory(params);
+    const { data: byCategory } = await axios(
+      `products/?searchBy=products.category_id&npp=4&page=${defaultPage}&search=${params}`
+    );
+    const newData = byCategory.data.result;
+    const newPagination = byCategory.data.pagination;
+    setPagination(newPagination);
+    setData(newData);
+    setPage(defaultPage + 1);
+  };
+
   return (
     <>
       <Layout isAuth={true} active="product" login={true}>
@@ -45,34 +90,45 @@ function Index() {
             <ToggleCategory>
               {list.map((item, index) => {
                 return (
-                  <div key={index} className={`category ${istrue ? 'active' : ''}`}>
-                    <p>{item}</p>
-                    {istrue && <div className="active-border"></div>}
+                  <div
+                    key={item.id}
+                    className={`category ${category == item.id ? 'active' : ''}`}
+                    onClick={() => handleCategory(item.id)}
+                  >
+                    <p>{item.name}</p>
+                    {category == item.id && <div className="active-border"></div>}
                   </div>
                 );
               })}
             </ToggleCategory>
-            <ProductWrapper>
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-              <CardProduct />
-            </ProductWrapper>
-            <p className="fs-17 fc-brown">*the price has been cutted by discount appears</p>
+            {data.length ? (
+              <ProductWrapper>
+                {data?.map((item) => {
+                  return (
+                    <CardProduct
+                      href={`product-detail/${item.id_product}`}
+                      key={item.id_product}
+                      image={item.image_product}
+                      name={item.name_product}
+                      price={item.price}
+                    />
+                  );
+                })}
+              </ProductWrapper>
+            ) : (
+              <p className="no-available">No products available</p>
+            )}
+
+            {pagination.current < pagination.totalPages ? (
+              <div>
+                <Button className="button grey see-more" onClick={seeMore}>
+                  See More
+                </Button>
+                <p className="fs-17 fc-brown">*the price has been cutted by discount appears</p>
+              </div>
+            ) : (
+              ''
+            )}
           </AllProduct>
         </Style>
       </Layout>
@@ -185,6 +241,20 @@ const AllProduct = styled.div`
   ${Breakpoints.greaterThan('1339px')`
     padding: 0 157px 29px 115px;
   `}
+  .no-available {
+    text-align: center;
+    margin-top: 25vh;
+    margin-bottom: 25vh;
+  }
+
+  .see-more {
+    margin-top: 4rem;
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 46px;
+    width: 50%;
+    margin-bottom: 2rem;
+  }
 `;
 
 const ToggleCategory = styled.div`
@@ -196,7 +266,7 @@ const ToggleCategory = styled.div`
   ${Breakpoints.greaterThan('lg')`
     position: -webkit-sticky;
     position: sticky;
-    top: 0px;
+    top: 0;
     z-index: 1;
     background: #fff;
   `}
@@ -245,8 +315,10 @@ const ProductWrapper = styled.div`
 `;
 export default Index;
 
-export const getServerSideProps = privateRoute(async (ctx) => {
+export async function getServerSideProps(context) {
+  const { data } = await axios(`products/?searchBy=products.category_id&npp=4&page=1&search=1`);
+  const initialData = data.data;
   return {
-    props: {},
+    props: { initialData }, // will be passed to the page component as props
   };
-});
+}
