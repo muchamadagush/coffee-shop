@@ -14,14 +14,7 @@ const ForgotPassword = () => {
   //   phone: ''
   // })
 
-  // const handleChange = (e) => {
-  //   e.preventDefault()
 
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
   const formik = useFormik({
     initialValues: {
       email: ''
@@ -41,17 +34,22 @@ const ForgotPassword = () => {
         <link rel="icon" href="/logoCoffeShop.svg" />
       </Head>
       <div className={styles.forgotPassword}>
-        <div className={styles.left}>
-        </div>
+        <div className={styles.left}></div>
         <div className={styles.right}>
           <div className={styles.container}>
             <header className={styles.header}>
               <div className={styles.brand}>
-                <img src="/logoCoffeShop.svg" alt="logo" className={styles.logo} />
+                <img
+                  src="/logoCoffeShop.svg"
+                  alt="logo"
+                  className={styles.logo}
+                />
                 <h5 className={styles.title}>Coffee Shop</h5>
               </div>
               <h1 className={styles.labelForgot}>Forgot your password?</h1>
-              <p className={styles.description}>Don’t worry, we got your back!</p>
+              <p className={styles.description}>
+                Don’t worry, we got your back!
+              </p>
             </header>
 
             <div className={styles.formForgot}>
@@ -69,14 +67,33 @@ const ForgotPassword = () => {
               <div className={styles.footer}>
                 <div className={styles.footerLeft}>
                   <div className={styles.brand}>
-                    <img src="/logoCoffeShop.svg" alt="logo" className={styles.logo} />
+                    <img
+                      src="/logoCoffeShop.svg"
+                      alt="logo"
+                      className={styles.logo}
+                    />
                     <h3 className={styles.title}>Coffee Shop</h3>
                   </div>
-                  <p className={styles.content}>Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans</p>
+                  <p className={styles.content}>
+                    Coffee Shop is a store that sells some good meals, and
+                    especially coffee. We provide high quality beans
+                  </p>
                   <div className={styles.socialMedia}>
-                    <img src="/facebook.svg" alt="facebook" className={styles.item} />
-                    <img src="/twitter.svg" alt="twitter" className={styles.item} />
-                    <img src="/instagram.svg" alt="instagram" className={styles.item} />
+                    <img
+                      src="/facebook.svg"
+                      alt="facebook"
+                      className={styles.item}
+                    />
+                    <img
+                      src="/twitter.svg"
+                      alt="twitter"
+                      className={styles.item}
+                    />
+                    <img
+                      src="/instagram.svg"
+                      alt="instagram"
+                      className={styles.item}
+                    />
                   </div>
                   <span className={styles.copyright}>©2020CoffeeStore</span>
                 </div>

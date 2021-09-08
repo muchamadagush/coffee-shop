@@ -13,26 +13,8 @@ import * as Yup from 'yup';
 const Register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
-  // const [form, setForm] = useState({
-  //   email: '',
-  //   password: '',
-  //   phone: ''
-  // })
-
-  // const handleChange = (e) => {
-  //   e.preventDefault()
-
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
-
-  // const handleRegister = () => {
-  //   dispatch(register(form))
-  // }
   const pushLogin = () =>{
-    router.push('/login')
+    router.push('/auth/login')
   }
   const phoneRegExp = /\(?(?:\+62|62|0)(?:\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}[ .-]?\d{2,4}/;
   const formik = useFormik({
@@ -42,7 +24,6 @@ const Register = () => {
       phone:''
     },
     onSubmit: values =>{
-      // console.log(values);
       dispatch(register(values))
     },
     validationSchema : Yup.object ({

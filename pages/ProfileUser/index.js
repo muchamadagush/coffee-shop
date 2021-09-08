@@ -3,187 +3,182 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Button, CardwFooter, CardWrapper, InputField } from '../../components/atoms'
 import Layout from '../../components/layout'
-// import { privateRoute } from "../../configs/routes/privateRoute";
+import backendApi from '../../configs/api/backendApi'
+import { privateRoute } from "../../configs/routes/privateRoute";
 import { getProfile, updateuser } from '../../configs/redux/actions/userAction'
+import swal from 'sweetalert';
 
 
+function ProfileUser() {
 
-const ProfileUser = () => {
-
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const [imagePrev, setImagePrev] = useState(null)
-    const [errImage, setErrImage] = useState(false);
-    const [errImageType, setErrImageType] = useState(false);
+    const [errImage, setErrImage] = useState(false)
+    const [errImageType, setErrImageType] = useState(false)
     const profile = useSelector(state => state.user.profile)
     // const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    console.log(profile);
+    console.log(profile)
 
     useEffect(() => {
         dispatch(getProfile(profile.token, profile.id))
     }, [])
 
-    const handleChange = (e) =>{  
-        dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.value } });
+    const handleChange = (e) => {
+        dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.value } })
     }
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(updateuser(profile, profile.id, profile.token, handlepreviewImage))
-       
+
     }
 
     const handlepreviewImage = (e) => {
-        e.preventDefault();
-        if(e.target.files[0].size > 1048576){
+        e.preventDefault()
+        if (e.target.files[0].size > 1048576) {
             setErrImage(true)
         }
-        else if(e.target.files[0].type !== "image/png" && e.target.files[0].type !== "image/jpg" && e.target.files[0].type !== "image/jpeg" ){
+        else if (e.target.files[0].type !== "image/png" && e.target.files[0].type !== "image/jpg" && e.target.files[0].type !== "image/jpeg") {
             setErrImageType(true)
         }
         else if (e.target.files.length !== 0) {
             setErrImage(false)
             setErrImageType(false)
-            setImagePrev(URL.createObjectURL(e.target.files[0]));
-            dispatch({ type: 'CHANGE_VALUE', payload: { imagePrev : imagePrev } })
+            setImagePrev(URL.createObjectURL(e.target.files[0]))
+            dispatch({ type: 'CHANGE_VALUE', payload: { imagePrev: imagePrev } })
         }
-        dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.files[0] } });
-       
-      };
+        dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.files[0] } })
 
+    }
+    const handleLogout = () => {
+        backendApi.get('/logout')
+            .then((res) => {
+                swal('Success', "you're logged out ! see ya", 'success')
+            })
+            .catch((err) => {
+            })
+    }
     return (
         <Styles>
             <Layout isAuth="true" title="Profile">
                 <div className="wrapper">
                     <div className="container">
-                    <form onSubmit={handleSubmit}>        
-                    <h4 className="fs-35 title">User Profile</h4>
-                    <CardWrapper className="card">
-                        <div className="container"></div>
-                        <div className="row">
-                            <div className="col col-4">
-                                <div className="side-profile-wrapper">
-                                    <img className="image-profile" src={imagePrev ? imagePrev : profile.image ? profile.image : '/avatar1.svg'} alt="" />
-                                    {errImage ? <p className="error">Image size is too large. max 1mb</p> :''}
-                                    {errImageType ? <p className="error">Invalid file type. only png, jpg, and jpeg format allowed</p> :''}
-                                    <h4 className="fs-20 fw-bold">{profile.first_name}</h4>
-                                    <h5 className="fs-20 fw-500">{profile.email}</h5>
-                                    <div className="button_Wrap">
-                                        <label className="button-img" for="upload">Upload File</label>
-                                        <input id="upload" type="file" name="image" onChange={handlepreviewImage}/>
-                                    </div>
-                                    <Button radius="radius-10" className="button" type="button" color="choco">Remove Photo</Button>
-                                    <Button radius="radius-20" className="edit-btn" type="button" color="white-choco">Edit Password</Button>
-                                    <h4 className="fs-20 fc-brown fw-bold text">Do you want to save <br /> the change?</h4>
-                                    <Button radius="radius-20" className="btn" type="submit" color="choco-shadow">Save Change</Button>
+                        <form onSubmit={handleSubmit}>
+                            <h4 className="fs-35 title">User Profile</h4>
+                            <CardWrapper className="card">
+                                <div className="container"></div>
+                                <div className="row">
+                                    <div className="col col-4">
+                                        <div className="side-profile-wrapper">
+                                            <img className="image-profile" src={imagePrev ? imagePrev : profile.image ? profile.image : '/avatar1.svg'} alt="" />
+                                            {errImage ? <p className="error">Image size is too large. max 1mb</p> : ''}
+                                            {errImageType ? <p className="error">Invalid file type. only png, jpg, and jpeg format allowed</p> : ''}
+                                            <h4 className="fs-20 fw-bold">{profile.first_name}</h4>
+                                            <h5 className="fs-20 fw-500">{profile.email}</h5>
+                                            <div className="button_Wrap">
+                                                <label className="button-img" for="upload">Upload File</label>
+                                                <input id="upload" type="file" name="image" onChange={handlepreviewImage} />
+                                            </div>
+                                            <Button radius="radius-10" className="button" type="button" color="choco">Remove Photo</Button>
+                                            <Button radius="radius-20" className="edit-btn" type="button" color="white-choco">Edit Password</Button>
+                                            <h4 className="fs-20 fc-brown fw-bold text">Do you want to save <br /> the change?</h4>
+                                            <Button radius="radius-20" className="btn" type="submit" color="choco-shadow">Save Change</Button>
 
-                                    <Button className="btn cancel" type="button" color="shine">Cancel</Button>
-                                    <Button className="btn log-out" type="button" color="white-choco">Log Out</Button>
-                                </div>
-                            </div>
-                            <div className="col-8 ">
-                                <CardwFooter>
-                                    <div className="right-profile-wrapper">
-                                        <div className="header">
-                                            <h4 className="fc-grey fs-25 fw-bold">Contacts</h4>
-                                            <Button className="btn-pen" color="choco">
-                                                <img src="Vector (1).png" alt="" />
-                                            </Button>
+                                            <Button className="btn cancel" type="button" color="shine">Cancel</Button>
+                                            <Button onClick={handleLogout} className="btn log-out" type="button" color="white-choco">Log Out</Button>
                                         </div>
-                                        <div className="form-wrapper">
-                                                <div className="row first-section-wrapper">
-                                                    <div className="col">                                                  
-                                                    <InputField
-                                                        onChange=""
-                                                        label="Email address : "
-                                                        type="email"
-                                                        name="email"
-                                                        value={profile.email}
-                                                        className="input-field"
-                                                        
-                                                    />
-                                                    </div>
-                                                    <div className="col">
-                                                    <InputField
-                                                        label="Phone numbers : "
-                                                        type="text"
-                                                        value={profile.phone}
-                                                        onChange={handleChange}
-                                                    />                                               
-                                                    </div>
+                                    </div>
+                                    <div className="col-8 ">
+                                        <CardwFooter>
+                                            <div className="right-profile-wrapper">
+                                                <div className="header">
+                                                    <h4 className="fc-grey fs-25 fw-bold">Contacts</h4>
+                                                    <Button className="btn-pen" color="choco">
+                                                        <img src="Vector (1).png" alt="" />
+                                                    </Button>
                                                 </div>
-                                                <InputField
-                                                    onChange={handleChange}
-                                                    label="Delivery address : "
-                                                    type="text"
-                                                    // name="address"
-                                                    // defaultValue="Zulaikha"
-                                                    value={profile.address}
-                                                    className="input-field address-field"
-                                                    
-                                                />
-                                                <h4 className="fc-grey fs-25 fw-bold details-title">Details</h4>
-                                                <div className="row econd-section-wrapper">
-                                                    <div className="col">                                                       
+                                                <div className="form-wrapper">
+                                                    <div className="row first-section-wrapper">
+                                                        <div className="col">
+                                                            <InputField
+                                                                onChange=""
+                                                                label="Email address : "
+                                                                type="email"
+                                                                name="email"
+                                                                value={profile.email}
+                                                                className="input-field" />
+                                                        </div>
+                                                        <div className="col">
+                                                            <InputField
+                                                                label="Phone numbers : "
+                                                                type="text"
+                                                                value={profile.phone}
+                                                                onChange={handleChange} />
+                                                        </div>
+                                                    </div>
                                                     <InputField
                                                         onChange={handleChange}
-                                                        label="Display name : "
+                                                        label="Delivery address : "
                                                         type="text"
-                                                        name="display_name"
+                                                        // name="address"
                                                         // defaultValue="Zulaikha"
-                                                        value={profile.display_name}
-                                                        className="input-field"
-                                                    />
-                                                    </div>    
-                                                    <div className="col">
-                                                    
+                                                        value={profile.address}
+                                                        className="input-field address-field" />
+                                                    <h4 className="fc-grey fs-25 fw-bold details-title">Details</h4>
+                                                    <div className="row econd-section-wrapper">
+                                                        <div className="col">
+                                                            <InputField
+                                                                onChange={handleChange}
+                                                                label="Display name : "
+                                                                type="text"
+                                                                name="display_name"
+                                                                // defaultValue="Zulaikha"
+                                                                value={profile.display_name}
+                                                                className="input-field" />
+                                                        </div>
+                                                        <div className="col">
+
+                                                            <InputField
+                                                                onChange={handleChange}
+                                                                label="DD/MM/YY : "
+                                                                type="date"
+                                                                name="dateOfBirth"
+                                                                value={profile.dateOfBirth}
+                                                                defaultValue={profile.dateOfBirth} />
+                                                        </div>
+
+                                                    </div>
                                                     <InputField
                                                         onChange={handleChange}
-                                                        label="DD/MM/YY : "
-                                                        type="date"
-                                                        name="dateOfBirth"
-                                                        value={profile.dateOfBirth}
-                                                        defaultValue={profile.dateOfBirth}
-                                                        // defaultValue=""
+                                                        label="First name : "
+                                                        type="text"
+                                                        name="first_name"
+                                                        defaultValue="Zulaikha"
+                                                        value={profile.first_name}
+                                                        className="input-field second-field" />
+                                                    <InputField
+                                                        onChange={handleChange}
+                                                        label="Last name : "
+                                                        type="text"
+                                                        name="last_name"
+                                                        defaultValue="Nirmala"
+                                                        value={profile.last_name}
+                                                        className="input-field second-field" />
+                                                    <div className="radio-button-wrap">
 
-                                                    />
-                                                    </div>    
+                                                        <input id="male" className="checkmark bg_black" checked={profile.gender == 'male'} type="radio" name="gender" value="male" onChange={handleChange} />
+                                                        <label htmlFor="male">Male</label>
 
+                                                        <input id="female" className="checkmark bg_black right-radio" type="radio" checked={profile.gender == 'female'} value="female" onChange={handleChange} name="gender" />
+                                                        <label htmlFor="female">Female</label>
+                                                    </div>
                                                 </div>
-                                                <InputField
-                                                    onChange={handleChange}
-                                                    label="First name : "
-                                                    type="text"
-                                                    name="first_name"
-                                                    defaultValue="Zulaikha"
-                                                    value={profile.first_name}
-                                                    className="input-field second-field"
-
-                                                />
-                                                <InputField
-                                                    onChange={handleChange}
-                                                    label="Last name : "
-                                                    type="text"
-                                                    name="last_name"
-                                                    defaultValue="Nirmala"
-                                                    value={profile.last_name}
-                                                    className="input-field second-field"
-
-                                                />
-                                                <div className="radio-button-wrap">
-                                                
-                                                    <input id="male" className="checkmark bg_black" checked={profile.gender == 'male'} type="radio" name="gender" value="male" onChange={handleChange} />
-                                                    <label htmlFor="male">Male</label>
-                                                
-                                                    <input id="female" className="checkmark bg_black right-radio" type="radio" checked={profile.gender == 'female'} value="female" onChange={handleChange} name="gender" />
-                                                    <label htmlFor="female">Female</label>
-                                                </div>
-                                        </div>
+                                            </div>
+                                        </CardwFooter>
                                     </div>
-                                </CardwFooter>
-                            </div>
-                        </div>
+                                </div>
 
-                    </CardWrapper>
-                    </form>
+                            </CardWrapper>
+                        </form>
                     </div>
                     <div className="hidden">You cant see me</div>
                 </div>
@@ -197,6 +192,7 @@ export default ProfileUser
 
 // export const getServerSideProps = privateRoute(async (ctx) => {
 //     const token = await cookies(ctx).token;
+//     console.log(token);
 //     return {
 //       props: { token },
 //     };
