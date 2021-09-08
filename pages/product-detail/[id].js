@@ -2,6 +2,7 @@ import Layout from '../../components/layout';
 import { Button, CardShadow } from '../../components/atoms';
 import Style from './productDetail.module.css';
 import styled from 'styled-components';
+import { privateRoute } from "../../configs/routes/privateRoute";
 import { useState } from 'react';
 import PlusMinus from '../../components/base/plusMinus/PlusMinus';
 import { useRouter } from 'next/dist/client/router';
@@ -79,6 +80,7 @@ const ProductDetail = ({ product, role, token }) => {
   const handleCheckout = () => {
     router.push('/payment');
   };
+  
   return (
     <div>
       <Layout isAuth={true} active="home" title="Product Detail">
@@ -220,14 +222,14 @@ const ProductDetail = ({ product, role, token }) => {
     </div>
   );
 };
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = privateRoute(async (ctx) => {
   try {
     const id = ctx.params.id;
     const token = await cookies(ctx).token;
     const role = await cookies(ctx).user_role;
     const { data } = await backendApi.get(`products/${id}`, {
       withCredentials: true,
-      headers: {
+      ers: {
         Cookie: 'token=' + token,
       },
     });
@@ -255,7 +257,7 @@ export const getServerSideProps = async (ctx) => {
       ctx.res.end();
     }
   }
-};
+});
 const Styles = styled.div`
   .btn-collection {
     display: flex;
@@ -302,3 +304,5 @@ const Styles = styled.div`
   }
 `;
 export default ProductDetail;
+
+
