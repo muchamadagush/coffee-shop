@@ -138,9 +138,9 @@ export default function Home() {
             </p>
           </div>
           <div className="wrapper">
+            {/* <CardProduct></CardProduct>
             <CardProduct></CardProduct>
-            <CardProduct></CardProduct>
-            <CardProduct></CardProduct>
+            <CardProduct></CardProduct> */}
           </div>
         </FavoriteProduct>
         <div className="background">

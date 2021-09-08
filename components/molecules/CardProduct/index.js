@@ -3,19 +3,17 @@ import React from 'react';
 import styled from 'styled-components';
 import Susu from '../../../public/food1.png';
 import Link from 'next/link';
-function index() {
+function index(props) {
   return (
     <CardProduct>
-      <Link href="/">
+      <Link href={props.href}>
         <a className="atom-card--link">
           <div className="atom-card--image">
-            <div className="atom-card--image-tag">
-              <img src={Susu.src} alt="product"></img>
-            </div>
+            <img src={props.image} alt="product"></img>
           </div>
           <div className="card-info">
-            <p className="atom-card--name">Veggie asjdnasdjns tomato mix</p>
-            <p className="atom-card--price">IDR 30.000</p>
+            <p className="atom-card--name">{props.name}</p>
+            <p className="atom-card--price">{props.price}</p>
           </div>
         </a>
       </Link>
@@ -34,32 +32,26 @@ const CardProduct = styled.div`
   }
   .atom-card {
     &--link {
-      background: #ffffff;
+      background: #fff;
       display: block;
-      padding-top: 42%;
+      height: 100%;
+      text-decoration: none;
       position: relative;
       border-radius: 30px;
     }
     &--image {
-      top: -40%;
-      position: absolute;
+      position: relative;
+      top: -15%;
+      margin: 0 auto;
       height: 100%;
       width: 100%;
-      &-tag {
+      width: 128px;
+      height: 128px;
+      img {
+        border-radius: 50%;
+        object-fit: cover;
+        height: 100%;
         width: 100%;
-        position: relative;
-        padding-bottom: 100%;
-        img {
-          border-radius: 50%;
-          object-fit: contain;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          max-width: 100%;
-          max-height: 100%;
-          -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-        }
       }
     }
 
