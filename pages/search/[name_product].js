@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { Button } from '../../components/atoms';
 import { Breakpoints } from '../../utils';
 import axios from '../../configs/api/backendApi';
-import { Avatar } from '@material-ui/core';
+import { privateRoute } from '../../configs/routes/privateRoute';
+
 function Index({ initialData }) {
   const list = [
     { id: 1, name: 'Favorite & Promo' },
@@ -189,8 +190,8 @@ const ProductWrapper = styled.div`
 `;
 export default Index;
 
-export async function getServerSideProps(context) {
-  const name_product = context?.params?.name_product || '';
+export const getServerSideProps = privateRoute(async (ctx) => {
+  const name_product = ctx?.params?.name_product || '';
   const { data } = await axios(
     `products/?searchBy=products.name_product&search=${name_product}&npp=4&field=id_product&sort=desc`
   );
@@ -198,4 +199,4 @@ export async function getServerSideProps(context) {
   return {
     props: { initialData }, // will be passed to the page component as props
   };
-}
+})

@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux"
 import { register } from "../../../configs/redux/actions/userAction";
 import {useRouter} from "next/router";
 import Head from 'next/head';
-import { publicRoute } from "../../configs/routes/publicRoute";
+import { publicRoute } from "../../../configs/routes/publicRoute";
 
 
 const Register = () => {
@@ -31,7 +31,7 @@ const Register = () => {
     dispatch(register(form))
   }
   const pushLogin = () =>{
-    router.push('/login')
+    router.push('/auth/login')
   }
   return (
     <>

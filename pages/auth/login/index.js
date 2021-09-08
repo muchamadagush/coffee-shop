@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../../configs/redux/actions/userAction";
 import { useRouter } from "next/router";
 import Head from 'next/head';
-import { publicRoute } from "../../configs/routes/publicRoute";
+import { publicRoute } from "../../../configs/routes/publicRoute";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -30,7 +30,7 @@ const Login = () => {
     dispatch(login(form, router))
   }
   const pushSignUp = () =>{
-    router.push('/register')
+    router.push('/auth/register')
   }
   return (
     <>
@@ -54,7 +54,7 @@ const Login = () => {
             <div className={styles.formRegister}>
               <Input name="email" type="text" id="email" placeholder="Enter your email adress" actionChange={handleChange} label="Email Adress :" />
               <Input name="password" type="password" id="password" placeholder="Enter your password" actionChange={handleChange} label="Password :" />
-              <Link href="/forgot-password">
+              <Link href="/auth/forgot-password">
                 <a className={styles.forgot}>Forgot password?</a>
               </Link>
               <Button children="Login" color="shine-shadow auth" onClick={() => handleLogin()} />
