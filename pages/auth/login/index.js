@@ -8,10 +8,15 @@ import { login } from "../../../configs/redux/actions/userAction";
 import { useRouter } from "next/router";
 import Head from 'next/head';
 import { publicRoute } from "../../../configs/routes/publicRoute";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
 
 const Login = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const pushSignUp = () => {
+    router.push('/register')
+  }
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -29,9 +34,20 @@ const Login = () => {
   const handleLogin = () => {
     dispatch(login(form, router))
   }
-  const pushSignUp = () =>{
-    router.push('/auth/register')
-  }
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    onSubmit: values =>{
+        dispatch(login(values, router))
+    },
+    validationSchema : Yup.object ({
+      email: Yup.string().email('Email is Invalid').required("email is required"),
+      password: Yup.string().required("Password is required")
+    })
+  })
+
   return (
     <>
       <Head>
@@ -50,25 +66,30 @@ const Login = () => {
               </div>
               <h3 className={styles.labelSignUp}>Login</h3>
             </header>
-
+            <form onSubmit={formik.handleSubmit}>
             <div className={styles.formRegister}>
-              <Input name="email" type="text" id="email" placeholder="Enter your email adress" actionChange={handleChange} label="Email Adress :" />
-              <Input name="password" type="password" id="password" placeholder="Enter your password" actionChange={handleChange} label="Password :" />
-              <Link href="/auth/forgot-password">
-                <a className={styles.forgot}>Forgot password?</a>
-              </Link>
-              <Button children="Login" color="shine-shadow auth" onClick={() => handleLogin()} />
-              <Button color="white auth google">
-                <img src="/google.png" alt="google" /> Login with Google
-              </Button>
-              <div className={styles.alreadyAccount}>
-                <div className={styles.line}></div>
-                <p className={styles.haveAccount}>Don’t have an account?</p>
-                <span className={styles.line}></span>
-              </div>
-              <Button children="Sign up here" color="choco-shadow auth" onClick={pushSignUp} />
-
+                    <Input name="email" type="text" id="email" 
+                    actionChange={formik.handleChange} 
+                    placeholder="Enter your email adress" label="Email Adress :" />                 
+                   {formik.errors.email && formik.touched.email && ( <p className={styles.errors}>{formik.errors.email}</p>)}
+                   
+                    <Input name="password" type="password" actionChange={formik.handleChange} value={formik.values.password}  id="password" placeholder="Enter your password" label="Password :" />
+                    {formik.errors.password && formik.touched.password && ( <p className={styles.errors}>{formik.errors.password}</p>)}
+                    <Link href="/forgot-password">
+                      <a className={styles.forgot}>Forgot password?</a>
+                    </Link>
+                    <Button type="submit" color="shine-shadow auth">Login</Button>
+                    <Button color="white auth google">
+                      <img src="/google.png" alt="google" /> Login with Google
+                    </Button>
+                    <div className={styles.alreadyAccount}>
+                      <div className={styles.line}></div>
+                      <p className={styles.haveAccount}>Don’t have an account?</p>
+                      <span className={styles.line}></span>
+                    </div>
+                    <Button type="button" children="Sign up here" color="choco-shadow auth" onClick={pushSignUp} />
             </div>
+            </form>
           </div>
           <footer>
             <div className={styles.container}>

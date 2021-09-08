@@ -50,7 +50,7 @@ function Index({ initialData ,role}) {
 
   return (
     <>
-      <Layout isAuth={true} active="product" login={true}>
+      <Layout isAuth={true} active="product" login={true} title="product">
         <Style>
           <Coupun>
             <div className="coupons">

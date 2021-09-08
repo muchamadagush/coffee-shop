@@ -3,6 +3,9 @@ import Button from "../../../components/atoms/Button";
 import Input from "../../../components/base/Input";
 import styles from "./forgotPassword.module.css";
 import { publicRoute } from "../../../configs/routes/publicRoute";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+import Layout from "../../../components/layout";
 import { useRouter } from "next/router";
 import { forgotPasswordUser } from "../../../configs/redux/actions/userAction";
 
@@ -13,20 +16,36 @@ const ForgotPassword = () => {
 
   })
 
-  const handleChange = (e) => {
-    e.preventDefault()
+  // const handleChange = (e) => {
+  //   e.preventDefault()
 
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
+  //   setForm({
+  //     ...form,
+  //     [e.target.name]: e.target.value
+  //   })
+  // }
+  const formik = useFormik({
+    initialValues: {
+      email: ''
+    },
+    onSubmit: values => {
+      console.log(values);
+        // dispatchEvent(())
+    },
+    validationSchema : Yup.object ({
+      email: Yup.string().email('Email is Invalid').required("email is required"),
     })
-  }
-
+  })
+  
     const forgotPasswordClick = () => {
       dispatch(forgotPasswordUser(user, router));
     };
   return (
     <>
+      <Head>
+        <title>Forget Password | find email</title>
+        <link rel="icon" href="/logoCoffeShop.svg" />
+      </Head>
       <div className={styles.forgotPassword}>
         <div className={styles.left}></div>
         <div className={styles.right}>
@@ -47,27 +66,13 @@ const ForgotPassword = () => {
             </header>
 
             <div className={styles.formForgot}>
-              <Input
-                name="email"
-                type="text"
-                id="email"
-                placeholder="Enter your email adress"
-                actionChange={handleChange}
-                label="Email Adress :"
-                giveClassLabel="none"
-                giveClass="forgot"
-              />
-              <Button
-                children="Send"
-                color="shine-shadow forgot"
-                onClick={forgotPasswordClick}
-              />
-              <p className={styles.time}>
-                Click here if you didn’t receive any link in 2 minutes
-                <br />
-                <span>01:52</span>
-              </p>
-              <Button children="Resend Link" color="choco-shadow forgot" />
+              <form onSubmit={formik.handleSubmit}>
+              <Input name="email" actionChange={formik.handleChange} value={formik.values.email} type="text" id="email" placeholder="Enter your email adress" actionChange={formik.handleChange} label="Email Adress :" giveClassLabel="none" giveClass="forgot" />
+              {formik.errors.email && formik.touched.email && ( <p className={styles.errors}>{formik.errors.email}</p>)}
+              <Button  type="submit"children="Send" color="shine-shadow forgot" />
+              <p className={styles.time}>Click here if you didn’t receive any link in 2 minutes<br /><span>01:52</span></p>
+              <Button  children="Resend Link" color="choco-shadow forgot" />
+              </form>
             </div>
           </div>
           <footer>
