@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux"
 import { register } from "../../../configs/redux/actions/userAction";
 import {useRouter} from "next/router";
 import Head from 'next/head';
+import { publicRoute } from "../../configs/routes/publicRoute";
+
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -111,3 +113,9 @@ const Register = () => {
 }
 
 export default Register;
+
+export const getServerSideProps = publicRoute(async (ctx) => {
+  return {
+    props: {},
+  };
+});

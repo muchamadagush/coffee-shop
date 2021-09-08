@@ -4,6 +4,7 @@ import { Button } from '../components/atoms';
 import Style from '../styles/addProduct.module.css';
 import styled from 'styled-components';
 import Input from '../components/base/Input';
+import { privateRouteAdmin } from "../../configs/routes/privateRouteAdmin";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../configs/redux/actions/productAction';
@@ -71,6 +72,7 @@ const AddProduct = ({ token }) => {
   const handleSubmit = () => {
     dispatch(addProduct(form, size, delivery, token));
   };
+  
   return (
     <div>
       <Layout isAuth={false} active="product" title="Add Product">
@@ -310,3 +312,9 @@ const Styles = styled.div`
   }
 `;
 export default AddProduct;
+
+export const getServerSideProps = privateRouteAdmin(async (ctx) => {
+  return {
+    props: {},
+  };
+});

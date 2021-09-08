@@ -5,6 +5,7 @@ import { CardProduct, CardCoupon } from '../../components/molecules';
 import Link from 'next/link';
 import { Button } from '../../components/atoms';
 import { Breakpoints } from '../../utils';
+import { privateRoute } from "../../configs/routes/privateRoute";
 import axios from '../../configs/api/backendApi';
 import { Avatar } from '@material-ui/core';
 function Index({ initialData }) {
@@ -127,6 +128,8 @@ function Index({ initialData }) {
   );
 }
 
+
+
 const Style = styled.div`
   max-width: 1600px;
   margin: 0 auto;
@@ -156,9 +159,9 @@ const Coupun = styled.div`
     position: sticky;
     top: 0;
   `}
-// ${Breakpoints.greaterThan('1339px')`
-// padding: 0 157px 29px 115px;
-// `}
+ /* ${Breakpoints.greaterThan('1339px')`
+ padding: 0 157px 29px 115px;
+ `} */
   height: 100%;
   .coupons {
     display: flex;
