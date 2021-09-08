@@ -112,7 +112,7 @@ function Index({ initialData }) {
 
             {pagination.current < pagination.totalPages ? (
               <div>
-                <Button className="button shine see-more" onClick={seeMore}>
+                <Button className="button grey see-more" onClick={seeMore}>
                   See More
                 </Button>
                 <p className="fs-17 fc-brown">*the price has been cutted by discount appears</p>
