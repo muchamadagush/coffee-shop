@@ -182,10 +182,6 @@ export default function Home({ initialData }) {
                   />
                 );
               })}
-            {/**/}
-            {/* <CardProduct></CardProduct>
-            <CardProduct></CardProduct>
-            <CardProduct></CardProduct> */}
           </div>
         </FavoriteProduct>
         <div className="background">
