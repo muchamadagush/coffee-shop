@@ -10,7 +10,7 @@ import swal from 'sweetalert';
 import cookies from 'next-cookies';
 import backendApi from '../../configs/api/backendApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, deleteProduct } from '../../configs/redux/actions/productAction';
+import { addToCart } from '../../configs/redux/actions/productAction';
 import { Breakpoints } from '../../utils/breakpoints';
 const ProductDetail = ({ product, role, token }) => {
   const [size, setSize] = useState(null);
