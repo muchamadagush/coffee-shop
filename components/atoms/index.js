@@ -4,6 +4,7 @@ import CardwFooter from "./CardwFooter";
 import CardWrapper from "./CardWrapper";
 import BrownCard from "./BrownCard";
 import InputField from "./InputField";
+import Checkbox from "./checkbox";
 export {
     
     Button,
@@ -12,5 +13,6 @@ export {
     CardShadow,
     BrownCard,
     InputField,
+    Checkbox,
 
 }

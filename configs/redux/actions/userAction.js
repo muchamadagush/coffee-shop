@@ -2,11 +2,13 @@ import { actionTypes } from "../constants/actionTypes";
 import backendApi from "../../api/backendApi";
 import Swal from 'sweetalert';
 
+
 export const register = (data) => (dispatch) => {
+  console.log(data);
   backendApi
-    .post("register", data)
+  .post("/register", data)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       Swal("Register success!", "Please check your email for verify","success")
     })
     .catch((err) => {
@@ -31,14 +33,50 @@ export const login = (data, router) => (dispatch) => {
     })
 }
 
-export const updateuser = (data, id) => (dispatch) =>{
-  backendApi.put(`users/${id}`, data)
+export const updateuser = (data, id, token) => (dispatch) =>{
+
+    const formData = new FormData();
+    formData.append('email', data.email);
+    formData.append('display_name', data.display_name);
+    formData.append('first_name', data.first_name);
+    formData.append('last_name', data.last_name);
+    formData.append('address', data.address);
+    formData.append('phone', data.phone);
+    formData.append('dateOfBirth', data.dateOfBirth);
+    formData.append('image', data.image);
+    formData.append('gender', data.gender);
+    // console.log(data.image);
+    console.log(data);
+    backendApi.put(`/users/${id}`, formData,{
+      withCredentials: true,
+      headers: {
+        Cookie: 'token=' + token,
+      },
+  })
   .then((res)=>{
-      const resultData = res.data.data
-      console.log(resultData);
-    })
+    const resultData = res.data.data
+    
+    dispatch =({type: actionTypes.UPDATE_USER, payload: resultData})
+    Swal("Success!", "Update data success","success")
+  })
   .catch((error)=>{
-    Swal("Opps...", `${err.response.data.message}`, "error")
+    Swal("Opps...", `${error.response.data.message}`, "error")
+  })
+}
+export const getProfile = (token, id) => (dispatch) =>{
+  backendApi.get(`users/${id}`, {
+    withCredentials:true,
+    headers:{
+      Cookie: 'token=' + token
+    },
+  })
+  .then((res)=>{
+    const Result = res.data.data[0]
+    console.log(Result);
+    dispatch({type: actionTypes.GET_USER, payload: Result})
+  })
+  .catch((error)=>{
+    Swal("Opps...", `${error.response.data.message}`, "error")
   })
 }
 

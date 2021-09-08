@@ -7,32 +7,50 @@ import { register } from "../../../configs/redux/actions/userAction";
 import {useRouter} from "next/router";
 import Head from 'next/head';
 import { publicRoute } from "../../../configs/routes/publicRoute";
-
+import { useFormik } from "formik";
+import * as Yup from 'yup';
 
 const Register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-    phone: ''
-  })
+  // const [form, setForm] = useState({
+  //   email: '',
+  //   password: '',
+  //   phone: ''
+  // })
 
-  const handleChange = (e) => {
-    e.preventDefault()
+  // const handleChange = (e) => {
+  //   e.preventDefault()
 
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    })
-  }
+  //   setForm({
+  //     ...form,
+  //     [e.target.name]: e.target.value
+  //   })
+  // }
 
-  const handleRegister = () => {
-    dispatch(register(form))
-  }
+  // const handleRegister = () => {
+  //   dispatch(register(form))
+  // }
   const pushLogin = () =>{
     router.push('/auth/login')
   }
+  const phoneRegExp = /\(?(?:\+62|62|0)(?:\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}[ .-]?\d{2,4}/;
+  const formik = useFormik({
+    initialValues:{
+      email:'',
+      password:'',
+      phone:''
+    },
+    onSubmit: values =>{
+      // console.log(values);
+      dispatch(register(values))
+    },
+    validationSchema : Yup.object ({
+      email: Yup.string().email('Email is Invalid').required("email is required"),
+      password: Yup.string().required("Password is required").min(8, "Password must be at least 8 characters"),
+      phone: Yup.string().matches(phoneRegExp, "phone number is invalid").min(10, "Phone number is too short").max(13,"phone must be 12 digits")
+    })
+  })
   return (
     <>
     <Head>
@@ -51,12 +69,15 @@ const Register = () => {
               </div>
               <h3 className={styles.labelSignUp}>Sign Up</h3>
             </header>
-
+            <form onSubmit={formik.handleSubmit}>
             <div className={styles.formRegister}>
-              <Input name="email" type="text" id="email" placeholder="Enter your email adress" actionChange={handleChange} label="Email Adress :" />
-              <Input name="password" type="password" id="password" placeholder="Enter your password" actionChange={handleChange} label="Password :" />
-              <Input name="phone" type="phone" id="phone" placeholder="Enter your phone number" actionChange={handleChange} label="Phone Number :" giveClass="mb8" />
-              <Button children="Sign Up" color="shine-shadow auth" onClick={() => handleRegister()} />
+              <Input name="email" type="text" id="email" value={formik.values.email}  placeholder="Enter your email adress" actionChange={formik.handleChange} label="Email Adress :" />
+              {formik.errors.email && formik.touched.email && ( <p className={styles.errors}>{formik.errors.email}</p>)}
+              <Input name="password" type="password" id="password" value={formik.values.password}  placeholder="Enter your password" actionChange={formik.handleChange} label="Password :" />
+              {formik.errors.password && formik.touched.password && ( <p className={styles.errors}>{formik.errors.password}</p>)}
+              <Input name="phone" type="phone" id="phone" value={formik.values.phone}  placeholder="Enter your phone number" actionChange={formik.handleChange} label="Phone Number :" giveClass="mb8" />
+              {formik.errors.phone && formik.touched.phone && ( <p className={styles.errors}>{formik.errors.phone}</p>)}
+              <Button color="shine-shadow auth" type="submit">Sign Up</Button>
               <Button color="white auth google">
                 <img src="/google.png" alt="google" /> Sign up with Google
               </Button>
@@ -68,6 +89,7 @@ const Register = () => {
               <Button children="Login Here" color="choco-shadow auth" onClick={pushLogin}/>
 
             </div>
+            </form>
           </div>
           <footer>
             <div className={styles.container}>
@@ -113,7 +135,6 @@ const Register = () => {
 }
 
 export default Register;
-
 export const getServerSideProps = publicRoute(async (ctx) => {
   return {
     props: {},

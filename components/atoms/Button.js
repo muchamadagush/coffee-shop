@@ -1,16 +1,33 @@
-import styled from 'styled-components';
 
-const Button = ({ className, onClick, type, color, children, radius, disabled }) => {
-  return (
-    <Styles>
-      <button type={type} className={`button ${color} ${radius} ${className}`} onClick={onClick} disabled={disabled}>
-        {children}
-      </button>
-    </Styles>
-  );
-};
+import styled from "styled-components"
+import PropTypes from 'prop-types';
 
-export default Button;
+const Button = ({className, onClick, type, color, children, radius, disabled}) => {
+    return (
+        <Styles>
+            <button
+            type={type}
+            className={`button ${color} ${radius} ${className}`} 
+            onClick={onClick}
+            disabled={disabled}
+            >
+                {children}
+            </button>
+        </Styles>
+    )
+}
+
+Button.propTypes ={
+    children : PropTypes.element.isRequired,
+    className : PropTypes.string,
+    color : PropTypes.string,
+    radius : PropTypes.string,
+    type : PropTypes.string,
+    disabled : PropTypes.string,
+    onClick : PropTypes.func
+}
+export default Button
+
 const Styles = styled.div`
   .button {
     height: 100%;
