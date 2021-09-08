@@ -5,7 +5,8 @@ import { CardProduct, CardCoupon } from '../../components/molecules';
 import Link from 'next/link';
 import { Button } from '../../components/atoms';
 import { Breakpoints } from '../../utils';
-import { privateRoute } from "../../configs/routes/privateRoute";
+import { privateRoute } from '../../configs/routes/privateRoute';
+
 
 function Index() {
   const list = ['Favorite & Promo', 'Coffe', 'Non Coffe', 'Foods', 'Add-on'];
