@@ -1,19 +1,19 @@
 .container {
   display: flex;
-  background: #F8F8F8;
+  background: #f8f8f8;
   padding: 90px 150px;
   justify-content: space-between;
 }
 .title {
   display: flex;
-  gap: 15px
+  gap: 15px;
 }
-.socialMedia{
+.socialMedia {
   display: flex;
   gap: 20px;
 }
 .socialMedia img {
-  background: #6A4029;
+  background: #6a4029;
   border-radius: 50%;
 }
 .desc {
@@ -31,7 +31,7 @@
   gap: 60px;
   white-space: nowrap;
 }
-.loginDesc div{
+.loginDesc div {
   width: 123px;
 }
 .center {
@@ -46,6 +46,9 @@
   }
 }
 @media (max-width: 576px) {
+  .container {
+    flex-direction: column;
+  }
   .loginDesc {
     gap: 10px;
   }

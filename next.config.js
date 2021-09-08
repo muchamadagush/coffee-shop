@@ -1,7 +1,8 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-    REACT_APP_API_URL: process.env.REACT_APP_API_URL,
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+    NEXT_PUBLIC_WEB_URL: process.env.NEXT_PUBLIC_WEB_URL,
   },
   images: {
     domains: ['http://localhost:4000', 'http://localhost:3000'],
@@ -9,17 +10,22 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/login',
-        destination: '/auth/login',
+        source: "/login",
+        destination: "/auth/login",
       },
       {
-        source: '/register',
-        destination: '/auth/register',
+        source: "/register",
+        destination: "/auth/register",
       },
       {
-        source: '/forgot-password',
-        destination: '/auth/forgot-password',
-      }
-    ]
+        source: "/forgot-password",
+        destination: "/auth/forgot-password",
+      },
+      {
+        source: "/reset-password/:token",
+        destination: "/auth/reset-password/:token",
+        
+      },
+    ];
   },
 }

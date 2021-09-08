@@ -164,3 +164,10 @@
 .forgot:hover {
   color: #4d2713;
 }
+.errors{
+  width: 90%;
+  margin-left: auto;
+  color: red;
+  font-family: 'Poppins';
+  font-size: 16px;
+}
