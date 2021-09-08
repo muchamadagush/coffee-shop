@@ -3,13 +3,14 @@ import backendApi from "../../api/backendApi";
 import Swal from 'sweetalert';
 
 
-export const register = (data) => (dispatch) => {
+export const register = (data,router) => (dispatch) => {
   console.log(data);
   backendApi
   .post("/register", data)
     .then((res) => {
       // console.log(res);
       Swal("Register success!", "Please check your email for verify","success")
+       router.push(`/login`);
     })
     .catch((err) => {
       Swal("Opps...", `${err.response.data.message}`, "error")
@@ -80,18 +81,18 @@ export const getProfile = (token, id) => (dispatch) =>{
   })
 }
 
-export const forgotPasswordUser = (data, history) => (dispatch) => {
+export const forgotPasswordUser = (data, router) => (dispatch) => {
    backendApi
      .post(`/forgotpassword`, data)
      .then((res) => {
         const resultData = res.data.data;
        console.log(resultData);
+       router.push(`/login`);
        Swal(
          "Success!",
          "Success Forgot Password. Please check email to reset your password",
          "success"
        );
-       history.push(`/auth/login`);
      })
      .catch((error) => {
        Swal("Opps...", `${err.response.data.message}`, "error");
@@ -99,22 +100,16 @@ export const forgotPasswordUser = (data, history) => (dispatch) => {
 };
 
 export const resetPasswordUser = (data, token, history) => (dispatch) => {
-  // console.log(data);
-  axios
-    .post(`${process.env.REACT_APP_BASE_URL}auth/resetPassword/${token}`, data)
-    .then((result) => {
-      const dataUser = {
-        data: result.data.data.password,
-        error: result.data.error,
-        message: result.data.message,
-        status: result.data.status,
-      };
-      dispatch({ type: "POST_RESETPASSWORD", payload: dataUser });
-      //   history.push(`/new-password`);
+const newPassword={newPassword:data}
+   backendApi
+     .post(`/resetPassword/${token}`, newPassword)
+     .then((res) => {
+       const resultData = res.data.data;
+       console.log(resultData);
+       history.push(`/login`);
        Swal("Success!", "success reset password", "success");
-      history.push(`/auth/login`);
-    })
-    .catch((error) => {
+     })
+     .catch((error) => {
        Swal("Opps...", `${err.response.data.message}`, "error");
-    });
+     });
 };
