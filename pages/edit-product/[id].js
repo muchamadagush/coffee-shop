@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Layout from '../../components/layout';
 import { Button } from '../../components/atoms';
 import Style from '../../styles/editProduct.module.css';
