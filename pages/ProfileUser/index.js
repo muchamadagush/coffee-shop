@@ -7,6 +7,7 @@ import backendApi from '../../configs/api/backendApi'
 import { privateRoute } from "../../configs/routes/privateRoute";
 import { getProfile, updateuser } from '../../configs/redux/actions/userAction'
 import swal from 'sweetalert';
+import router from 'next/router'
 
 
 function ProfileUser() {
@@ -36,9 +37,11 @@ function ProfileUser() {
         e.preventDefault()
         if (e.target.files[0].size > 1048576) {
             setErrImage(true)
+            setErrImageType(false)
         }
         else if (e.target.files[0].type !== "image/png" && e.target.files[0].type !== "image/jpg" && e.target.files[0].type !== "image/jpeg") {
             setErrImageType(true)
+            setErrImage(false)
         }
         else if (e.target.files.length !== 0) {
             setErrImage(false)
@@ -50,9 +53,10 @@ function ProfileUser() {
 
     }
     const handleLogout = () => {
-        backendApi.get('/logout')
+        backendApi.get('logout', {withCredentials: true})
             .then((res) => {
                 swal('Success', "you're logged out ! see ya", 'success')
+                router.push('/login')
             })
             .catch((err) => {
             })
@@ -66,7 +70,7 @@ function ProfileUser() {
                             <h4 className="fs-35 title">User Profile</h4>
                             <CardWrapper className="card">
                                 <div className="container"></div>
-                                <div className="row">
+                                <div className="row  no-gutters">
                                     <div className="col col-4">
                                         <div className="side-profile-wrapper">
                                             <img className="image-profile" src={imagePrev ? imagePrev : profile.image ? profile.image : '/avatar1.svg'} alt="" />
@@ -87,7 +91,7 @@ function ProfileUser() {
                                             <Button onClick={handleLogout} className="btn log-out" type="button" color="white-choco">Log Out</Button>
                                         </div>
                                     </div>
-                                    <div className="col-8 ">
+                                    <div className="col col-8 ">
                                         <CardwFooter>
                                             <div className="right-profile-wrapper">
                                                 <div className="header">
@@ -111,6 +115,7 @@ function ProfileUser() {
                                                             <InputField
                                                                 label="Phone numbers : "
                                                                 type="text"
+                                                                name="phone"
                                                                 value={profile.phone}
                                                                 onChange={handleChange} />
                                                         </div>
@@ -124,7 +129,7 @@ function ProfileUser() {
                                                         value={profile.address}
                                                         className="input-field address-field" />
                                                     <h4 className="fc-grey fs-25 fw-bold details-title">Details</h4>
-                                                    <div className="row econd-section-wrapper">
+                                                    <div className="row second-section-wrapper">
                                                         <div className="col">
                                                             <InputField
                                                                 onChange={handleChange}
@@ -136,17 +141,15 @@ function ProfileUser() {
                                                                 className="input-field" />
                                                         </div>
                                                         <div className="col">
-
                                                             <InputField
                                                                 onChange={handleChange}
-                                                                label="DD/MM/YY : "
                                                                 type="date"
                                                                 name="dateOfBirth"
                                                                 value={profile.dateOfBirth}
-                                                                defaultValue={profile.dateOfBirth} />
+                                                                defaultValue={profile.dateOfBirth} 
+                                                                className="date-field"/>
                                                         </div>
-
-                                                    </div>
+                                                  </div>
                                                     <InputField
                                                         onChange={handleChange}
                                                         label="First name : "
@@ -189,17 +192,8 @@ function ProfileUser() {
 
 
 export default ProfileUser
-
-// export const getServerSideProps = privateRoute(async (ctx) => {
-//     const token = await cookies(ctx).token;
-//     console.log(token);
-//     return {
-//       props: { token },
-//     };
-// });
-
 const Styles = styled.div`
-/* width: 100vw; */
+box-sizing: border-box;
 .wrapper{
     width: 100%;
     background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/profileBg.png');
@@ -302,6 +296,9 @@ const Styles = styled.div`
                 }
                 .second-section-wrapper{
                     margin-top: 47px;
+                        .date-field{
+                            padding-top: 15px;
+                        }
                 }
                 .input-field{
                     width: 270px;

@@ -294,12 +294,6 @@ const AddProduct = ({ token }) => {
     </div>
   );
 };
-export const getServerSideProps = privateRouteAdmin(async (ctx) => {
-  const token = await cookies(ctx).token;
-  return {
-    props: { token },
-  };
-});
 const Styles = styled.div`
   .button {
     width: 100%;
@@ -312,3 +306,10 @@ const Styles = styled.div`
   }
 `;
 export default AddProduct;
+
+export const getServerSideProps = privateRouteAdmin(async (ctx) => {
+  const token = await cookies(ctx).token;
+  return {
+    props: { token },
+  };
+});

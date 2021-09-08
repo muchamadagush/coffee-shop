@@ -14,7 +14,7 @@ const Payment = () => {
                 <div className="wrapper">
                     <div className="container">
                         <div className="row">
-                            <div className="col col-lg-7 col-md-6">
+                            <div className="col col-lg-7 col-md-8 col-xs-offset-4">
                                 <h4 className="fc-white fs-40 fw-bold title" >
                                     Checkout your <br /> item now!
                                 </h4>
@@ -27,19 +27,19 @@ const Payment = () => {
                                     <hr />
                                     <div className="text-detail">
                                         <div className="row">
-                                            <div className="col col-7">
-                                                <p className="f-poppins fs-20">
+                                            <div className="col">
+                                                <p className="f-poppins fs-20 subtotal">
                                                     SUBTOTAL
                                                 </p>
-                                                <p className="f-poppins fs-20">
+                                                <p className="f-poppins fs-20 tax">
                                                     TAX & FEES
                                                 </p>
-                                                <p className="f-poppins fs-20">
+                                                <p className="f-poppins fs-20 shipping">
                                                     SHIPPING
                                                 </p>
 
                                             </div>
-                                            <div className="col">
+                                            <div className="col ">
                                                 <p className="f-poppins fs-20">
                                                     IDR 120.000
                                                 </p> <p className="f-poppins fs-20">
@@ -65,7 +65,7 @@ const Payment = () => {
                                     You  can't see me
                                 </div>
                             </div>
-                            <div className="col col-lg-5 col-md-6">
+                            <div className="col col-10 col-lg-5 col-md-6 col-xs-auto">
                                 <div className="title-wrapper">
                                     <h5 className="fc-white fs-25 fw-700 " >
                                         Address Detail
@@ -144,16 +144,20 @@ const Payment = () => {
 
 export default Payment
 const Styles = styled.div`
+box-sizing: border-box;
 .wrapper{
     background-image: url('/paymentBg.png');
-        @media screen and (max-width: 992px) {
-                /* width: 1000px; */
-            }
-        .row{
-            @media screen and (max-width: 992px) {
-                /* padding: 50px 50px; */
-            }
-            
+    background-position: center center;
+    background-size: contain;
+    width: 100%;
+    min-height: 300px;
+    @media screen and (max-width: 992px) {
+         width: 500px;
+    } 
+    @media screen and (max-width: 320px) {               
+        background-image: url('cafe.jpg');
+    }
+.row{  
         .title{
             padding-top: 114px;
             margin-bottom: 41px;
@@ -162,16 +166,25 @@ const Styles = styled.div`
             width: 487px;
             height: 737px;
             @media screen and (max-width: 992px) {
-                /* width: 400px; */
-                /* height: 737px; */
+               width: 420px;
+               height: 600px;
             }   
                 h1{
                     text-align: center;
                     padding-top: 65px;
                     margin-bottom: 80px;
+                    @media screen and (max-width: 992px) {
+                       font-size: 25px;
+                       margin-bottom: 30px;
+                    }   
                 }
                 .card-product{
                     padding: 19px 43px;
+                    /* background-color: #6A4029; */
+                    @media screen and (max-width: 992px) {
+                       font-size: 25px;
+                    
+                    }  
                 }
                 hr{
                     margin: 19px 43px; 
@@ -179,19 +192,70 @@ const Styles = styled.div`
                 .text-detail{
                 padding-top: 18px;
                 padding-left: 47px;
-                }
+    
+               
                 .total-wrap{
                     gap: 9rem;
+                    h2{
+                        @media screen and (max-width: 992px) {
+                            font-size: 24px;
+                        
+                        } 
+                        @media screen and (max-width: 320px) {
+                            font-size: 20px;
+                        
+                        } 
+                    }
+                }
+                .subtotal{
+                    @media screen and (max-width: 992px) {
+                        font-size: 16px;
+               
+                     } 
+                     @media screen and (max-width: 768px) {
+                        font-size: 16px;
+               
+                     }
+                }
+                .tax{
+                    @media screen and (max-width: 992px) {
+                        font-size: 16px;
+                        
+                        }
+                    @media screen and (max-width: 768px) {
+                        font-size: 16px;
+               
+                     } 
+                }
+                .shipping{
+                    @media screen and (max-width: 992px) {
+                        font-size: 16px;
+                    
+                    } 
+                    @media screen and (max-width: 768px) {
+                        font-size: 16px;
+               
+                     }
                 }
             }
+        }
             .hidden{
                 visibility: hidden;
                 width: 50px;
+
+                @media screen and (max-width: 768px) {
+                        margin-left: auto;                 
+                } 
             }
             .right-side{
             width: 454px;
             height: 230px;
             margin-bottom: 40px;
+                @media screen and (max-width: 992px) {
+                   width: 430px;
+                   height: 230px;
+                            
+                    } 
             .first-p{
                 /* padding: 32px 43px 0; 
                  */
@@ -199,6 +263,10 @@ const Styles = styled.div`
                 padding-right: 43px;
                 padding-left: 43px;
                 padding-bottom: 0;
+                @media screen and (max-width: 992px) {
+                   font-size: 18px;
+                            
+                    } 
             }
             hr{
                 /* margin: 19px 43px;  */
@@ -208,19 +276,34 @@ const Styles = styled.div`
             }
             .second-p{
                 padding: 10px 43px 0; 
+                @media screen and (max-width: 992px) {
+                   font-size: 18px;
+                            
+                    } 
             }
         }
-        .edit-text{
-           text-decoration: none;
-            }
-        
+     
         .title-wrapper{
             padding-top: 210px;
             display: flex;
-            flex-direction: row;
-            gap: 14rem;
+            flex-direction: row; 
             margin-bottom: 20px;
             text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+            
+            @media screen and (max-width: 768px) {
+                    padding-top: 0;
+               
+            }
+            .edit-text{
+                text-decoration: none;
+                margin-left: auto;
+                @media screen and (max-width: 768px) {
+                        margin-left: auto;
+                    
+                    }
+            }
+        
+            
         }
         .payment-section{
             .payment{
@@ -228,6 +311,7 @@ const Styles = styled.div`
                 .first-payment{
                     display: flex;
                     padding: 16px 35px 0;
+
                     .checkmark{
                             height: 25px;
                             width: 25px;
@@ -239,6 +323,11 @@ const Styles = styled.div`
                             cursor: pointer;
                             border: 2px solid #fff;
                             margin-top: 5px;
+                            @media screen and (max-width: 992px) {
+                                height: 22px;
+                                width: 22px;
+                                            
+                            } 
                         }
                         .bg_brown{
                             background-color: white;
@@ -253,9 +342,17 @@ const Styles = styled.div`
                             margin-left: 10px;
                             width: 40px;
                             height: 40px;
+                            @media screen and (max-width: 992px) {
+                              height: 38px;
+                              width: 38px;
+                                            
+                            } 
                         }
                         p{
                             margin-left: 10px;
+                            @media screen and (max-width: 992px) {
+                                    font-size: 19px;  
+                            } 
                         }
                    
                 }
@@ -273,6 +370,11 @@ const Styles = styled.div`
                             cursor: pointer;
                             border: 2px solid #fff;
                             margin-top: 5px;
+                                @media screen and (max-width: 992px) {
+                                    height: 22px;
+                                    width: 22px;
+                                                
+                                } 
                         }
                         .bg_brown{
                             background-color: white;
@@ -287,9 +389,17 @@ const Styles = styled.div`
                             margin-left: 10px;
                             width: 40px;
                             height: 40px;
+                            @media screen and (max-width: 992px) {
+                              height: 38px;
+                              width: 38px;
+                                            
+                            }
                         }
                         p{
                             margin-left: 10px;
+                            @media screen and (max-width: 992px) {
+                                    font-size: 19px;                                           
+                            } 
                         }
                 }
                 .third-payment{
@@ -306,6 +416,11 @@ const Styles = styled.div`
                             cursor: pointer;
                             border: 2px solid #fff;
                             margin-top: 5px;
+                            @media screen and (max-width: 992px) {
+                                height: 22px;
+                                width: 22px;
+                                            
+                            } 
                         }
                         .bg_brown{
                             background-color: white;
@@ -320,18 +435,40 @@ const Styles = styled.div`
                             margin-left: 10px;
                             width: 40px;
                             height: 40px;
+                            @media screen and (max-width: 992px) {
+                              height: 38px;
+                              width: 38px;
+                                            
+                            } 
                         }
                         p{
                             margin-left: 10px;
+                            @media screen and (max-width: 992px) {
+                                    font-size: 19px;  
+                            }
                         }
                 }
             }
         }
         .button{
-            margin-top: 47px;
+           
             width: 452px;
             height: 84px;
             font-size: 20px;
+                @media screen and (max-width: 992px) {               
+                        width: 400px;
+                        height: 84px; 
+                }
+                @media screen and (max-width: 992px) {               
+                        width: 350px;
+                        height: 70px; 
+                        margin-bottom: 20px;
+                }
+                @media screen and (max-width: 320px) {               
+                        width: 420px;
+                        height: 70px; 
+                        margin-bottom: 20px;
+                }
         }
     }
 }

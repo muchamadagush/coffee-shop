@@ -6,13 +6,15 @@ import { publicRoute } from "../../../configs/routes/publicRoute";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import Layout from "../../../components/layout";
+import { useRouter } from "next/router";
+import { forgotPasswordUser } from "../../../configs/redux/actions/userAction";
 
 const ForgotPassword = () => {
-  // const [form, setForm] = useState({
-  //   email: '',
-  //   password: '',
-  //   phone: ''
-  // })
+  router=useRouter()
+  const [form, setForm] = useState({
+    email: '',
+
+  })
 
 
   const formik = useFormik({
