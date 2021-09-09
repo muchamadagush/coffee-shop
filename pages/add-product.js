@@ -127,10 +127,11 @@ const AddProduct = ({ token }) => {
                 <option disabled selected value>
                   Select Category
                 </option>
-                <option value="1">Coffee</option>
-                <option value="2">Non Coffee</option>
-                <option value="3">Foods</option>
-                <option value="4">Add-on</option>
+                <option value="1">Favorite</option>
+                <option value="2">Coffee</option>
+                <option value="3">Non Coffee</option>
+                <option value="4">Foods</option>
+                <option value="5">Add-on</option>
               </select>
               <label htmlFor="stock" className={`fs-25 fw-700 fc-brown`}>
                 Input Stock:

@@ -7,8 +7,8 @@ import { useRouter } from 'next/dist/client/router';
 // import Router from 'next/router'
 const NavBar = (props) => {
   const [drop, setDrop] = useState(false);
-  const [search, setSearch] = useState('')
-  const router = useRouter()
+  const [search, setSearch] = useState('');
+  const router = useRouter();
   const handleDropDown = () => {
     if (drop === false) {
       setDrop(true);
@@ -17,14 +17,15 @@ const NavBar = (props) => {
     }
   };
   const handleChange = (e) => {
-    setSearch(e.target.value)
-  }
+    setSearch(e.target.value);
+  };
   const handleSearch = () => {
     if (search !== '') {
-      router.push(`/search/${search}`)
+      router.push(`/search/${search}`);
     }
-  }
-  console.log(search)
+  };
+
+  console.log(search);
   return (
     <div className={Style.container}>
       <Link href="/">
@@ -66,14 +67,19 @@ const NavBar = (props) => {
         <div className={`${Style.profileContainer} ${drop ? Style.hidden : Style.visible}`}>
           <div className={Style.inputContainer}>
             <button>
-              <img src="/search.svg" alt="seach button" className={Style.searchButton} onClick={handleSearch}/>
+              <img src="/search.svg" alt="seach button" className={Style.searchButton} onClick={handleSearch} />
             </button>
-            <input type="text" placeholder="Search" className={`fs-15 fw-400 ${Style.input}`} onChange={handleChange}/>
+            <input type="text" placeholder="Search" className={`fs-15 fw-400 ${Style.input}`} onChange={handleChange} />
           </div>
           <img src="/chat.svg" alt="msg" />
           <Link href="/ProfileUser">
             <a>
-              <img src="/avatar1.svg" alt="profile" className={Style.profile} />
+              <div className={Style.profile}>
+                <img
+                  src={props.userPrev ? props.userPrev : props.user.image ? props.user.image : '/avatar1.svg'}
+                  alt="profile"
+                />
+              </div>
             </a>
           </Link>
         </div>
