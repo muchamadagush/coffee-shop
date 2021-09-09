@@ -78,40 +78,36 @@ const History = ({ role }, ctx) => {
             {role === 'admin' ? (
               ''
             ) : (
-              <p className={styles.description}>Select item to delete</p>
-            )}
-            <div className={styles.list}>
-              {role === 'admin' ? (
-                ''
-              ) : (
+              <>
+                <p className={styles.description}>Select item to delete</p>
                 <h5 className={`${styles.buttonSelect} f-poppins`} onClick={handleDeleteHistory}>Delete</h5>
-              )}
+              </>
+            )}
 
-              <div className={styles.item}>
-                {order &&
-                  order.map((item) => (
-                    <CardWrapper className={`card ${styles.history}`} key={item.id_order}>
-                      <div className={styles.wrapper} onClick={() => showHistoryDetail(item.id_order)}>
-                        <img src={item.image_product} alt="food" className={styles.imgItem} />
-                        <div className={styles.descriptionItem}>
-                          <h5 className={styles.name}>{item.name_product}</h5>
-                          <p className={`${styles.price} f-poppins fc-brown`}>IDR {item.subtotal}</p>
-                          <p className={`${styles.status} f-poppins fc-brown`}>{item.status_payment}</p>
-                        </div>
+            <div className={styles.item}>
+              {order &&
+                order.map((item) => (
+                  <CardWrapper className={`card ${styles.history}`} key={item.id_order}>
+                    <div className={styles.wrapper} onClick={() => showHistoryDetail(item.id_order)}>
+                      <img src={item.image_product} alt="food" className={styles.imgItem} />
+                      <div className={styles.descriptionItem}>
+                        <h5 className={styles.name}>{item.name_product}</h5>
+                        <p className={`${styles.price} f-poppins fc-brown`}>IDR {item.subtotal}</p>
+                        <p className={`${styles.status} f-poppins fc-brown`}>{item.status_payment}</p>
                       </div>
-                        <div className={styles.check}>
-                          {role === 'admin' ? (
-                            ''
-                          ) : (
-                            <div className={`form-check ${styles.checkbox}`}>
-                              <input className="form-check-input" type="checkbox" value={item.id_order} id="flexCheckDefault" onClick={() => handleSelected(item.id_order)} defaultChecked={selected.includes(item.id_order) ? true : false} />
-                              <label className="form-check-label" htmlFor="flexCheckDefault"></label>
-                            </div>
-                          )}
+                    </div>
+                    <div className={styles.check}>
+                      {role === 'admin' ? (
+                        ''
+                      ) : (
+                        <div className={`form-check ${styles.checkbox}`}>
+                          <input className="form-check-input" type="checkbox" value={item.id_order} id="flexCheckDefault" onClick={() => handleSelected(item.id_order)} defaultChecked={selected.includes(item.id_order) ? true : false} />
+                          <label className="form-check-label" htmlFor="flexCheckDefault"></label>
                         </div>
-                    </CardWrapper>
-                  ))}
-              </div>
+                      )}
+                    </div>
+                  </CardWrapper>
+                ))}
             </div>
           </div>
         </div>
