@@ -4,6 +4,7 @@ import { Button } from '../components/atoms';
 import Style from '../styles/addProduct.module.css';
 import styled from 'styled-components';
 import Input from '../components/base/Input';
+import { privateRouteAdmin } from "../configs/routes/privateRouteAdmin";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../configs/redux/actions/productAction';
@@ -71,6 +72,7 @@ const AddProduct = ({ token }) => {
   const handleSubmit = () => {
     dispatch(addProduct(form, size, delivery, token));
   };
+  
   return (
     <div>
       <Layout isAuth={false} active="product" title="Add Product">
@@ -125,10 +127,11 @@ const AddProduct = ({ token }) => {
                 <option disabled selected value>
                   Select Category
                 </option>
-                <option value="1">Coffee</option>
-                <option value="2">Non Coffee</option>
-                <option value="3">Foods</option>
-                <option value="4">Add-on</option>
+                <option value="1">Favorite</option>
+                <option value="2">Coffee</option>
+                <option value="3">Non Coffee</option>
+                <option value="4">Foods</option>
+                <option value="5">Add-on</option>
               </select>
               <label htmlFor="stock" className={`fs-25 fw-700 fc-brown`}>
                 Input Stock:
@@ -292,12 +295,6 @@ const AddProduct = ({ token }) => {
     </div>
   );
 };
-export const getServerSideProps = async (ctx) => {
-  const token = await cookies(ctx).token;
-  return {
-    props: { token },
-  };
-};
 const Styles = styled.div`
   .button {
     width: 100%;
@@ -310,3 +307,10 @@ const Styles = styled.div`
   }
 `;
 export default AddProduct;
+
+export const getServerSideProps = privateRouteAdmin(async (ctx) => {
+  const token = await cookies(ctx).token;
+  return {
+    props: { token },
+  };
+});

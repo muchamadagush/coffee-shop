@@ -2,43 +2,69 @@ import { useState } from "react";
 import Button from "../../../components/atoms/Button";
 import Input from "../../../components/base/Input";
 import styles from "./forgotPassword.module.css";
+import { publicRoute } from "../../../configs/routes/publicRoute";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { forgotPasswordUser } from "../../../configs/redux/actions/userAction";
+import { useDispatch } from "react-redux";
 
 const ForgotPassword = () => {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-    phone: ''
-  })
+  const dispatch = useDispatch();
+  const router=useRouter()
+  // const [form, setForm] = useState({
+  //   email: '',
 
-  const handleChange = (e) => {
-    e.preventDefault()
+  // })
 
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
+
+  const formik = useFormik({
+    initialValues: {
+      email: ''
+    },
+    onSubmit: values => {
+      console.log(values);
+          dispatch(forgotPasswordUser(values, router));
+          console.log(values);
+    },
+    validationSchema : Yup.object ({
+      email: Yup.string().email('Email is Invalid').required("email is required"),
     })
-  }
+  })
   return (
     <>
+      <Head>
+        <title>Forget Password | find email</title>
+        <link rel="icon" href="/logoCoffeShop.svg" />
+      </Head>
       <div className={styles.forgotPassword}>
-        <div className={styles.left}>
-        </div>
+        <div className={styles.left}></div>
         <div className={styles.right}>
           <div className={styles.container}>
             <header className={styles.header}>
               <div className={styles.brand}>
-                <img src="/logoCoffeShop.svg" alt="logo" className={styles.logo} />
+                <img
+                  src="/logoCoffeShop.svg"
+                  alt="logo"
+                  className={styles.logo}
+                />
                 <h5 className={styles.title}>Coffee Shop</h5>
               </div>
               <h1 className={styles.labelForgot}>Forgot your password?</h1>
-              <p className={styles.description}>Don’t worry, we got your back!</p>
+              <p className={styles.description}>
+                Don’t worry, we got your back!
+              </p>
             </header>
 
             <div className={styles.formForgot}>
-              <Input name="email" type="text" id="email" placeholder="Enter your email adress" actionChange={handleChange} label="Email Adress :" giveClassLabel="none" giveClass="forgot" />
-              <Button children="Send" color="shine-shadow forgot" />
+              <form onSubmit={formik.handleSubmit}>
+              <Input name="email" actionChange={formik.handleChange} value={formik.values.email} type="text" id="email" placeholder="Enter your email adress" actionChange={formik.handleChange} label="Email Adress :" giveClassLabel="none" giveClass="forgot" />
+              {formik.errors.email && formik.touched.email && ( <p className={styles.errors}>{formik.errors.email}</p>)}
+              <Button  type="submit" children="Send" color="shine-shadow forgot" />
               <p className={styles.time}>Click here if you didn’t receive any link in 2 minutes<br /><span>01:52</span></p>
-              <Button children="Resend Link" color="choco-shadow forgot" />
+              <Button  children="Resend Link" color="choco-shadow forgot" />
+              </form>
             </div>
           </div>
           <footer>
@@ -46,14 +72,33 @@ const ForgotPassword = () => {
               <div className={styles.footer}>
                 <div className={styles.footerLeft}>
                   <div className={styles.brand}>
-                    <img src="/logoCoffeShop.svg" alt="logo" className={styles.logo} />
+                    <img
+                      src="/logoCoffeShop.svg"
+                      alt="logo"
+                      className={styles.logo}
+                    />
                     <h3 className={styles.title}>Coffee Shop</h3>
                   </div>
-                  <p className={styles.content}>Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans</p>
+                  <p className={styles.content}>
+                    Coffee Shop is a store that sells some good meals, and
+                    especially coffee. We provide high quality beans
+                  </p>
                   <div className={styles.socialMedia}>
-                    <img src="/facebook.svg" alt="facebook" className={styles.item} />
-                    <img src="/twitter.svg" alt="twitter" className={styles.item} />
-                    <img src="/instagram.svg" alt="instagram" className={styles.item} />
+                    <img
+                      src="/facebook.svg"
+                      alt="facebook"
+                      className={styles.item}
+                    />
+                    <img
+                      src="/twitter.svg"
+                      alt="twitter"
+                      className={styles.item}
+                    />
+                    <img
+                      src="/instagram.svg"
+                      alt="instagram"
+                      className={styles.item}
+                    />
                   </div>
                   <span className={styles.copyright}>©2020CoffeeStore</span>
                 </div>
@@ -85,3 +130,9 @@ const ForgotPassword = () => {
 }
 
 export default ForgotPassword;
+
+export const getServerSideProps = publicRoute(async (ctx) => {
+  return {
+    props: {},
+  };
+});

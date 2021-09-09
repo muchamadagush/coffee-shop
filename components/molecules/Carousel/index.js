@@ -1,11 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
+import { Arifin, Agus, Rico, Farrel, Nisa } from '../../../public/team';
 
 function Index(props) {
   const data = [
     {
       name: 'Rico',
+      image: Rico,
       location: 'Depok',
       description:
         '“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and the coffee and meals tho. I like it here!! Very recommended!',
@@ -13,24 +17,28 @@ function Index(props) {
 
     {
       name: 'Agus',
+      image: Agus,
       location: 'Jombang',
       description:
         '“I like it because I like to travel far and still can make my day better just by drinking their Hazelnut Latte',
     },
     {
       name: 'Farrel',
+      image: Farrel,
       location: 'Bojonegoro',
       description:
         '“This is very unusual for my taste, I haven’t liked coffee before but their coffee is the best! and yup, you have to order the chicken wings, the best in town!',
     },
     {
       name: 'Nisa',
+      image: Nisa,
       location: 'Tangerang',
       description:
         '“This is very unusual for my taste, I haven’t liked coffee before but their coffee is the best! and yup, you have to order the chicken wings, the best in town!',
     },
     {
       name: 'Arifin',
+      image: Arifin,
       location: 'Tuban',
       description:
         '“This is very unusual for my taste, I haven’t liked coffee before but their coffee is the best! and yup, you have to order the chicken wings, the best in town!',
@@ -41,10 +49,10 @@ function Index(props) {
     autoplaySpeed: 50,
     slidesToShow: 3,
     dots: true,
-    infinite: true,
+    infinite: false,
     slidesToShow: 4,
     slidesToScroll: 1,
-    speed: 4000,
+    speed: 2000,
     responsive: [
       {
         breakpoint: 1024,
@@ -82,7 +90,7 @@ function Index(props) {
                 <Profile>
                   <div className="profile">
                     <div className="image">
-                      <img src={props.src}></img>
+                      <img src={item.image.src} alt="product"></img>
                     </div>
                     <div>
                       <p className="fs-18 fw-500 fc-black carousel-text">{item.name}</p>
@@ -143,6 +151,7 @@ const Profile = styled.div`
     border-radius: 50%;
     overflow: hidden;
     img {
+      object-fit: cover;
       height: 100%;
       width: 100%;
     }

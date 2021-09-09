@@ -7,7 +7,7 @@
     <a href="https://github.com/19damah23/coffee-shop/pulls">Request Feature</a>
   </p>
 
-![Image Banner](/public/team/home-figma.svg)
+![Image Banner](/public/team/home-page.jpg)
 
 ## About The Project
 
@@ -56,7 +56,7 @@ NEXT_PUBLIC_WEB_URL = "http://localhost:3000/"
 > All Members of Default Team
 
 - Front-End Developer & Team Leader ([Mochamad Rico Pratama Putra](https://github.com/MochamadRicoPratamaPutra))
-- Muchamad Agus Hermawan ([Full-Stack Developer](https://github.com/19damah23))
-- Mahuwarni Hyinkhalis Sukerti ([Front-End Developer](https://github.com/Nisanisa7))
-- Muhammad Arifin ([Front-End Developer](https://github.com/emhaarifin))
-- Farrel Varian Eka Putra ([Back-End Developer](https://github.com/farrelvarian))
+- Full-Stack Developer ([Muchamad Agus Hermawan](https://github.com/19damah23))
+- Front-End Developer ([Mahuwarni Hyinkhalis Sukerti](https://github.com/Nisanisa7))
+- Front-End Developer ([Muhammad Arifin](https://github.com/emhaarifin))
+- Back-End Developer ([Farrel Varian Eka Putra](https://github.com/farrelvarian))
