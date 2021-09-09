@@ -57,9 +57,16 @@
   outline: none;
 }
 .profile {
-  max-width: 30px;
-  max-height: 30px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
+  /* border: 1px solid black; */
+}
+.profile img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .buttonCollapse {
   visibility: hidden;

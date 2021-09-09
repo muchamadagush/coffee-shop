@@ -17,12 +17,13 @@ function ProfileUser() {
     const [errImage, setErrImage] = useState(false)
     const [errImageType, setErrImageType] = useState(false)
     const profile = useSelector(state => state.user.profile)
+    const [reset, setReset] = useState(false)
     // const { register, handleSubmit, watch, formState: { errors } } = useForm();
     console.log(profile)
 
     useEffect(() => {
         dispatch(getProfile(profile.token, profile.id))
-    }, [])
+    }, [reset])
 
     const handleChange = (e) => {
         dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.value } })
@@ -30,7 +31,8 @@ function ProfileUser() {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(updateuser(profile, profile.id, profile.token, handlepreviewImage))
-
+        setReset(true)
+        // dispatch(getProfile(profile.token, profile.id))
     }
 
     const handlepreviewImage = (e) => {
@@ -49,12 +51,14 @@ function ProfileUser() {
             setImagePrev(URL.createObjectURL(e.target.files[0]))
             dispatch({ type: 'CHANGE_VALUE', payload: { imagePrev: imagePrev } })
         }
+        // dispatch({ type: 'CHANGE_VALUE', payload: { imagePrev: imagePrev } })
         dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.files[0] } })
 
     }
     const handleLogout = () => {
         backendApi.get('logout', {withCredentials: true})
             .then((res) => {
+                dispatch({type: 'LOGOUT'})
                 swal('Success', "you're logged out ! see ya", 'success')
                 router.push('/login')
             })
@@ -63,7 +67,7 @@ function ProfileUser() {
     }
     return (
         <Styles>
-            <Layout isAuth="true" title="Profile">
+            <Layout isAuth="true" title="Profile" userPrev={imagePrev}>
                 <div className="wrapper">
                     <div className="container">
                         <form onSubmit={handleSubmit}>
@@ -124,7 +128,7 @@ function ProfileUser() {
                                                         onChange={handleChange}
                                                         label="Delivery address : "
                                                         type="text"
-                                                        // name="address"
+                                                        name="address"
                                                         // defaultValue="Zulaikha"
                                                         value={profile.address}
                                                         className="input-field address-field" />
