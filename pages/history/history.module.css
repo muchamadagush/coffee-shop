@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  width: 100%;
+  width: 90%;
 }
 
 .background {
@@ -25,11 +25,12 @@
 }
 
 .buttonSelect {
-  text-align: right;
   color: #fff;
   font-size: 20px;
   text-decoration: underline;
   cursor: pointer;
+  width: fit-content;
+  margin-left: auto;
 }
 
 .item {
@@ -58,7 +59,7 @@
   display: flex;
   flex-direction: column;
   margin-left: 20px;
-  width: 100%;
+  width: 60%;
 }
 
 .name {
@@ -67,6 +68,8 @@
   margin: 0;
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 22px;
 }
 
 .price,
@@ -88,4 +91,15 @@
 
 .checkbox {
   margin-left: auto;
+}
+
+@media (max-width: 576px) {
+  .history {
+    width: 100%;
+    height: 125px;
+    display: flex;
+    padding: 20px 20px;
+    flex-direction: row;
+    margin: 10px 5px;
+  }
 }
