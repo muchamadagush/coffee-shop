@@ -7,7 +7,7 @@
     <a href="https://github.com/19damah23/coffee-shop/pulls">Request Feature</a>
   </p>
 
-![Image Banner](/public/team/home-figma.svg)
+![Image Banner](/public/team/home-page.jpg)
 
 ## About The Project
 
