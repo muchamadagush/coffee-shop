@@ -2,12 +2,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styled from 'styled-components';
-import {
-  Button,
-  CardShadow,
-  CardwFooter,
-  CardWrapper,
-} from '../components/atoms';
+import { Button, CardShadow, CardwFooter, CardWrapper } from '../components/atoms';
 import {
   Netflix,
   Reddit,
@@ -28,7 +23,7 @@ import { Breakpoints } from '../utils';
 import { CardProduct, Carousel } from '../components/molecules';
 export default function Home({ initialData }) {
   return (
-    <Layout>
+    <Layout title="Coffee Shop" active="home">
       <Head>
         <link
           rel="stylesheet"
@@ -44,22 +39,13 @@ export default function Home({ initialData }) {
       </Head>
       <Style>
         <HeroHomeContent>
-          <Image
-            src={HeroHome}
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            alt="Background"
-          />
+          <Image src={HeroHome} layout="fill" objectFit="cover" quality={100} alt="Background" />
           <div className="hero-content">
             <div className="hero-content--info">
-              <p className="fs-50 heading fw-700 fc-white">
-                Start Your Day with Coffee and Good Meals
-              </p>
+              <p className="fs-50 heading fw-700 fc-white">Start Your Day with Coffee and Good Meals</p>
               <p className="fs-20 subheading fw-700 fc-white">
-                We provide high quality beans, good taste, and healthy meals
-                made by love just for you. Start your day with us for a bigger
-                smile!
+                We provide high quality beans, good taste, and healthy meals made by love just for you. Start your day
+                with us for a bigger smile!
               </p>
             </div>
             <Button className="button" color="shine-shadow">
@@ -74,12 +60,7 @@ export default function Home({ initialData }) {
                 <div className="item">
                   <div className="image">
                     <div className="div">
-                      <Image
-                        width="24"
-                        height="24"
-                        src={PersonIcon}
-                        alt="image"
-                      ></Image>
+                      <Image width="24" height="24" src={PersonIcon} alt="image"></Image>
                     </div>
                   </div>
                   <div className="info">
@@ -92,12 +73,7 @@ export default function Home({ initialData }) {
                 <div className="item">
                   <div className="image">
                     <div className="div">
-                      <Image
-                        width="24"
-                        height="24"
-                        src={NavIcon}
-                        alt="image"
-                      ></Image>
+                      <Image width="24" height="24" src={NavIcon} alt="image"></Image>
                     </div>
                   </div>
                   <div className="info">
@@ -110,12 +86,7 @@ export default function Home({ initialData }) {
                 <div className="item">
                   <div className="image">
                     <div className="div">
-                      <Image
-                        width="24"
-                        height="24"
-                        src={HeartIcon}
-                        alt="image"
-                      ></Image>
+                      <Image width="24" height="24" src={HeartIcon} alt="image"></Image>
                     </div>
                   </div>
                   <div className="info">
@@ -135,12 +106,9 @@ export default function Home({ initialData }) {
           </div>
           <div className="information">
             <div className="information-content">
-              <p className="fs-35 fw-500 fc-black">
-                We Provide Good Coffee and Healthy Meals
-              </p>
+              <p className="fs-35 fw-500 fc-black">We Provide Good Coffee and Healthy Meals</p>
               <p className="fs-16 fw-400 fc-grey">
-                You can explore the menu that we provide with fun and have their
-                own taste and make your day better.
+                You can explore the menu that we provide with fun and have their own taste and make your day better.
               </p>
               <div className="information-item">
                 <Image src={CheckList} alt="checklist" />
@@ -165,8 +133,7 @@ export default function Home({ initialData }) {
           <div className="header">
             <p className="fs-35 fw-500 fc-black">Here is People’s Favorite</p>
             <p className="fs-16 fw-400 fc-grey">
-              Let’s choose and have a bit taste of poeple’s favorite. It might
-              be yours too!
+              Let’s choose and have a bit taste of poeple’s favorite. It might be yours too!
             </p>
           </div>
           <div className="wrapper">
@@ -188,12 +155,9 @@ export default function Home({ initialData }) {
           <Location>
             <div>
               <div className="information">
-                <p className="fs-35 fw-500 fc-black">
-                  Visit Our Store in the Spot on the Map Below
-                </p>
+                <p className="fs-35 fw-500 fc-black">Visit Our Store in the Spot on the Map Below</p>
                 <p className="fs-16 fw-f00 fc-grey">
-                  See our store in every city on the spot and spen your good day
-                  there. See you soon!
+                  See our store in every city on the spot and spen your good day there. See you soon!
                 </p>
               </div>
               <Image src={Map} alt="maps" />
@@ -221,12 +185,9 @@ export default function Home({ initialData }) {
           </PartnerShip>
           <Testimoni>
             <div className="header">
-              <p className="fs-35 head fw-500 fc-black">
-                Loved by Thousands of Happy Customer
-              </p>
+              <p className="fs-35 head fw-500 fc-black">Loved by Thousands of Happy Customer</p>
               <p className="fs-16 subhead fw-400 fc-grey">
-                These are the stories of our customers who have visited us with
-                great pleasure.
+                These are the stories of our customers who have visited us with great pleasure.
               </p>
             </div>
             <div className="custom-carousel">
@@ -239,9 +200,7 @@ export default function Home({ initialData }) {
             <div className="left">
               <div>
                 <p className="fs-35 fw-500 fc-black">Check our promo today!</p>
-                <p className="fs-16 fw-400 fc-grey">
-                  Let{`'`}s see the deals and pick yours!
-                </p>
+                <p className="fs-16 fw-400 fc-grey">Let{`'`}s see the deals and pick yours!</p>
               </div>
             </div>
             <div className="right">
@@ -549,9 +508,7 @@ const FavoriteProduct = styled.div`
 `;
 
 export async function getServerSideProps() {
-  const { data } = await axios(
-    `products/?searchBy=products.name_product&npp=3&page=1&field=id_product&sort=desc`
-  );
+  const { data } = await axios(`products/?searchBy=products.name_product&npp=3&page=1&field=id_product&sort=desc`);
   const initialData = data.data.result;
   return {
     props: { initialData }, // will be passed to the page component as props
