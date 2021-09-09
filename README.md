@@ -1,6 +1,6 @@
 <h1 align='center'>Next JS - Coffe Shop</h1>
   <p align="center">
-    <a href="link_deploy">View Demo</a>
+<!--     <a href="link_deploy">View Demo</a> -->
     ·
     <a href="https://github.com/19damah23/coffee-shop/issues">Report Bug</a>
     ·
