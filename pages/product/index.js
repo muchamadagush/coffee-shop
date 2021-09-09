@@ -52,7 +52,7 @@ function Index({ initialData, role }) {
   const [editProduct, setEditProduct] = React.useState(null);
   return (
     <>
-      <Layout isAuth={true} active="product" login={true} title="product">
+      <Layout isAuth={true} active="product" login={true} title="Product">
         <Style>
           <Coupun>
             <div className="coupons">
