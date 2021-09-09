@@ -247,7 +247,6 @@ const Styles = styled.div`
     @media screen and (max-width: 320px) {
       background-image: none;
     }
-
     .row-wrapper {
       .title {
         padding-top: 114px;
@@ -267,7 +266,6 @@ const Styles = styled.div`
           width: 100%;
           height: 600px;
         }
-
         h1 {
           text-align: center;
           padding-top: 65px;
@@ -290,7 +288,6 @@ const Styles = styled.div`
         .text-detail {
           padding-top: 18px;
           padding-left: 47px;
-
           .total-wrap {
             gap: 9rem;
             h2 {
@@ -346,7 +343,6 @@ const Styles = styled.div`
       .hidden {
         visibility: hidden;
         width: 50px;
-
         @media screen and (max-width: 768px) {
           margin-left: auto;
         }
@@ -397,14 +393,12 @@ const Styles = styled.div`
           }
         }
       }
-
       .title-wrapper {
         padding-top: 210px;
         display: flex;
         flex-direction: row;
         margin-bottom: 20px;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
-
         @media screen and (max-width: 768px) {
           padding-top: 0;
         }
@@ -433,7 +427,6 @@ const Styles = styled.div`
           .first-payment {
             display: flex;
             padding: 16px 35px 0;
-
             .checkmark {
               height: 25px;
               width: 25px;

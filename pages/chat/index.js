@@ -110,4 +110,4 @@ export const getServerSideProps = privateRoute(async (ctx) => {
   return {
     props: {token: cookie}, // will be passed to the page component as props
   }
-}
+})

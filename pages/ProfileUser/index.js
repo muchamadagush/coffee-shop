@@ -74,14 +74,14 @@ function ProfileUser() {
                             <h4 className="fs-35 title">User Profile</h4>
                             <CardWrapper className="card">
                                 <div className="container"></div>
-                                <div className="row  no-gutters">
-                                    <div className="col col-4">
+                                <div className="row  no-gutters main-row">
+                                    <div className="col col-lg-5 col-md-4 col-sm-4">
                                         <div className="side-profile-wrapper">
                                             <img className="image-profile" src={imagePrev ? imagePrev : profile.image ? profile.image : '/avatar1.svg'} alt="" />
                                             {errImage ? <p className="error">Image size is too large. max 1mb</p> : ''}
                                             {errImageType ? <p className="error">Invalid file type. only png, jpg, and jpeg format allowed</p> : ''}
                                             <h4 className="fs-20 fw-bold">{profile.first_name}</h4>
-                                            <h5 className="fs-20 fw-500">{profile.email}</h5>
+                                            <h5 className="fs-20 fw-500 email">{profile.email}</h5>
                                             <div className="button_Wrap">
                                                 <label className="button-img" for="upload">Upload File</label>
                                                 <input id="upload" type="file" name="image" onChange={handlepreviewImage} />
@@ -95,8 +95,8 @@ function ProfileUser() {
                                             <Button onClick={handleLogout} className="btn log-out" type="button" color="white-choco">Log Out</Button>
                                         </div>
                                     </div>
-                                    <div className="col col-8 ">
-                                        <CardwFooter>
+                                    <div className="col col-lg-7 col-md-8 col-sm-8">
+                                        <CardwFooter className="card-w-footer">
                                             <div className="right-profile-wrapper">
                                                 <div className="header">
                                                     <h4 className="fc-grey fs-25 fw-bold">Contacts</h4>
@@ -106,20 +106,21 @@ function ProfileUser() {
                                                 </div>
                                                 <div className="form-wrapper">
                                                     <div className="row first-section-wrapper">
-                                                        <div className="col">
+                                                        <div className="col col-lg-6 col-md-7 col-s-8">
                                                             <InputField
                                                                 onChange=""
                                                                 label="Email address : "
                                                                 type="email"
                                                                 name="email"
                                                                 value={profile.email}
-                                                                className="input-field" />
+                                                                className="email-field" />
                                                         </div>
-                                                        <div className="col">
+                                                        <div className="col  col-lg-5 col-md-5 col-s-4">
                                                             <InputField
                                                                 label="Phone numbers : "
                                                                 type="text"
                                                                 name="phone"
+                                                                className="phone-field"
                                                                 value={profile.phone}
                                                                 onChange={handleChange} />
                                                         </div>
@@ -134,7 +135,7 @@ function ProfileUser() {
                                                         className="input-field address-field" />
                                                     <h4 className="fc-grey fs-25 fw-bold details-title">Details</h4>
                                                     <div className="row second-section-wrapper">
-                                                        <div className="col">
+                                                        <div className="col col-lg-6 col-md-6 ">
                                                             <InputField
                                                                 onChange={handleChange}
                                                                 label="Display name : "
@@ -142,9 +143,9 @@ function ProfileUser() {
                                                                 name="display_name"
                                                                 // defaultValue="Zulaikha"
                                                                 value={profile.display_name}
-                                                                className="input-field" />
+                                                                className="display-field" />
                                                         </div>
-                                                        <div className="col">
+                                                        <div className="col col-lg-5 col-md-6">
                                                             <InputField
                                                                 onChange={handleChange}
                                                                 type="date"
@@ -207,6 +208,9 @@ box-sizing: border-box;
         .card{
             margin-top: 31px;
             padding: 54px 45px;
+        .main-row{
+            grid-template-columns: 100%;
+       
                 .side-profile-wrapper{
                     display: flex;
                     flex-direction: column;
@@ -217,6 +221,14 @@ box-sizing: border-box;
                             width: 150px;
                             height: 150px;
                             object-fit: cover;
+                        }
+                        .email{
+                            @media screen and (max-width: 992px) {
+                                    font-size: 15px;
+                                }
+                            @media screen and (max-width: 576px) {
+                                  font-size: 12px;
+                                }
                         }
                         .error{
                             color: red;
@@ -239,6 +251,9 @@ box-sizing: border-box;
                               text-align: center;
                               background: #FFBA33;
                               color: #6A4029;
+                              @media screen and (max-width: 576px) {
+                                   width: 150px;
+                                }
                             }
                             
                             input[type="file"] {
@@ -255,6 +270,9 @@ box-sizing: border-box;
                             height: 44px;
                             font-size: 15px;
                             font-weight: bold;
+                            @media screen and (max-width: 576px) {
+                                   width: 150px;
+                                }
                         }
                         .edit-btn{
                             margin-top: 42px;
@@ -263,12 +281,19 @@ box-sizing: border-box;
                             font-size: 15px;
                             font-weight: bold;
                             margin-bottom: 34px;
+                            @media screen and (max-width: 576px) {
+                                   width: 150px;
+                                }
+                                
                         }
                         .btn{
                             font-size: 15px;
                             font-weight: bold;
                             width: 207px;
-                            height: 60px;       
+                            height: 60px;   
+                            @media screen and (max-width: 576px) {
+                                   width: 150px;
+                                }    
                         }
                         .text{
                             text-align: center;
@@ -281,6 +306,11 @@ box-sizing: border-box;
                         
                 }
         }
+        .card-w-footer{
+            @media screen and (max-width: 320px) {
+                 width: 100%;
+                   margin: 15px 2px;
+                }   
         .right-profile-wrapper{
             padding: 17px 30px;
             
@@ -292,20 +322,63 @@ box-sizing: border-box;
                         width: 47px;
                         height: 49px;
                         border-radius: 100%;
+                        @media screen and (max-width: 320px) {
+                            width: 30px;
+                            height: 30px;
+                        } 
+                        img{
+                            @media screen and (max-width: 320px) {
+                                width: 15px;
+                                height: 15px;
+                            }  
+                        }
                     }
             }
             .form-wrapper{
                 .first-section-wrapper{
                     margin-top: 21px;
+                        .email-field{
+                            width: 100%;
+                            @media screen and (max-width: 576px) {
+                                    width: 100%;
+                                }
+                        }
                 }
                 .second-section-wrapper{
                     margin-top: 47px;
                         .date-field{
                             padding-top: 15px;
+                            @media screen and (max-width: 992px) {
+                                    width: 100%;
+                                }
+                                @media screen and (max-width: 768px) {
+                                    width: 100%;
+                                }
+                            @media screen and (max-width: 576px) {
+                                width: 100%;
+                            }
                         }
-                }
+                }        
                 .input-field{
-                    width: 270px;
+                    width: 48%;
+                    @media screen and (max-width: 768px) {
+                        width: 55%;
+                    }
+                     @media screen and (max-width: 576px) {
+                        width: 100%;
+                    }
+                }
+                .phone-field{
+                    width: 100%;
+                    @media screen and (max-width: 576px) {
+                        display: block;
+                    }
+                }
+                .display-field{
+                    width: 100%;
+                    @media screen and (max-width: 576px) {
+                        width: 100%;
+                        }
                 }
                 .details-title{
                     margin-top: 41px;
@@ -327,10 +400,19 @@ box-sizing: border-box;
                         vertical-align: middle;
                         outline: none;
                         cursor: pointer;  
-                                   
+                        @media screen and (max-width: 320px) {
+                            height: 28px;
+                            width: 28px;
+                        }            
                     }
                     .right-radio{
                         margin-left: 120px; 
+                        @media screen and (max-width: 576px) {
+                            margin-left: 10px;
+                        }
+                        @media screen and (max-width: 320px) {
+                            margin-left: 10px;
+                        }
                     }
                     .bg_black{
                         border: 4px solid #9F9F9F;
@@ -344,12 +426,21 @@ box-sizing: border-box;
                     }
                     label{
                         padding-left: 19px;
+                        @media screen and (max-width: 576px) {
+                            padding-left: 10px;
+                        }
+                        @media screen and (max-width: 320px) {
+                            font-size: 13px;
+                            padding-left: 2px;
+                        }
                     }
                 }
              
+             }
             }
         }
     }
+}
 .hidden{
     visibility: hidden;
     height: 30px;

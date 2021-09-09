@@ -52,7 +52,7 @@ function Index({ initialData, role }) {
   const [editProduct, setEditProduct] = React.useState(null);
   return (
     <>
-      <Layout isAuth={true} active="product" login={true} title="product">
+      <Layout isAuth={true} active="product" login={true} title="Product">
         <Style>
           <Coupun>
             <div className="coupons">
@@ -139,9 +139,9 @@ function Index({ initialData, role }) {
             )}
             {role == 'admin' && (
               <div className="action-admin">
-                <Link href={`/edit-product/${editProduct}`}>
+                {/* <Link href={`/edit-product/${editProduct}`}>
                   <a>Edit product</a>
-                </Link>
+                </Link> */}
                 <Link href="/add-product">
                   <a>Add new product</a>
                 </Link>
