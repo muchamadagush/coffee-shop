@@ -22,8 +22,10 @@ function ProfileUser(ctx) {
   const [reset, setReset] = useState(false);
 
   useEffect(() => {
-    console.log(token, user_id, 'tes token');
-    dispatch(getProfile(token, profile.id));
+    if (token) {
+      console.log(token, user_id, 'tes token');
+    }
+    // dispatch(getProfile(token, profile.id));
   }, [reset]);
 
   const handleChange = (e) => {
