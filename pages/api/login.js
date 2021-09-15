@@ -12,7 +12,7 @@ const login = (req, res) => {
       .post('/login', data)
       .then((response) => {
         console.log(response, ' respone login');
-        const result = response.data.data;
+        const result = response.data.user;
         const setCookie = [];
         const serializeCookie = (key, value, hrs) => {
           if ('number' == typeof value) value = val.toString();
@@ -20,7 +20,7 @@ const login = (req, res) => {
           return cookie.serialize(key, value, { expires: new Date(Date.now() + 1000 * 3600 * hrs), httpOnly: true });
         };
         const setMultipleCookies = (res) => {
-          setCookie.push(serializeCookie('token', response.data.token, 24));
+          setCookie.push(serializeCookie('token', result.token, 24));
           setCookie.push(serializeCookie('user_id', result.user_id, 24));
           setCookie.push(serializeCookie('user_role', result.user_role, 24));
           setCookie.push(serializeCookie('user_image', result.user_image, 24));

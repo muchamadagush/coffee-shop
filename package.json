@@ -15,6 +15,7 @@
     "@popperjs/core": "^2.10.1",
     "axios": "^0.21.2",
     "bootstrap": "^5.0.0-beta3",
+    "cookie": "^0.4.1",
     "formik": "^2.2.9",
     "next": "11.1.2",
     "next-cookies": "^2.0.3",
