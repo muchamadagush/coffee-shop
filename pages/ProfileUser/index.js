@@ -23,10 +23,8 @@ function ProfileUser({ TokenAccess }) {
   useEffect(() => {
     if (token) {
       console.log(TokenAccess, 'tes token');
+      dispatch(getProfile(TokenAccess, profile.id));
     }
-
-    console.log(TokenAccess, 'tes token 2');
-    // dispatch(getProfile(token, profile.id));
   }, [reset]);
 
   const handleChange = (e) => {
