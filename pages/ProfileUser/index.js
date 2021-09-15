@@ -12,7 +12,7 @@ import swal from 'sweetalert';
 import cookies from 'next-cookies';
 import router from 'next/router';
 
-function ProfileUser({ TokenCookie }) {
+function ProfileUser() {
   const dispatch = useDispatch();
   const [imagePrev, setImagePrev] = useState(null);
   const [errImage, setErrImage] = useState(false);
@@ -23,10 +23,8 @@ function ProfileUser({ TokenCookie }) {
   console.log(profile);
 
   useEffect(() => {
-    if (TokenCookie) {
       dispatch(getProfile(profile.token, profile.id));
-    }
-  }, [reset, dispatch, profile.token, profile.id]);
+  }, [reset]);
 
   const handleChange = (e) => {
     dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.value } });
@@ -34,7 +32,7 @@ function ProfileUser({ TokenCookie }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateuser(profile, profile.id, profile.token, handlepreviewImage));
-    setReset(true);
+    setReset(!reset);
     // dispatch(getProfile(profile.token, profile.id))
   };
 
@@ -490,8 +488,7 @@ const Styles = styled.div`
 `;
 
 export const getServerSideProps = privateRoute(async (ctx) => {
-  const TokenCookie = await cookies(ctx).token;
   return {
-    props: { TokenCookie }, // will be passed to the page component as props
+    props: {}, // will be passed to the page component as props
   };
 });
