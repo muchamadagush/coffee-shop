@@ -12,18 +12,17 @@ import swal from 'sweetalert';
 import cookies from 'next-cookies';
 import router from 'next/router';
 
-function ProfileUser() {
+function ProfileUser(ctx) {
+  const { token, user_id } = cookies(ctx)
   const dispatch = useDispatch();
   const [imagePrev, setImagePrev] = useState(null);
   const [errImage, setErrImage] = useState(false);
   const [errImageType, setErrImageType] = useState(false);
   const profile = useSelector((state) => state.user.profile);
   const [reset, setReset] = useState(false);
-  // const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  console.log(profile);
 
   useEffect(() => {
-      dispatch(getProfile(profile.token, profile.id));
+      dispatch(getProfile(token, user_id));
   }, [reset]);
 
   const handleChange = (e) => {
@@ -33,7 +32,6 @@ function ProfileUser() {
     e.preventDefault();
     dispatch(updateuser(profile, profile.id, profile.token, handlepreviewImage));
     setReset(!reset);
-    // dispatch(getProfile(profile.token, profile.id))
   };
 
   const handlepreviewImage = (e) => {
