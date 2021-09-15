@@ -25,7 +25,7 @@ const History = ({ role }, ctx) => {
     if (role === 'custommer') {
       dispatch(getOrdersHistoryUser(userId))
     }
-  }, [role])
+  }, [role, dispatch, userId])
 
   function removeItemOnce(arr, value) {
     var index = arr.indexOf(value);

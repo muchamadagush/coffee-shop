@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Style from './navbar.module.css';
 import { Button } from '../../atoms';
 import styled from 'styled-components';

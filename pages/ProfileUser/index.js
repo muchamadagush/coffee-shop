@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/no-unknown-property */
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -23,7 +25,7 @@ function ProfileUser() {
 
     useEffect(() => {
         dispatch(getProfile(profile.token, profile.id))
-    }, [reset])
+    }, [reset, dispatch, profile.token, profile.id])
 
     const handleChange = (e) => {
         dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.value } })

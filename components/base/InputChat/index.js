@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import styles from "./inputChat.module.css"
 
 const InputChat = () => {
