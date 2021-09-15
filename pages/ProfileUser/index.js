@@ -12,7 +12,7 @@ import swal from 'sweetalert';
 import cookies from 'next-cookies';
 import router from 'next/router';
 
-function ProfileUser({ TokenAccess }) {
+function ProfileUser({ tokenAccess }) {
   const dispatch = useDispatch();
   const [imagePrev, setImagePrev] = useState(null);
   const [errImage, setErrImage] = useState(false);
@@ -21,9 +21,9 @@ function ProfileUser({ TokenAccess }) {
   const [reset, setReset] = useState(false);
 
   useEffect(() => {
-    if (token) {
-      console.log(TokenAccess, 'tes token');
-      dispatch(getProfile(TokenAccess, profile.id));
+    if (tokenAccess) {
+      console.log(tokenAccess, 'tes token');
+      dispatch(getProfile(tokenAccess, profile.id));
     }
   }, [reset]);
 
@@ -488,8 +488,12 @@ const Styles = styled.div`
 `;
 
 export const getServerSideProps = privateRoute(async (ctx) => {
-  const TokenAccess = await cookies(ctx).token;
-  return {
-    props: { TokenAccess }, // will be passed to the page component as props
-  };
+  try {
+    const tokenAccess = await cookies(ctx).token;
+    return {
+      props: { tokenAccess }, // will be passed to the page component as props
+    };
+  } catch (error) {
+    console.log(error, 'error when get cookie');
+  }
 });
