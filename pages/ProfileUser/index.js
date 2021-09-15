@@ -491,9 +491,7 @@ const Styles = styled.div`
 export const getServerSideProps = privateRoute(async (ctx) => {
   try {
     const tokenAccess = await cookies(ctx).token;
-
     const cookie2 = await ctx.req.headers.cookie;
-
     return {
       props: { tokenAccess, cookie2 }, // will be passed to the page component as props
     };
