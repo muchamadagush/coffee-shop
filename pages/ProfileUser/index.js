@@ -13,7 +13,7 @@ import cookies from 'next-cookies';
 import router from 'next/router';
 
 function ProfileUser(ctx) {
-  const { token, user_id } = cookies(ctx)
+  const { token, user_id } = cookies(ctx);
   const dispatch = useDispatch();
   const [imagePrev, setImagePrev] = useState(null);
   const [errImage, setErrImage] = useState(false);
@@ -22,7 +22,8 @@ function ProfileUser(ctx) {
   const [reset, setReset] = useState(false);
 
   useEffect(() => {
-      dispatch(getProfile(token, user_id));
+    console.log(token, user_id, 'tes token');
+    dispatch(getProfile(token, profile.id));
   }, [reset]);
 
   const handleChange = (e) => {
