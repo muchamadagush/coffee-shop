@@ -17,14 +17,14 @@ const login = (req, res) => {
         const serializeCookie = (key, value, hrs) => {
           if ('number' == typeof value) value = val.toString();
           if ('object' == typeof value) value = JSON.stringify(val);
-          return cookie.serialize(key, value, { expires: new Date(Date.now() + 1000 * 60 * hrs), httpOnly: true });
+          return cookie.serialize(key, value, { expires: new Date(Date.now() + 1000 * 3600 * hrs), httpOnly: true });
         };
         const setMultipleCookies = (res) => {
-          setCookie.push(serializeCookie('token', response.data.token, 1));
-          setCookie.push(serializeCookie('user_id', result.user_id, 1));
-          setCookie.push(serializeCookie('user_role', result.user_role, 1));
-          setCookie.push(serializeCookie('user_image', result.user_image, 1));
-          setCookie.push(serializeCookie('user_isAuth', true, 1));
+          setCookie.push(serializeCookie('token', response.data.token, 24));
+          setCookie.push(serializeCookie('user_id', result.user_id, 24));
+          setCookie.push(serializeCookie('user_role', result.user_role, 24));
+          setCookie.push(serializeCookie('user_image', result.user_image, 24));
+          setCookie.push(serializeCookie('user_isAuth', true, 24));
           res.setHeader('Set-Cookie', setCookie);
         };
         res.setHeader('Access-Control-Allow-Headers', '*');
