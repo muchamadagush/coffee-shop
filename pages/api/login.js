@@ -30,7 +30,7 @@ const login = (req, res) => {
         res.setHeader('Access-Control-Allow-Headers', '*');
         res.setHeader('Access-Control-Allow-Credentials', true);
         res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-        setMultipleCookies();
+        setMultipleCookies(res);
         res.status(200);
         res.json({ data: result });
       })
