@@ -13,24 +13,54 @@ const login = (req, res) => {
       .then((response) => {
         console.log(response, ' respone login');
         const result = response.data.user;
-        const setCookie = [];
-        const serializeCookie = (key, value, hrs) => {
-          if ('number' == typeof value) value = val.toString();
-          if ('object' == typeof value) value = JSON.stringify(val);
-          return cookie.serialize(key, value, { expires: new Date(Date.now() + 1000 * 3600 * hrs), httpOnly: true });
-        };
-        const setMultipleCookies = (res) => {
-          setCookie.push(serializeCookie('token', result.token, 24));
-          setCookie.push(serializeCookie('user_id', result.user_id, 24));
-          setCookie.push(serializeCookie('user_role', result.user_role, 24));
-          setCookie.push(serializeCookie('user_image', result.user_image, 24));
-          setCookie.push(serializeCookie('user_isAuth', true, 24));
-          res.setHeader('Set-Cookie', setCookie);
-        };
+        // const setCookie = [];
+        // const serializeCookie = (key, value, hrs) => {
+        //   if ('number' == typeof value) value = val.toString();
+        //   if ('object' == typeof value) value = JSON.stringify(val);
+        //   return cookie.serialize(key, value, { expires: new Date(Date.now() + 7200000), httpOnly: true });
+        // };
+        // const setMultipleCookies = (res) => {
+        //   setCookie.push(serializeCookie('user_id', result.id));
+        //   setCookie.push(serializeCookie('user_role', result.role));
+        //   setCookie.push(serializeCookie('user_image', result.image));
+        //   setCookie.push(serializeCookie('user_isAuth', true));
+        //   setCookie.push(serializeCookie('token', result.token));
+        //   res.setHeader('Set-Cookie', setCookie);
+        // };
         res.setHeader('Access-Control-Allow-Headers', '*');
         res.setHeader('Access-Control-Allow-Credentials', true);
         res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-        setMultipleCookies(res);
+        res.setHeader('Set-Cookie', [
+          cookie.serialize('token', result.token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict',
+            maxAge: 7200000,
+            path: '/'
+          }),
+          cookie.serialize('user_id', result.id, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict',
+            maxAge: 7200000,
+            path: '/'
+          }),
+          cookie.serialize('user_role', result.role, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict',
+            maxAge: 7200000,
+            path: '/'
+          }),
+          cookie.serialize('user_isAuth', true, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict',
+            maxAge: 7200000,
+            path: '/'
+          }),
+        ])
+        // setMultipleCookies(res);
         res.status(200);
         res.json({ data: result });
       })
