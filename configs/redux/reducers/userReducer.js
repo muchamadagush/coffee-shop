@@ -2,6 +2,8 @@ import { actionTypes } from "../constants/actionTypes";
 
 const initialState = {
   profile: {},
+  users: [],
+  user: {},
   error: null
 };
 const userReducer = (state = initialState, action) => {
@@ -15,12 +17,24 @@ const userReducer = (state = initialState, action) => {
         error: action.payload
       }
     case actionTypes.UPDATE_USER:
-      return{
+      return {
         profile: action.payload
+      }
+    case actionTypes.GET_USERS:
+      return {
+        users: action.payload
+      }
+    case actionTypes.GET_SELECTED_USER:
+      return {
+        user: action.payload
       }
     case actionTypes.GET_USER:
       return{
         profile: action.payload
+      }
+      case 'LOGOUT': 
+      return {
+        profile: {}
       }
       case 'CHANGE_VALUE':
         return {

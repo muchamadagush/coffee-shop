@@ -1,9 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import styled from 'styled-components';
-import Susu from '../../../public/food1.png';
+
 import Link from 'next/link';
+import { EditIcon } from '../../../public';
+import { Breakpoints } from '../../../utils';
 function index(props) {
+  if (props.role == 'admin') {
+    return (
+      <CardProduct>
+        <Link href={props.href}>
+          <a className="atom-card--link">
+            <div className="atom-card--image">
+              <img src={props.image} alt="product"></img>
+            </div>
+            <div className="card-info">
+              <p className="atom-card--name">{props.name}</p>
+              <p className="atom-card--price">{props.price}</p>
+            </div>
+          </a>
+        </Link>
+        <button className="action-edit" onClick={props.onClick}>
+          <img src={EditIcon.src} alt="edit icon"></img>
+        </button>
+      </CardProduct>
+    );
+  }
   return (
     <CardProduct>
       <Link href={props.href}>
@@ -27,6 +49,22 @@ const CardProduct = styled.div`
   box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
   border-radius: 30px;
   justify-content: center;
+  .action-edit {
+    cursor: pointer;
+    position: relative;
+    left: 85%;
+    ${Breakpoints.greaterThan('md')`
+    left: 80%;
+    `}
+
+    &:active {
+      transform: translateY(4px);
+    }
+    bottom: 10%;
+    background: unset;
+    outline: none;
+    border: none;
+  }
   p {
     text-align: center;
   }

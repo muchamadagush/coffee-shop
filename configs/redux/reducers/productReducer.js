@@ -11,9 +11,16 @@ const productReducer = (state = initialState, action) => {
     case actionTypes.ADD_CART:
       return {
         cart: [...state.cart, action.payload],
-        total: state.total + action.payload.data.price,
-        quantity: state.quantity + 1,
-        time: action.payload.data.time
+        total: state.total + action.payload.data.price * action.payload.amount,
+        quantity: state.quantity + action.payload.amount,
+        time: action.payload.data.time,
+      };
+    case actionTypes.EMPTY_CART:
+      return {
+        cart: [],
+        total: 0,
+        quantity: 0,
+        time: '',
       };
     default:
       return state;

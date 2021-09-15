@@ -10,9 +10,11 @@ import swal from 'sweetalert';
 import cookies from 'next-cookies';
 import backendApi from '../../configs/api/backendApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, deleteProduct } from '../../configs/redux/actions/productAction';
+import { addToCart } from '../../configs/redux/actions/productAction';
+import { addOrder } from '../../configs/redux/actions/orderAction';
 import { Breakpoints } from '../../utils/breakpoints';
-const ProductDetail = ({ product, role, token }) => {
+import { actionTypes } from '../../configs/redux/constants/actionTypes';
+const ProductDetail = ({ product, role, token, idUser }) => {
   const [size, setSize] = useState(null);
   const [totalItem, setTotalItem] = useState(1);
   const [time, setTime] = useState(null);
@@ -24,6 +26,7 @@ const ProductDetail = ({ product, role, token }) => {
   const sizeProduct = product.size.split(',');
   const deliveryProduct = product.delivery.split(',');
   const cart = useSelector((state) => state.product);
+  const order = useSelector(state => state.product)
   const dispatch = useDispatch();
   const handleArraySize = (e) => {
     setSize(e.target.value);
@@ -33,7 +36,7 @@ const ProductDetail = ({ product, role, token }) => {
   };
   const handleEdit = () => {
     if (role === 'admin') {
-      router.push('/edit-product/1');
+      router.push(`/edit-product/${product.id_product}`);
     }
   };
   const handleDelete = () => {
@@ -78,12 +81,17 @@ const ProductDetail = ({ product, role, token }) => {
     }
   };
   const handleCheckout = () => {
-    router.push('/payment');
+    dispatch(addOrder(order, idUser, token))
+    .then((res) => {
+      dispatch({ type: actionTypes.EMPTY_CART , payload: {} })
+      router.push(`/payment/${res}`)
+    })
+    .catch()
   };
   
   return (
     <div>
-      <Layout isAuth={true} active="home" title="Product Detail">
+      <Layout isAuth={true} active="product" title="Product Detail">
         <div className={Style.container}>
           <p className="f-poppins fs-20 fw-400 fc-black">
             Favorite {`&`} Promo {`>`} <span className={`fc-brown ${Style.productName}`}>{product.name_product}</span>
@@ -227,9 +235,10 @@ export const getServerSideProps = privateRoute(async (ctx) => {
     const id = ctx.params.id;
     const token = await cookies(ctx).token;
     const role = await cookies(ctx).user_role;
+    const idUser = await cookies(ctx).user_id;
     const { data } = await backendApi.get(`products/${id}`, {
       withCredentials: true,
-      ers: {
+      headers: {
         Cookie: 'token=' + token,
       },
     });
@@ -240,6 +249,7 @@ export const getServerSideProps = privateRoute(async (ctx) => {
         product: data.data[0],
         role: role,
         token: token,
+        idUser: idUser,
       },
     };
   } catch (error) {

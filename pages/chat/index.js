@@ -1,32 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrownCard, CardWrapper } from "../../components/atoms";
 import InputChat from "../../components/base/InputChat";
 import InputSearch from "../../components/base/InputSearch";
 import Layout from "../../components/layout";
 import { privateRoute } from "../../configs/routes/privateRoute";
 import styles from "./chat.module.css";
+import io from "socket.io-client";
+import cookies from "next-cookies"
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../../configs/redux/actions/userAction";
 
-const Chat = () => {
-  const [admin, setAdmin] = useState([
-    {
-      id: 1,
-      name: "Jason",
-      title: "Hey, I’m Jason, Let’s talk and share what’s on your thoughts!",
-      avatar: "/avatar1.svg",
-    },
-    {
-      id: 2,
-      name: "Web",
-      title: "Hey, I’m Jason, Let’s talk and share what’s on your thoughts!",
-      avatar: "/avatar2.svg",
-    },
-    {
-      id: 3,
-      name: "Token",
-      title: "Hey, I’m Jason, Let’s talk and share what’s on your thoughts!",
-      avatar: "/avatar3.svg",
-    },
-  ]);
+const Chat = ({ token }) => {
+  const dispatch = useDispatch()
+  const [socket, setSocket] = useState(null)
+  const [selected, setSelected] = useState('')
+
+  const setupSocket = () => {
+    const resultSocket = io("ws://localhost:4000", {
+      query: {
+        token: token,
+      },
+    });
+    setSocket(resultSocket);
+  };
+
+  useEffect(() => {
+    dispatch(getUsers())
+
+    if (token && !socket) {
+      setupSocket();
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    if (selected) {
+      dispatch(getUsers(selected.id))
+    }
+  }, [selected]);
+
+  const {users, user} = useSelector(state => state.user)
+
   return (
     <>
       <Layout>
@@ -38,16 +51,16 @@ const Chat = () => {
                   <div className={styles.listCard}>
                     <InputSearch />
                     <p className={`f-poppins ${styles.titleListAdmin}`}>Choose a staff you want to talk with</p>
-                    {admin && admin.map((item) => (
-                      <div className={styles.listAdmin}>
+                    {users && users.map((item) => (
+                      <div className={styles.listAdmin} key={item.id} onClick={() => setSelected(() => item)}>
                         <img
                           src={item.avatar}
                           alt="profile"
                           className={styles.imgAdmin}
                         />
                         <div className={styles.titleAdmin}>
-                          <h3 className={`f-poppins ${styles.nameAdmin}`}>{item.name}</h3>
-                          <p className={`f-poppins ${styles.descAdmin}`}>{item.title}</p>
+                          <h3 className={`f-poppins ${styles.nameAdmin}`}>{item.first_name}</h3>
+                          <p className={`f-poppins ${styles.descAdmin}`}>{item.status}</p>
                         </div>
                       </div>
                     ))}
@@ -92,7 +105,9 @@ const Chat = () => {
 export default Chat;
 
 export const getServerSideProps = privateRoute(async (ctx) => {
+  let cookie = cookies(ctx).token
+
   return {
-    props: {},
-  };
-});
+    props: {token: cookie}, // will be passed to the page component as props
+  }
+})

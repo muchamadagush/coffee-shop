@@ -2,9 +2,9 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types';
 
-const CardWrapper = ({className, children}) => {
+const CardWrapper = ({className, children, onClick}) => {
     return (
-        <Styles className={className}>
+        <Styles className={className} onClick={onClick}>
             {children}
         </Styles>
     )
@@ -18,4 +18,5 @@ export default CardWrapper
 const Styles = styled.div`
   border-radius: 20px;
   background: #ffffff;
+  cursor: pointer;
 `;

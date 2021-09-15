@@ -31,7 +31,14 @@ display: flex;
     .image-wrapper {
     width: 82px;
     height: 90px;   
-    margin-right: 1rem;  
+    margin-right: 1rem;
+    img {
+        object-fit: cover;
+    }  
+    @media screen and (max-width: 992px) {
+            width: 70px;
+            height: 80px;
+        }  
         img {
         width: 100%;
         height: 100%;
@@ -41,17 +48,33 @@ display: flex;
     .product-item{
         .productname{
             margin: 0;
+            @media screen and (max-width: 992px) {
+                font-size: 16px;
+               
+            } 
         }
         .qty{
             margin: 0;
+            @media screen and (max-width: 992px) {
+                font-size: 16px;
+               
+            } 
         }
         .size{
             margin: 0;
+            @media screen and (max-width: 992px) {
+                font-size: 16px;
+               
+            } 
         }
     }
     .price{
         margin-left: auto;
         margin-top: 20px;
+        @media screen and (max-width: 992px) {
+                font-size: 16px;
+               
+            } 
     }
 }
 

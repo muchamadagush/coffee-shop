@@ -1,4 +1,4 @@
-
+/* eslint-disable @next/next/no-img-element */
 import Head from 'next/head';
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -17,14 +17,13 @@ import {
   NavIcon,
   PersonIcon,
 } from '../public';
-
-
+import axios from '../configs/api/backendApi';
 import Layout from '../components/layout';
 import { Breakpoints } from '../utils';
 import { CardProduct, Carousel } from '../components/molecules';
-export default function Home() {
+export default function Home({ initialData }) {
   return (
-    <Layout>
+    <Layout title="Coffee Shop" active="home">
       <Head>
         <link
           rel="stylesheet"
@@ -43,8 +42,8 @@ export default function Home() {
           <Image src={HeroHome} layout="fill" objectFit="cover" quality={100} alt="Background" />
           <div className="hero-content">
             <div className="hero-content--info">
-              <p className="fs-50 fw-700 fc-white">Start Your Day with Coffee and Good Meals</p>
-              <p className="fs-20 fw-700 fc-white">
+              <p className="fs-50 heading fw-700 fc-white">Start Your Day with Coffee and Good Meals</p>
+              <p className="fs-20 subheading fw-700 fc-white">
                 We provide high quality beans, good taste, and healthy meals made by love just for you. Start your day
                 with us for a bigger smile!
               </p>
@@ -138,9 +137,18 @@ export default function Home() {
             </p>
           </div>
           <div className="wrapper">
-            {/* <CardProduct></CardProduct>
-            <CardProduct></CardProduct>
-            <CardProduct></CardProduct> */}
+            {initialData.length &&
+              initialData.map((item) => {
+                return (
+                  <CardProduct
+                    href={`product-detail/${item.id_product}`}
+                    key={item.id_product}
+                    image={item.image_product}
+                    name={item.name_product}
+                    price={item.price}
+                  />
+                );
+              })}
           </div>
         </FavoriteProduct>
         <div className="background">
@@ -192,7 +200,7 @@ export default function Home() {
             <div className="left">
               <div>
                 <p className="fs-35 fw-500 fc-black">Check our promo today!</p>
-                <p className="fs-16 fw-400 fc-grey">Let's see the deals and pick yours!</p>
+                <p className="fs-16 fw-400 fc-grey">Let{`'`}s see the deals and pick yours!</p>
               </div>
             </div>
             <div className="right">
@@ -233,23 +241,35 @@ const HeroHomeContent = styled.div`
     top: 20%;
     left: 10%;
     padding-right: 10%;
-
+    ${Breakpoints.lessThan('md')`
+    left: 5%;
+    padding-right: 5%;
+    `}
     max-width: calc(570px + 10%);
     &--info {
+      ${Breakpoints.lessThan('md')`
+      .heading{
+        font-size: 32px;
+      }
+      .subheading{
+        font-size: 20px;
+      }
+      `}
+
       p {
         padding: 0;
         margin: 0;
       }
       margin-bottom: 4rem;
     }
-      .button {
-        width: 50%;
-        height: 60px;
-        font-weight: 700;
-        font-size: 16px;
-        color: #6a4029;
-      }
+    .button {
+      width: 50%;
+      height: 60px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #6a4029;
     }
+  }
 `;
 
 const OurStore = styled.div`
@@ -264,7 +284,10 @@ const OurStore = styled.div`
     display: flex;
     align-items: center;
     ${Breakpoints.lessThan('sm')`
-    flex-direction: column;`}
+    flex-direction: column;
+    margin-left: 10vw;
+    align-items:flex-start;
+    `}
     background: #fff;
     max-width: 1140px;
     border-radius: 20px;
@@ -325,7 +348,6 @@ const OurStore = styled.div`
     }
   }
 `;
-
 
 const StyleTeamWork = styled.div`
   display: flex;
@@ -484,3 +506,11 @@ const FavoriteProduct = styled.div`
   `}
   }
 `;
+
+export async function getServerSideProps() {
+  const { data } = await axios(`products/?searchBy=products.name_product&npp=3&page=1&field=id_product&sort=desc`);
+  const initialData = data.data.result;
+  return {
+    props: { initialData }, // will be passed to the page component as props
+  };
+}

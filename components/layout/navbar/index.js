@@ -3,8 +3,12 @@ import { Button } from '../../atoms';
 import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/dist/client/router';
+// import Router from 'next/router'
 const NavBar = (props) => {
   const [drop, setDrop] = useState(false);
+  const [search, setSearch] = useState('');
+  const router = useRouter();
   const handleDropDown = () => {
     if (drop === false) {
       setDrop(true);
@@ -12,9 +16,19 @@ const NavBar = (props) => {
       setDrop(false);
     }
   };
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+  const handleSearch = () => {
+    if (search !== '') {
+      router.push(`/search/${search}`);
+    }
+  };
+
+  console.log(search);
   return (
     <div className={Style.container}>
-      <Link href="/home">
+      <Link href="/">
         <a>
           <div className={Style.title}>
             <img src="/logoCoffeShop.svg" alt="logoCoffee" />
@@ -28,7 +42,7 @@ const NavBar = (props) => {
         <hr />
       </button>
       <div className={`${Style.content} ${drop ? Style.hidden : Style.visible}`}>
-        <Link href="/home">
+        <Link href="/">
           <a>
             <p className={`fs-16 ${props.active === 'home' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>Home</p>
           </a>
@@ -51,14 +65,23 @@ const NavBar = (props) => {
       </div>
       {props.isAuth ? (
         <div className={`${Style.profileContainer} ${drop ? Style.hidden : Style.visible}`}>
-          <form className={Style.inputContainer}>
+          <div className={Style.inputContainer}>
             <button>
-              <img src="/search.svg" alt="seach button" className={Style.searchButton} />
+              <img src="/search.svg" alt="seach button" className={Style.searchButton} onClick={handleSearch} />
             </button>
-            <input type="text" placeholder="Search" className={`fs-15 fw-400 ${Style.input}`} />
-          </form>
+            <input type="text" placeholder="Search" className={`fs-15 fw-400 ${Style.input}`} onChange={handleChange} />
+          </div>
           <img src="/chat.svg" alt="msg" />
-          <img src="/avatar1.svg" alt="profile" className={Style.profile} />
+          <Link href="/ProfileUser">
+            <a>
+              <div className={Style.profile}>
+                <img
+                  src={props.userPrev ? props.userPrev : props.user.image ? props.user.image : '/avatar1.svg'}
+                  alt="profile"
+                />
+              </div>
+            </a>
+          </Link>
         </div>
       ) : (
         <div className={`${Style.profileContainer} ${drop ? Style.hidden : Style.visible}`}>
