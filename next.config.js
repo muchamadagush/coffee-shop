@@ -5,27 +5,26 @@ module.exports = {
     NEXT_PUBLIC_WEB_URL: process.env.NEXT_PUBLIC_WEB_URL,
   },
   images: {
-    domains: ['http://localhost:4000', 'http://localhost:3000'],
+    domains: [process.env.NEXT_PUBLIC_WEB_URL, process.env.NEXT_PUBLIC_BASE_URL],
   },
   async rewrites() {
     return [
       {
-        source: "/login",
-        destination: "/auth/login",
+        source: '/login',
+        destination: '/auth/login',
       },
       {
-        source: "/register",
-        destination: "/auth/register",
+        source: '/register',
+        destination: '/auth/register',
       },
       {
-        source: "/forgot-password",
-        destination: "/auth/forgot-password",
+        source: '/forgot-password',
+        destination: '/auth/forgot-password',
       },
       {
-        source: "/reset-password/:token",
-        destination: "/auth/reset-password/:token",
-        
+        source: '/reset-password/:token',
+        destination: '/auth/reset-password/:token',
       },
     ];
   },
-}
+};
