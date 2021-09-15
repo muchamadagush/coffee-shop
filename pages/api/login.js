@@ -11,22 +11,8 @@ const login = (req, res) => {
     backendApi
       .post('/login', data)
       .then((response) => {
-        console.log(response, ' respone login');
+
         const result = response.data.user;
-        // const setCookie = [];
-        // const serializeCookie = (key, value, hrs) => {
-        //   if ('number' == typeof value) value = val.toString();
-        //   if ('object' == typeof value) value = JSON.stringify(val);
-        //   return cookie.serialize(key, value, { expires: new Date(Date.now() + 7200000), httpOnly: true });
-        // };
-        // const setMultipleCookies = (res) => {
-        //   setCookie.push(serializeCookie('user_id', result.id));
-        //   setCookie.push(serializeCookie('user_role', result.role));
-        //   setCookie.push(serializeCookie('user_image', result.image));
-        //   setCookie.push(serializeCookie('user_isAuth', true));
-        //   setCookie.push(serializeCookie('token', result.token));
-        //   res.setHeader('Set-Cookie', setCookie);
-        // };
         res.setHeader('Access-Control-Allow-Headers', '*');
         res.setHeader('Access-Control-Allow-Credentials', true);
         res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -60,7 +46,7 @@ const login = (req, res) => {
             path: '/'
           }),
         ])
-        // setMultipleCookies(res);
+
         res.status(200);
         res.json({ data: result });
       })

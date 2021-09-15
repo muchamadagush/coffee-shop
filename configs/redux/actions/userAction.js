@@ -23,7 +23,7 @@ export const login = (data, router) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
-      const resultLogin = res?.data?.user;
+      const resultLogin = res?.data?.data;
       console.log(resultLogin);
       dispatch({ type: actionTypes.USER_LOGIN, payload: resultLogin });
       Swal('Success!', 'Login success', 'success');
