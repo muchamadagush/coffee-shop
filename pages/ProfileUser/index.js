@@ -9,9 +9,10 @@ import { privateRoute } from '../../configs/routes/privateRoute';
 import { getProfile, updateuser } from '../../configs/redux/actions/userAction';
 import axios from 'axios';
 import swal from 'sweetalert';
+import cookies from 'next-cookies';
 import router from 'next/router';
 
-function ProfileUser() {
+function ProfileUser({ TokenCookie }) {
   const dispatch = useDispatch();
   const [imagePrev, setImagePrev] = useState(null);
   const [errImage, setErrImage] = useState(false);
@@ -22,7 +23,9 @@ function ProfileUser() {
   console.log(profile);
 
   useEffect(() => {
-    dispatch(getProfile(profile.token, profile.id));
+    if (TokenCookie) {
+      dispatch(getProfile(profile.token, profile.id));
+    }
   }, [reset, dispatch, profile.token, profile.id]);
 
   const handleChange = (e) => {
@@ -487,7 +490,8 @@ const Styles = styled.div`
 `;
 
 export const getServerSideProps = privateRoute(async (ctx) => {
+  const TokenCookie = await cookies(ctx).token;
   return {
-    props: {}, // will be passed to the page component as props
+    props: { TokenCookie }, // will be passed to the page component as props
   };
 });
