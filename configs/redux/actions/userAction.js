@@ -67,12 +67,12 @@ export const updateuser = (data, id, token) => (dispatch) => {
     });
 };
 export const getProfile = (token, id) => (dispatch) => {
-  console.log(token)
+  console.log(token);
   backendApi
     .get(`users/${id}`, {
       withCredentials: true,
       headers: {
-        Cookie: 'token=' + token,
+        Cookie: token,
       },
     })
     .then((res) => {
