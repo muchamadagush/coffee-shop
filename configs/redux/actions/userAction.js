@@ -69,11 +69,14 @@ export const updateuser = (data, id, token) => (dispatch) => {
 export const getProfile = (token, id) => (dispatch) => {
   console.log(token);
   const axiosConfig = {
+    crossDomain: true,
+    withCredentials: true,
     headers: {
-      'content-Type': 'application/json',
-      Accept: '/',
-      'Cache-Control': 'no-cache',
-      Cookie: document.cookie,
+      Accept: 'application/json,/',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Cookie',
+      Cookie: token,
     },
   };
   backendApi
