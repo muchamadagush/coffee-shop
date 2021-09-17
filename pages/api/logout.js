@@ -1,5 +1,5 @@
 import backendApi from '../../configs/api/backendApi';
-import cookie from 'cookie';
+import cookie from 'next-cookie';
 const logout = (req, res) => {
   if (req.method === 'GET') {
     backendApi
@@ -13,28 +13,28 @@ const logout = (req, res) => {
             // httpOnly: true,
             // secure: true,
             // sameSite: 'strict',
-            maxAge="Thu, 01 Jan 1970 00:00:01 GMT",
+            maxAge: 0,
             path: '/',
           }),
           cookie.serialize('user_id', '', {
             // httpOnly: true,
             // secure: true,
             // sameSite: 'strict',
-            maxAge="Thu, 01 Jan 1970 00:00:01 GMT",
+            maxAge: 0,
             path: '/',
           }),
           cookie.serialize('user_role', '', {
             // httpOnly: true,
             // secure: true,
             // sameSite: 'strict',
-            maxAge="Thu, 01 Jan 1970 00:00:01 GMT",
+            maxAge: 0,
             path: '/',
           }),
           cookie.serialize('user_isAuth', '', {
             // httpOnly: true,
             // secure: true,
             // sameSite: 'strict',
-            maxAge="Thu, 01 Jan 1970 00:00:01 GMT",
+            maxAge: 0,
             path: '/',
           }),
         ]);
