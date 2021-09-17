@@ -73,7 +73,7 @@ export const getProfile = (token, id) => (dispatch) => {
       'content-Type': 'application/json',
       Accept: '/',
       'Cache-Control': 'no-cache',
-      Cookie: token,
+      Cookie: document.cookie,
     },
     credentials: 'same-origin',
   };
