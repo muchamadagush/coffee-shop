@@ -75,7 +75,7 @@ export const getProfile = (token, id) => (dispatch) => {
   //       Cookie: token,
   //     },
   //   })
-  axios({ method: 'get', url: api + `${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`, headers: { Cookie: token } })
+  return axios({ method: 'get', url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`, headers: { Cookie: token } })
     .then((res) => {
       const Result = res.data.data[0];
       console.log(Result);
