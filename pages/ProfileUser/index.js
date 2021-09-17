@@ -19,7 +19,7 @@ function ProfileUser({ tokenAccess }) {
   const [errImageType, setErrImageType] = useState(false);
   const profile = useSelector((state) => state.user.profile);
   const [reset, setReset] = useState(false);
-
+  console.log(tokenAccess)
   useEffect(() => {
     if (tokenAccess) {
       dispatch(getProfile(tokenAccess, profile.id));
