@@ -68,14 +68,19 @@ export const updateuser = (data, id, token) => (dispatch) => {
 };
 export const getProfile = (token, id) => (dispatch) => {
   console.log(token);
-  // backendApi
-  //   .get(`users/${id}`, {
-  //     withCredentials: false,
-  //     headers: {
-  //       Cookie: token,
-  //     },
-  //   })
-  return axios({ method: 'get', url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`, headers: { Cookie: token } })
+  const axiosConfig = {
+    headers: {
+      'content-Type': 'application/json',
+      Accept: '/',
+      'Cache-Control': 'no-cache',
+      Cookie: token,
+    },
+    credentials: 'same-origin',
+  };
+  axios.defaults.withCredentials = true;
+  backendApi
+    .get(`users/${id}`, axiosConfig)
+    // return axios({ method: 'get', url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`, headers: { Cookie: token } })
     .then((res) => {
       const Result = res.data.data[0];
       console.log(Result);
