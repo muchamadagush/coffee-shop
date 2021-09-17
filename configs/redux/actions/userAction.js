@@ -75,9 +75,7 @@ export const getProfile = (token, id) => (dispatch) => {
       'Cache-Control': 'no-cache',
       Cookie: document.cookie,
     },
-    credentials: 'same-origin',
   };
-  axios.defaults.withCredentials = true;
   backendApi
     .get(`users/${id}`, axiosConfig)
     // return axios({ method: 'get', url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`, headers: { Cookie: token } })
