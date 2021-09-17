@@ -68,7 +68,7 @@ function Index({ initialData }) {
                 {data?.map((item) => {
                   return (
                     <CardProduct
-                      href={`/product-detail/${item.id_product}`}
+                      href={`product-detail/${item.id_product}`}
                       key={item.id_product}
                       image={item.image_product}
                       name={item.name_product}
