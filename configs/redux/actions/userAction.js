@@ -68,13 +68,14 @@ export const updateuser = (data, id, token) => (dispatch) => {
 };
 export const getProfile = (token, id) => (dispatch) => {
   console.log(token);
-  backendApi
-    .get(`users/${id}`, {
-      withCredentials: false,
-      headers: {
-        Cookie: token,
-      },
-    })
+  // backendApi
+  //   .get(`users/${id}`, {
+  //     withCredentials: false,
+  //     headers: {
+  //       Cookie: token,
+  //     },
+  //   })
+  axios({ method: 'get', url: api + `${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`, headers: { Cookie: token } })
     .then((res) => {
       const Result = res.data.data[0];
       console.log(Result);
