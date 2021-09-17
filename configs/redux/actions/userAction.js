@@ -72,7 +72,7 @@ export const getProfile = (token, id) => (dispatch) => {
     .get(`users/${id}`, {
       withCredentials: true,
       headers: {
-        Cookie: 'token=' + token,
+        cookie: 'token=' + token,
       },
     })
     .then((res) => {
