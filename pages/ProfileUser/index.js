@@ -21,7 +21,7 @@ function ProfileUser({ tokenAccess }) {
   const [reset, setReset] = useState(false);
   console.log(tokenAccess)
   useEffect(() => {
-    if (tokenAccess) {
+    if(tokenAccess && window) {
       dispatch(getProfile(tokenAccess, profile.id));
     }
   }, [reset]);
