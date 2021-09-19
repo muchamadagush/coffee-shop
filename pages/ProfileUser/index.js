@@ -19,7 +19,7 @@ function ProfileUser({ tokenAccess }) {
   const [errImageType, setErrImageType] = useState(false);
   const profile = useSelector((state) => state.user.profile);
   const [reset, setReset] = useState(false);
-  console.log(tokenAccess)
+  console.log(tokenAccess);
   useEffect(() => {
     if(tokenAccess && window) {
       dispatch(getProfile(tokenAccess, profile.id));
@@ -488,7 +488,7 @@ const Styles = styled.div`
 
 export const getServerSideProps = privateRoute(async (ctx) => {
   try {
-    const tokenAccess = await cookies(ctx).token;
+    const tokenAccess = await ctx.req.headers.cookie;
     return {
       props: { tokenAccess }, // will be passed to the page component as props
     };

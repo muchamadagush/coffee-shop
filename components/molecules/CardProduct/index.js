@@ -9,7 +9,7 @@ function index(props) {
   if (props.role == 'admin') {
     return (
       <CardProduct>
-        <Link href={props.href}>
+        <Link href={props.href} replace>
           <a className="atom-card--link">
             <div className="atom-card--image">
               <img src={props.image} alt="product"></img>
@@ -28,7 +28,7 @@ function index(props) {
   }
   return (
     <CardProduct>
-      <Link href={props.href}>
+      <Link href={props.href} replace>
         <a className="atom-card--link">
           <div className="atom-card--image">
             <img src={props.image} alt="product"></img>

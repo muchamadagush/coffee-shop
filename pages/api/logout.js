@@ -1,5 +1,5 @@
 import backendApi from '../../configs/api/backendApi';
-import cookie from 'next-cookie';
+import cookie from 'cookie';
 const logout = (req, res) => {
   if (req.method === 'GET') {
     backendApi

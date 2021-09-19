@@ -199,4 +199,4 @@ export const getServerSideProps = privateRoute(async (ctx) => {
   return {
     props: { initialData }, // will be passed to the page component as props
   };
-})
+});

@@ -67,14 +67,21 @@ export const updateuser = (data, id, token) => (dispatch) => {
     });
 };
 export const getProfile = (token, id) => (dispatch) => {
-  console.log(token)
+  console.log(token);
+  const axiosConfig = {
+    crossDomain: true,
+    withCredentials: true,
+    headers: {
+      Accept: 'application/json,/',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Cookie',
+      Cookie: token,
+    },
+  };
   backendApi
-    .get(`users/${id}`, {
-      withCredentials: true,
-      headers: {
-        Cookie: 'token=' + token,
-      },
-    })
+    .get(`users/${id}`, axiosConfig)
+    // return axios({ method: 'get', url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`, headers: { Cookie: token } })
     .then((res) => {
       const Result = res.data.data[0];
       console.log(Result);
