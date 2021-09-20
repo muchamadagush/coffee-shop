@@ -69,8 +69,8 @@ export const updateuser = (data, id, token) => (dispatch) => {
 export const getProfile = (token, id) => (dispatch) => {
   console.log(token);
   const axiosConfig = {
-    crossDomain: true,
-    withCredentials: true,
+    // crossDomain: true,
+    // withCredentials: true,
     headers: {
       Accept: 'application/json,/',
       'Content-Type': 'application/json',
