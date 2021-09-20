@@ -19,7 +19,7 @@ export const register = (data, router) => (dispatch) => {
 
 export const login = (data, router) => (dispatch) => {
   backendApi
-    .get("login",data, {
+    .post("login",data, {
       withCredentials: true,
     })
     .then((res) => {
