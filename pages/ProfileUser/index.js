@@ -59,7 +59,7 @@ function ProfileUser({ tokenAccess }) {
   };
   const handleLogout = () => {
     backendApi
-      .get("/logout", data, {
+      .get("logout", data, {
         withCredentials: true,
       })
       .then((res) => {

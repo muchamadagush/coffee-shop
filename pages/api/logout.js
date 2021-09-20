@@ -3,7 +3,7 @@ import cookie from 'cookie';
 const logout = (req, res) => {
   if (req.method === 'GET') {
     backendApi
-      .get('/logout')
+      .get('logout')
       .then(() => {
         res.setHeader('Access-Control-Allow-Headers', '*');
         res.setHeader('Access-Control-Allow-Credentials', true);

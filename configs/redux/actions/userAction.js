@@ -6,7 +6,7 @@ import axios from 'axios';
 export const register = (data, router) => (dispatch) => {
   console.log(data);
   backendApi
-    .post('/register', data)
+    .post('register', data)
     .then((res) => {
       // console.log(res);
       Swal('Register success!', 'Please check your email for verify', 'success');
@@ -19,7 +19,7 @@ export const register = (data, router) => (dispatch) => {
 
 export const login = (data, router) => (dispatch) => {
   backendApi
-    .get("/login",data, {
+    .get("login",data, {
       withCredentials: true,
     })
     .then((res) => {
@@ -53,7 +53,7 @@ export const updateuser = (data, id, token) => (dispatch) => {
   // console.log(data.image);
   console.log(data);
   backendApi
-    .put(`/users/${id}`, formData, {
+    .put(`users/${id}`, formData, {
       withCredentials: true,
       headers: {
         Cookie: 'token=' + token,
@@ -102,7 +102,7 @@ export const getProfile = (token, id) => (dispatch) => {
 
 export const getUsers = () => (dispatch) => {
   backendApi
-    .get('/users', {
+    .get('users', {
       withCredentials: true,
     })
     .then((res) => {
@@ -116,7 +116,7 @@ export const getUsers = () => (dispatch) => {
 
 export const getUser = (id) => (dispatch) => {
   backendApi
-    .get(`/users/${id}`, {
+    .get(`users/${id}`, {
       withCredentials: true,
     })
     .then((res) => {
@@ -130,7 +130,7 @@ export const getUser = (id) => (dispatch) => {
 
 export const forgotPasswordUser = (data, router) => (dispatch) => {
   backendApi
-    .post(`/forgotpassword`, data)
+    .post(`forgotpassword`, data)
     .then((res) => {
       const resultData = res.data.data;
       console.log(resultData);
@@ -145,7 +145,7 @@ export const forgotPasswordUser = (data, router) => (dispatch) => {
 export const resetPasswordUser = (data, token, history) => (dispatch) => {
   const newPassword = { newPassword: data };
   backendApi
-    .post(`/resetPassword/${token}`, newPassword)
+    .post(`resetPassword/${token}`, newPassword)
     .then((res) => {
       const resultData = res.data.data;
       console.log(resultData);
