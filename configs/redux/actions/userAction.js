@@ -18,21 +18,24 @@ export const register = (data, router) => (dispatch) => {
 };
 
 export const login = (data, router) => (dispatch) => {
-  axios
-    .post(`${process.env.NEXT_PUBLIC_WEB_URL}/api/login`, data, {
+  backendApi
+    .get("/login",data, {
       withCredentials: true,
     })
     .then((res) => {
       const resultLogin = res?.data?.data;
       console.log(resultLogin);
       dispatch({ type: actionTypes.USER_LOGIN, payload: resultLogin });
-      Swal('Success!', 'Login success', 'success');
-      router.push('/product');
+      Swal("Success!", "Login success", "success");
+      router.push("/product");
     })
     .catch((error) => {
       console.log(error);
-      dispatch({ type: actionTypes.EROR_LOGIN, payload: error?.response?.data?.message });
-      Swal('Opps...', error?.response?.data?.message || `Login gagal`, 'error');
+      dispatch({
+        type: actionTypes.EROR_LOGIN,
+        payload: error?.response?.data?.message,
+      });
+      Swal("Opps...", error?.response?.data?.message || `Login gagal`, "error");
     });
 };
 
@@ -68,19 +71,24 @@ export const updateuser = (data, id, token) => (dispatch) => {
 };
 export const getProfile = (token, id) => (dispatch) => {
   console.log(token);
-  const axiosConfig = {
-    // crossDomain: true,
-    // withCredentials: true,
-    headers: {
-      Accept: 'application/json,/',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Cookie',
-      Cookie: token,
-    },
-  };
+  // const axiosConfig = {
+  //   // crossDomain: true,
+  //   // withCredentials: true,
+  //   headers: {
+  //     Accept: 'application/json,/',
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': '*',
+  //     'Access-Control-Allow-Headers': 'Cookie',
+  //     Cookie: token,
+  //   },
+  // };
   backendApi
-    .get(`users/${id}`, axiosConfig)
+    .get(`users/${id}`,{
+      withCredentials: true,
+      headers: {
+        Cookie: 'token=' + token,
+      },
+    })
     // return axios({ method: 'get', url: `${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`, headers: { Cookie: token } })
     .then((res) => {
       const Result = res.data.data[0];
