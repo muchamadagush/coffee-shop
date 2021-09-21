@@ -117,7 +117,7 @@ function ProfileUser({ tokenAccess }) {
                       <Button className="btn cancel" type="button" color="shine">
                         Cancel
                       </Button>
-                      <Button onClick={() => handleLogout} className="btn log-out" type="button" color="white-choco">
+                      <Button onClick={() => handleLogout()} className="btn log-out" type="button" color="white-choco">
                         Log Out
                       </Button>
                     </div>
