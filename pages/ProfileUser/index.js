@@ -22,7 +22,7 @@ function ProfileUser({ tokenAccess }) {
   const [reset, setReset] = useState(false);
   console.log(tokenAccess);
   useEffect(() => {
-    if(tokenAccess && window) {
+    if (tokenAccess) {
       dispatch(getProfile(tokenAccess, profile.id));
     }
   }, [reset]);
