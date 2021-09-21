@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 import { useRouter } from 'next/router';
 
 export const getOrdersHistoryAdmin = () => (dispatch) => {
-  backendApi.get('/orders', {
+  backendApi.get('orders', {
     withCredentials: true
   })
   .then((res) => {
@@ -17,7 +17,7 @@ export const getOrdersHistoryAdmin = () => (dispatch) => {
 }
 
 export const getOrdersHistoryUser = (userId) => (dispatch) => {
-  backendApi.get(`/orders/user/${userId}`, {
+  backendApi.get(`orders/user/${userId}`, {
     withCredentials: true
   })
   .then((res) => {
@@ -31,11 +31,11 @@ export const getOrdersHistoryUser = (userId) => (dispatch) => {
 }
 
 export const deleteHistoryOrders = (data, userId) => (dispatch) => {
-  backendApi.patch(`/orders`, data, {
+  backendApi.patch(`orders`, data, {
     withCredentials: true
   })
   .then((res) => {
-    backendApi.get(`/orders/user/${userId}`, {
+    backendApi.get(`orders/user/${userId}`, {
       withCredentials: true
     })
     .then((res) => {

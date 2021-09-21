@@ -9,7 +9,7 @@ const login = (req, res) => {
       password,
     };
     backendApi
-      .post('/login', data)
+      .post('login', data)
       .then((response) => {
         const result = response.data.user;
         res.setHeader('Access-Control-Allow-Headers', '*');

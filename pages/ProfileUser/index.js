@@ -11,6 +11,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import cookies from 'next-cookies';
 import router from 'next/router';
+import backendApi from '../../configs/api/backendApi';
 
 function ProfileUser({ tokenAccess }) {
   const dispatch = useDispatch();
@@ -57,14 +58,16 @@ function ProfileUser({ tokenAccess }) {
     dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.files[0] } });
   };
   const handleLogout = () => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_WEB_URL}/api/logout`, { withCredentials: true })
-      .then((res) => {
-        dispatch({ type: 'LOGOUT' });
-        swal('Success', "you're logged out ! see ya", 'success');
-        router.push('/login');
+    backendApi
+      .get("logout", data, {
+        withCredentials: true,
       })
-      .catch((err) => console.log(err, 'Err logout'));
+      .then((res) => {
+        dispatch({ type: "LOGOUT" });
+        swal("Success", "you're logged out ! see ya", "success");
+        router.push("/login");
+      })
+      .catch((err) => console.log(err, "Err logout"));
   };
   return (
     <Styles>
