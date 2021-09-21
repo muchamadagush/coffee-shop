@@ -58,6 +58,7 @@ function ProfileUser({ tokenAccess }) {
     dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.files[0] } });
   };
   const handleLogout = () => {
+    console.log("handle logout")
     backendApi
       .get("logout", data, {
         withCredentials: true,
