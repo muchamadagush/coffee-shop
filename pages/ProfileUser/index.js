@@ -60,9 +60,7 @@ function ProfileUser({ tokenAccess }) {
   const handleLogout = () => {
     console.log("handle logout")
     backendApi
-      .get("logout", data, {
-        withCredentials: true,
-      })
+      .get("logout")
       .then((res) => {
         dispatch({ type: "LOGOUT" });
         swal("Success", "you're logged out ! see ya", "success");
