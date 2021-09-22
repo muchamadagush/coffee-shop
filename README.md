@@ -1,17 +1,28 @@
-<h1 align='center'>Next JS - Coffe Shop</h1>
+<p align="center">
+  <image src="/public/logoCoffeShop.svg" width=100/>
+  <h1 align='center'>Next JS - Coffe Shop</h1>
+</p>
   <p align="center">
-<!--     <a href="link_deploy">View Demo</a> -->
+    <a href="https://coffeeshop-sks.muchamadagushermawan.online/">View Demo</a>
     ·
     <a href="https://github.com/19damah23/coffee-shop/issues">Report Bug</a>
     ·
     <a href="https://github.com/19damah23/coffee-shop/pulls">Request Feature</a>
   </p>
 
-![Image Banner](/public/team/home-page.jpg)
-
 ## About The Project
 
 Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans
+
+## Screenshots
+<p align="center">
+  <image src='https://i.imgur.com/FllNlME.png' width=400px/>
+  <image src='https://i.imgur.com/ZdvXeIF.png' width=400px/>
+  <image src='https://i.imgur.com/mRjuuGA.png' width=400px/>
+  <image src='https://i.imgur.com/ejtzKaP.png' width=400px/>
+  <image src='https://i.imgur.com/U3xfU4X.png' width=400px/>
+  <image src='https://i.imgur.com/wbkxNw5.png' width=400px/>
+</p>
 
 ## Built With
 

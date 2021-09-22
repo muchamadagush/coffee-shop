@@ -58,10 +58,12 @@ function ProfileUser({ tokenAccess }) {
     dispatch({ type: 'CHANGE_VALUE', payload: { [e.target.name]: e.target.files[0] } });
   };
   const handleLogout = () => {
-    console.log("handle logout")
     backendApi
-      .get("logout")
+      .get("logout", {
+      withCredentials: true
+    })
       .then((res) => {
+        console.log(res)
         dispatch({ type: "LOGOUT" });
         swal("Success", "you're logged out ! see ya", "success");
         router.push("/login");
