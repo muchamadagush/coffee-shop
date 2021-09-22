@@ -10,19 +10,29 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.USER_LOGIN:
       return {
+        ...state,
         profile: action.payload
       }
     case actionTypes.EROR_LOGIN:
       return {
+        ...state,
         error: action.payload
       }
     case actionTypes.UPDATE_USER:
       return {
-        profile: action.payload
+        ...state,
+        profile: {
+          ...state.profile,
+          ...action.payload
+        }
       }
     case actionTypes.GET_USERS:
       return {
-        users: action.payload
+        ...state,
+        users: {
+          ...users.profile,
+          ...action.payload
+        }
       }
     case actionTypes.GET_SELECTED_USER:
       return {
