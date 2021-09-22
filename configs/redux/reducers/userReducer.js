@@ -40,7 +40,11 @@ const userReducer = (state = initialState, action) => {
       }
     case actionTypes.GET_USER:
       return{
-        profile: action.payload
+        ...state,
+        profile: {
+          ...user.profile,
+          ...action.payload
+        }
       }
       case 'LOGOUT': 
       return {
