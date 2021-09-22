@@ -62,7 +62,7 @@ export const updateuser = (data, id, token) => (dispatch) => {
     .then((res) => {
       const resultData = res.data.data;
 
-      dispatch = { type: actionTypes.UPDATE_USER, payload: resultData };
+      dispatch({ type: actionTypes.UPDATE_USER, payload: resultData });
       Swal('Success!', 'Update data success', 'success');
     })
     .catch((error) => {
