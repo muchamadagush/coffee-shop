@@ -63,8 +63,8 @@ NEXT_PUBLIC_WEB_URL = "http://localhost:3000/"
 - [React Bootstrap](https://react-bootstrap.github.io/)
 
 ## Related Project
-* [`Frontend-Zwallet`](https://github.com/muchamadagush/coffee-shop)
-* [`Backend-Zwallet`](https://github.com/muchamadagush/backend-CoffeeShop)
+* [`Frontend-coffeshop`](https://github.com/muchamadagush/coffee-shop)
+* [`Backend-coffeshop`](https://github.com/muchamadagush/backend-CoffeeShop)
 
 ## Team
 
