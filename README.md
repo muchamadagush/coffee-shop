@@ -16,15 +16,15 @@ Coffee Shop is a store that sells some good meals, and especially coffee. We pro
 
 ## Screenshots
 <p align="center">
-  <image src='./screenshots/Coffee Shop 1.png' width=100%/>
-  <image src='./screenshots/Coffee Shop 2.png' width=50%/>
-  <image src='./screenshots/Coffee Shop 3.png' width=50%/>
-  <image src='./screenshots/Coffee Shop 4.png' width=50%/>
-  <image src='./screenshots/Coffee Shop 5.png' width=50%/>
-  <image src='./screenshots/Coffee Shop 7.png' width=50%/>
-  <image src='./screenshots/Coffee Shop 8.png' width=50%/>
-  <image src='./screenshots/Coffee Shop 9.png' width=50%/>
-  <image src='./screenshots/Coffee Shop 10.png' width=50%/>
+  <image src='./screenshots/Coffee Shop1.png' width=100%/>
+  <image src='./screenshots/Coffee Shop2.png' width=50%/>
+  <image src='./screenshots/Coffee Shop3.png' width=50%/>
+  <image src='./screenshots/Coffee Shop4.png' width=50%/>
+  <image src='./screenshots/Coffee Shop5.png' width=50%/>
+  <image src='./screenshots/Coffee Shop7.png' width=50%/>
+  <image src='./screenshots/Coffee Shop8.png' width=50%/>
+  <image src='./screenshots/Coffee Shop9.png' width=50%/>
+  <image src='./screenshots/Coffee Shop10.png' width=50%/>
 </p>
 
 ## Built With
