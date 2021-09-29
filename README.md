@@ -15,13 +15,13 @@
 Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans
 
 ## Screenshots
-<p align="center">
+<p align="center" display=flex>
   <image src='./screenshots/Coffee Shop1.png' width=45%/>
   <div width=45%>
-  <image src='./screenshots/Coffee Shop2.png' width=100%/>
-  <image src='./screenshots/Coffee Shop3.png' width=100%/>
-  <image src='./screenshots/Coffee Shop4.png' width=100%/>
-  <image src='./screenshots/Coffee Shop6.png' width=100%/>
+  <image src='./screenshots/Coffee Shop2.png' width=45%/>
+  <image src='./screenshots/Coffee Shop3.png' width=45%/>
+  <image src='./screenshots/Coffee Shop4.png' width=45%/>
+  <image src='./screenshots/Coffee Shop6.png' width=45%/>
   </div>
 </p>
 <p align="center">
