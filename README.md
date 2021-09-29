@@ -27,6 +27,11 @@ Coffee Shop is a store that sells some good meals, and especially coffee. We pro
     <image src='./screenshots/Coffee Shop8.png' width=45%/>
     <image src='./screenshots/Coffee Shop9.png' width=45%/>
     <image src='./screenshots/Coffee Shop10.png' width=45%/>
+    <image src='./screenshots/Coffee Shop11.png' width=45%/>
+    <image src='./screenshots/Coffee Shop12.png' width=45%/>
+    <image src='./screenshots/Coffee Shop13.png' width=45%/>
+    <image src='./screenshots/Coffee Shop14.png' width=45%/>
+    <image src='./screenshots/Coffee Shop15.png' width=45%/>
   </div>
 </p>
 
