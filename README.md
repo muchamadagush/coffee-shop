@@ -16,12 +16,15 @@ Coffee Shop is a store that sells some good meals, and especially coffee. We pro
 
 ## Screenshots
 <p align="center">
-  <image src='https://i.imgur.com/mRjuuGA.png' width=400px/>
-  <image src='https://i.imgur.com/ZdvXeIF.png' width=400px/>
-  <image src='https://i.imgur.com/FllNlME.png' width=400px/>
-  <image src='https://i.imgur.com/ejtzKaP.png' width=400px/>
-  <image src='https://i.imgur.com/U3xfU4X.png' width=400px/>
-  <image src='https://i.imgur.com/wbkxNw5.png' width=400px/>
+  <image src='./screenshots/Coffee Shop 1.png' width=100%/>
+  <image src='./screenshots/Coffee Shop 2.png' width=50%/>
+  <image src='./screenshots/Coffee Shop 3.png' width=50%/>
+  <image src='./screenshots/Coffee Shop 4.png' width=50%/>
+  <image src='./screenshots/Coffee Shop 5.png' width=50%/>
+  <image src='./screenshots/Coffee Shop 7.png' width=50%/>
+  <image src='./screenshots/Coffee Shop 8.png' width=50%/>
+  <image src='./screenshots/Coffee Shop 9.png' width=50%/>
+  <image src='./screenshots/Coffee Shop 10.png' width=50%/>
 </p>
 
 ## Built With
