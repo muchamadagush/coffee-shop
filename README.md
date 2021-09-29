@@ -16,15 +16,19 @@ Coffee Shop is a store that sells some good meals, and especially coffee. We pro
 
 ## Screenshots
 <p align="center">
-  <image src='./screenshots/Coffee Shop1.png' width=100%/>
-  <image src='./screenshots/Coffee Shop2.png' width=50%/>
-  <image src='./screenshots/Coffee Shop3.png' width=50%/>
-  <image src='./screenshots/Coffee Shop4.png' width=50%/>
-  <image src='./screenshots/Coffee Shop5.png' width=50%/>
-  <image src='./screenshots/Coffee Shop7.png' width=50%/>
-  <image src='./screenshots/Coffee Shop8.png' width=50%/>
-  <image src='./screenshots/Coffee Shop9.png' width=50%/>
-  <image src='./screenshots/Coffee Shop10.png' width=50%/>
+  <image src='./screenshots/Coffee Shop1.png' width=45%/>
+  <div width=45%>
+  <image src='./screenshots/Coffee Shop2.png' width=100%/>
+  <image src='./screenshots/Coffee Shop3.png' width=100%/>
+  <image src='./screenshots/Coffee Shop4.png' width=100%/>
+  <image src='./screenshots/Coffee Shop6.png' width=100%/>
+  </div>
+</p>
+<p align="center">
+  <image src='./screenshots/Coffee Shop7.png' width=45%/>
+  <image src='./screenshots/Coffee Shop8.png' width=45%/>
+  <image src='./screenshots/Coffee Shop9.png' width=45%/>
+  <image src='./screenshots/Coffee Shop10.png' width=45%/>
 </p>
 
 ## Built With
