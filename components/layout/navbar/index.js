@@ -53,11 +53,6 @@ const NavBar = (props) => {
             <p className={`fs-16 ${props.active === 'product' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>Product</p>
           </a>
         </Link>
-        <Link href="/cart">
-          <a>
-            <p className={`fs-16 ${props.active === 'cart' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>Your Cart</p>
-          </a>
-        </Link>
         <Link href="/history">
           <a>
             <p className={`fs-16 ${props.active === 'history' ? 'fw-700 fc-brown' : 'fw-400 fc-grey'}`}>History</p>
